@@ -1,6 +1,6 @@
 # Testes do plugin
 
-Esta pasta fica fora do plugin publicado (`plugins/negocio-local`). Serve para provar que as skills funcionam numa máquina qualquer, sem publicar e sem gastar.
+Esta pasta fica fora do plugin publicado (`plugins/skills-primeira-venda`). Serve para provar que as skills funcionam numa máquina qualquer, sem publicar e sem gastar.
 
 ## Ambiente
 
@@ -9,7 +9,7 @@ Esta pasta fica fora do plugin publicado (`plugins/negocio-local`). Serve para p
 3. Instale o plugin a partir do repositório local:
    ```
    /plugin marketplace add <caminho-do-repositório>
-   /plugin install negocio-local@negocio-local
+   /plugin install skills-primeira-venda@omarcusdev
    ```
    O plugin `ozap` fica sem instalar na maior parte dos cenários (só no 17 e no 18).
 4. Uma variante do contêiner sem Python e sem Node, para o cenário 12.
@@ -20,7 +20,7 @@ Rode na raiz do repositório antes de qualquer cenário.
 
 - Nenhum arquivo fora das extensões permitidas. Este comando tem de voltar vazio:
   ```
-  find plugins/negocio-local -type f | grep -v -E '\.(md|json|ya?ml|png|jpe?g|svg|txt)$|LICENSE$'
+  find plugins/skills-primeira-venda -type f | grep -v -E '\.(md|json|ya?ml|png|jpe?g|svg|txt)$|LICENSE$'
   ```
 - Nenhuma pasta `hooks/`, nenhum `.mcp.json` e nenhum campo `hooks` ou `mcpServers` no `plugin.json`.
 - `claude plugin validate`, se a versão tiver, passa.

@@ -13,7 +13,7 @@ Estas skills saíram de um caso real de um pequeno negócio de comida feita em c
 
 ## As 8 skills
 
-Chame pelo nome (`/negocio-local:montar-negocio`) ou peça em texto livre.
+Chame pelo nome (`/skills-primeira-venda:montar-negocio`) ou peça em texto livre.
 
 | Skill | Quando usar |
 |---|---|
@@ -69,11 +69,11 @@ O plugin não traz scripts. O que for código vem como bloco dentro das referenc
 ## Instalar
 
 ```
-/plugin marketplace add omarcusdev/negocio-local
-/plugin install negocio-local@negocio-local
+/plugin marketplace add omarcusdev/skills-primeira-venda
+/plugin install skills-primeira-venda@omarcusdev
 ```
 
-O endereço no GitHub é definido na publicação. Para instalar de uma cópia local do repositório, use o caminho da pasta: `/plugin marketplace add ./negocio-local`.
+Para instalar de uma cópia local do repositório, use o caminho da pasta: `/plugin marketplace add ./skills-primeira-venda`.
 
 Depois, abra o Claude Code na pasta do negócio (para agência, uma pasta por cliente) e peça, por exemplo:
 

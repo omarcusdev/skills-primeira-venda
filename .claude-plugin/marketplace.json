@@ -1,5 +1,5 @@
 {
-  "name": "negocio-local",
+  "name": "omarcusdev",
   "description": "Skills para montar ou completar a presença e as vendas de um negócio local.",
   "owner": {
     "name": "oZapOnline",
@@ -7,8 +7,8 @@
   },
   "plugins": [
     {
-      "name": "negocio-local",
-      "source": "./plugins/negocio-local",
+      "name": "skills-primeira-venda",
+      "source": "./plugins/skills-primeira-venda",
       "description": "Pesquisa, marca, conteúdo, redes, anúncios, atendimento e acompanhamento de vendas para negócio local."
     }
   ]
