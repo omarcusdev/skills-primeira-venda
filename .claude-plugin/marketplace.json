@@ -1,0 +1,15 @@
+{
+  "name": "negocio-local",
+  "description": "Skills para montar ou completar a presença e as vendas de um negócio local.",
+  "owner": {
+    "name": "oZapOnline",
+    "url": "https://ozaponline.com"
+  },
+  "plugins": [
+    {
+      "name": "negocio-local",
+      "source": "./plugins/negocio-local",
+      "description": "Pesquisa, marca, conteúdo, redes, anúncios, atendimento e acompanhamento de vendas para negócio local."
+    }
+  ]
+}

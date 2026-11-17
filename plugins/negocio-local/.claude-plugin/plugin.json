@@ -1,0 +1,16 @@
+{
+  "name": "negocio-local",
+  "displayName": "Negócio local: presença e vendas",
+  "version": "0.1.0",
+  "description": "Monte do zero, ou complete, a presença e as vendas de um negócio local: pesquisa, marca, conteúdo, redes, anúncios, atendimento e acompanhamento.",
+  "author": {
+    "name": "oZapOnline",
+    "url": "https://ozaponline.com"
+  },
+  "homepage": "https://ozaponline.com/mcp",
+  "license": "MIT",
+  "keywords": ["negocio-local", "pequeno-negocio", "marketing", "redes-sociais", "vendas"],
+  "supportUrl": "https://wa.me/555192028254",
+  "privacyPolicyUrl": "https://ozaponline.com/privacidade",
+  "termsOfServiceUrl": "https://ozaponline.com/termos"
+}
