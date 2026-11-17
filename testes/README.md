@@ -38,7 +38,7 @@ Os cenários usam só nomes fictícios e neutros: Salão Exemplo, Pet Modelo, La
 
 ## Cenários
 
-Os 18 cenários estão em `cenarios/01.md` a `cenarios/18.md`. Cada um tem o pedido, os dados do negócio inventado, a skill esperada e os critérios.
+Os 19 cenários estão em `cenarios/01.md` a `cenarios/19.md`. Cada um tem o pedido, os dados do negócio inventado, a skill esperada e os critérios.
 
 | # | Assunto | Skill esperada |
 |---|---|---|
@@ -60,6 +60,7 @@ Os 18 cenários estão em `cenarios/01.md` a `cenarios/18.md`. Cada um tem o ped
 | 16 | Follow-up de recompra | `acompanhar-vendas` |
 | 17 | Atendente de IA com o plugin `ozap` (opcional, conta de teste) | `atendente-ia` |
 | 18 | Teste de disparo contra as skills `ozap:*` | várias |
+| 19 | Vender sem pagar anúncio | `vender-sem-anuncio` |
 
 ## Varreduras em todo o repositório e em todas as saídas dos testes
 

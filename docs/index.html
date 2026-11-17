@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Como instalar as skills da primeira venda</title>
+<meta name="description" content="Passo a passo para colocar as skills grátis da primeira venda no Claude, no Claude Code, no ChatGPT e no Codex. Feito para quem nunca mexeu nisso.">
+<meta property="og:title" content="Como instalar as skills da primeira venda">
+<meta property="og:description" content="Passo a passo para colocar as skills no Claude, no ChatGPT e no Codex, mesmo sem saber nada de tecnologia.">
+<meta property="og:image" content="https://omarcusdev.github.io/skills-primeira-venda/img/capa.png">
+<style>
+@font-face { font-family: "Bricolage"; src: url("fonts/bricolage-grotesque-latin-wdth-wght-opsz.woff2") format("woff2"); font-weight: 200 800; font-stretch: 75% 100%; font-display: swap; }
+@font-face { font-family: "Instrument"; src: url("fonts/instrument-sans-latin-wght.woff2") format("woff2"); font-weight: 400 700; font-display: swap; }
+:root {
+  --ground: #20b97d; --ink: #0b3324; --paper: #fbfdfc; --deep: #0f7a52; --label: #8fe3bb;
+  --soft: #e9f7f0; --warn: #fff4d6;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--ground); color: var(--ink); font-family: "Instrument", -apple-system, "Segoe UI", sans-serif; font-size: 18px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+a { color: var(--ink); text-underline-offset: 3px; }
+.wrap { max-width: 860px; margin: 0 auto; padding: 0 16px; }
+h1, h2, h3, .head { font-family: "Bricolage", sans-serif; font-weight: 700; letter-spacing: -0.015em; line-height: 1.05; }
+h1 { font-size: clamp(40px, 8vw, 72px); }
+h2 { font-size: clamp(30px, 5.2vw, 44px); margin-bottom: 14px; }
+h3 { font-size: 23px; margin: 26px 0 10px; }
+p + p { margin-top: 10px; }
+.card { background: var(--paper); border: 3px solid var(--ink); border-radius: 22px; box-shadow: 6px 6px 0 var(--ink); padding: 26px 24px; }
+.card + .card { margin-top: 26px; }
+section { margin-top: 44px; }
+code, .mono { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
+p code, li code { background: var(--soft); border-radius: 6px; padding: 1px 6px; font-size: 0.88em; word-break: break-word; }
+
+header.top { padding: 34px 0 10px; }
+.brand { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 15px; font-weight: 600; opacity: 0.85; }
+.lede { font-size: 21px; max-width: 640px; margin-top: 16px; }
+.phone { margin-top: 22px; background: var(--ink); color: #fff; border-radius: 16px; padding: 14px 16px; display: flex; gap: 12px; align-items: center; flex-wrap: wrap; font-size: 16px; }
+.phone strong { color: var(--label); }
+
+.pick { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin-top: 18px; }
+.pick a { display: block; text-decoration: none; background: var(--paper); border: 3px solid var(--ink); border-radius: 18px; box-shadow: 5px 5px 0 var(--ink); padding: 18px 18px 16px; transition: transform .08s, box-shadow .08s; }
+.pick a:hover { transform: translate(-2px, -2px); box-shadow: 7px 7px 0 var(--ink); }
+.pick a:active { transform: translate(3px, 3px); box-shadow: 2px 2px 0 var(--ink); }
+.pick .t { font-family: "Bricolage", sans-serif; font-weight: 700; font-size: 22px; line-height: 1.1; display: block; }
+.pick .d { display: block; font-size: 15.5px; margin-top: 6px; }
+.pick .tag { display: inline-block; margin-top: 10px; font-size: 13px; font-weight: 700; color: var(--deep); }
+
+ol.steps { list-style: none; counter-reset: s; margin-top: 8px; }
+ol.steps > li { counter-increment: s; position: relative; padding: 0 0 18px 50px; }
+ol.steps > li::before { content: counter(s); position: absolute; left: 0; top: -2px; width: 34px; height: 34px; border-radius: 50%; background: var(--ink); color: #fff; font-family: "Bricolage", sans-serif; font-weight: 700; font-size: 18px; display: flex; align-items: center; justify-content: center; }
+ol.steps > li:last-child { padding-bottom: 0; }
+ul.dots { margin: 8px 0 0 22px; }
+ul.dots li + li { margin-top: 6px; }
+.btn-path { font-weight: 700; background: var(--soft); border: 2px solid var(--ink); border-radius: 8px; padding: 0 7px; white-space: nowrap; font-size: 0.92em; }
+
+.cmd { margin: 10px 0 4px; background: var(--ink); color: #e9fff5; border-radius: 14px; padding: 12px 12px 12px 16px; display: flex; gap: 10px; align-items: center; }
+.cmd code { order: 1; flex: 1; min-width: 0; font-size: 15px; overflow-x: auto; white-space: pre; padding: 2px 0; background: transparent; border-radius: 0; color: #e9fff5; }
+.cmd .os { order: 0; font-family: "Instrument", sans-serif; font-size: 12px; font-weight: 700; color: var(--label); white-space: nowrap; }
+.cmd button.copy { order: 2; }
+button.copy { font: 700 14px "Instrument", sans-serif; background: var(--ground); color: var(--ink); border: 2px solid var(--label); border-radius: 10px; padding: 6px 12px; cursor: pointer; white-space: nowrap; }
+button.copy.ok { background: var(--label); }
+.phone button.copy { border-color: var(--ground); }
+
+.note { margin-top: 16px; background: var(--soft); border-left: 6px solid var(--deep); border-radius: 10px; padding: 12px 14px; font-size: 16px; }
+.note.warn { background: var(--warn); border-left-color: #b8860b; }
+.need { display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: 15.5px; margin: 4px 0 14px; }
+.need b { color: var(--deep); }
+.done { margin-top: 18px; padding: 14px 16px; border: 2px dashed var(--deep); border-radius: 14px; font-size: 16.5px; }
+
+.skills { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 12px; }
+.skills a { display: flex; justify-content: space-between; gap: 10px; align-items: center; text-decoration: none; border: 2px solid var(--ink); border-radius: 12px; padding: 9px 12px; background: #fff; font-size: 15.5px; }
+.skills a span:last-child { font-size: 13px; font-weight: 700; color: var(--deep); white-space: nowrap; }
+.skills a.first { background: var(--soft); }
+
+table.cmp { width: 100%; border-collapse: collapse; margin-top: 12px; font-size: 15.5px; }
+table.cmp th, table.cmp td { text-align: left; padding: 9px 8px; border-bottom: 2px solid var(--soft); vertical-align: top; }
+table.cmp th { font-size: 13px; text-transform: uppercase; letter-spacing: .04em; color: var(--deep); }
+table.cmp td:first-child { font-weight: 700; }
+.y { color: var(--deep); font-weight: 700; }
+.n { color: #9a3b1b; font-weight: 700; }
+
+.ask { display: grid; gap: 10px; margin-top: 12px; }
+.ask div { background: #fff; border: 2px solid var(--ink); border-radius: 14px; padding: 10px 14px; font-size: 16.5px; }
+
+details { border-top: 2px solid var(--soft); padding: 12px 0; }
+details:first-of-type { border-top: 0; }
+summary { cursor: pointer; font-weight: 700; font-size: 17.5px; list-style: none; }
+summary::-webkit-details-marker { display: none; }
+summary::before { content: "+"; display: inline-block; width: 22px; font-family: "Bricolage", sans-serif; }
+details[open] summary::before { content: "–"; }
+details p, details ul { margin-top: 8px; font-size: 16.5px; }
+
+footer { padding: 46px 0 50px; font-size: 15.5px; }
+footer a { font-weight: 700; }
+
+@media (max-width: 640px) {
+  body { font-size: 17px; }
+  .pick, .skills { grid-template-columns: 1fr; }
+  .card { padding: 22px 18px; border-radius: 18px; box-shadow: 5px 5px 0 var(--ink); }
+  ol.steps > li { padding-left: 44px; }
+  .cmd { flex-wrap: wrap; }
+  .cmd code { flex-basis: 100%; order: 3; font-size: 14px; white-space: pre-wrap; word-break: break-all; overflow-x: visible; }
+  .cmd .os { order: 1; flex: 1; }
+  .cmd button.copy { order: 2; margin-left: auto; }
+  table.cmp { font-size: 14.5px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <div class="brand">skills-primeira-venda</div>
+  <h1 style="margin-top:14px">Coloque as skills no seu Claude ou ChatGPT</h1>
+  <p class="lede">Passo a passo para quem nunca mexeu com isso. Escolha onde você usa a IA e siga os passos daquela parte. Não precisa saber programar.</p>
+  <div class="phone"><span>📱 Está no celular? Dá para ler aqui, mas <strong>instalar é mais fácil no computador</strong>. Mande este link para você mesmo.</span> <button class="copy" data-copy-url>Copiar link</button></div>
+</header>
+
+<section class="card">
+  <h2>O que são essas skills</h2>
+  <p>Skills são instruções prontas que ensinam a IA a fazer um trabalho do jeito certo. Estas ensinam a montar a presença e as vendas de um negócio de bairro, do zero até a primeira venda: pesquisa de preço, nome e logo, Instagram e WhatsApp, posts, atendimento, anúncio se você quiser, e o acompanhamento das vendas.</p>
+  <ul class="dots">
+    <li><b>São grátis.</b> Você só precisa de uma conta no Claude ou no ChatGPT.</li>
+    <li><b>Nada sai sem o seu ok.</b> A IA prepara; publicar, pagar e mandar mensagem é sempre você, item por item.</li>
+    <li><b>Nunca digite senha, CPF ou número de cartão na conversa.</b> Essas partes você faz direto nos aplicativos.</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Onde você usa a IA?</h2>
+  <div class="pick">
+    <a href="#claude-pago"><span class="t">Claude com plano pago</span><span class="d">Pro, Max ou superior. No site claude.ai ou no app.</span><span class="tag">O jeito mais fácil →</span></a>
+    <a href="#claude-gratis"><span class="t">Claude grátis</span><span class="d">Conta sem assinatura. Funciona, com alguns passos a mais.</span><span class="tag">Uma skill por vez →</span></a>
+    <a href="#chatgpt"><span class="t">ChatGPT</span><span class="d">Pela parte de programação do ChatGPT, o Codex.</span><span class="tag">Precisa do Plus ou superior →</span></a>
+    <a href="#terminal"><span class="t">Já uso o Claude Code</span><span class="d">Ou topa usar o Terminal do computador. Copia e cola.</span><span class="tag">Dois comandos →</span></a>
+  </div>
+</section>
+
+<section class="card" id="claude-pago">
+  <h2>Claude com plano pago</h2>
+  <div class="need"><span><b>Precisa:</b> plano Pro, Max ou superior</span><span><b>Onde:</b> claude.ai no navegador ou o app do Claude no computador</span></div>
+  <ol class="steps">
+    <li>Abra a página de plugins: <a href="https://claude.ai/customize/plugins" target="_blank" rel="noopener">claude.ai/customize/plugins</a>. No app, clique em <span class="btn-path">Customize</span> na barra da esquerda e depois em <span class="btn-path">Plugins</span>.</li>
+    <li>Clique em <span class="btn-path">Add</span> e escolha <span class="btn-path">Add marketplace</span>. Se aparecer mais uma opção, escolha <span class="btn-path">Add from a repository</span>.</li>
+    <li>Cole este endereço e confirme:
+      <div class="cmd"><code>omarcusdev/skills-primeira-venda</code><button class="copy">Copiar</button></div>
+    </li>
+    <li>Na lista que aparece, abra <b>skills-primeira-venda</b> e clique em <span class="btn-path">Install</span> (em algumas telas o botão se chama <span class="btn-path">Add</span>).</li>
+  </ol>
+  <div class="done">✅ Pronto. As skills ficam na sua conta e valem no chat, no Cowork e no Claude Code, sem instalar de novo. Pule para <a href="#primeiro-pedido">o primeiro pedido</a>.</div>
+
+  <h3>Para o melhor resultado: use o Cowork</h3>
+  <p>No chat comum, o Claude entrega os arquivos do seu negócio (a ficha, o plano, os textos) para você baixar. No <b>Cowork</b>, que fica dentro do app do Claude no computador, ele guarda tudo numa pasta sua e consegue abrir sites para pesquisar.</p>
+  <ol class="steps">
+    <li>Baixe o app do Claude para Mac ou Windows em <a href="https://claude.ai/download" target="_blank" rel="noopener">claude.ai/download</a> e entre com a sua conta.</li>
+    <li>Crie uma pasta para o negócio, por exemplo <b>Meu Negócio</b> dentro de Documentos.</li>
+    <li>No campo de mensagem, escolha <span class="btn-path">Cowork</span>, conecte a pasta que você criou e faça o seu pedido.</li>
+  </ol>
+  <p class="note">Os nomes dos botões estão em inglês porque é assim que aparecem na maioria das contas. Se o seu Claude estiver em português, procure o botão equivalente no mesmo lugar.</p>
+</section>
+
+<section class="card" id="claude-gratis">
+  <h2>Claude grátis</h2>
+  <div class="need"><span><b>Precisa:</b> conta grátis no claude.ai</span><span><b>Onde:</b> claude.ai no navegador ou o app no computador</span></div>
+  <p>No plano grátis não dá para instalar tudo de uma vez: você envia uma skill por vez. Leva alguns minutos.</p>
+  <ol class="steps">
+    <li>Ligue a opção de criar arquivos: abra <span class="btn-path">Settings</span>, depois <span class="btn-path">Capabilities</span>, e ligue <span class="btn-path">Code execution and file creation</span> (em algumas contas o nome é <span class="btn-path">Create and edit files</span>).</li>
+    <li>Baixe os arquivos das skills. Cada um é um <b>.zip</b>; <b>não abra</b>, envie do jeito que baixou. Comece por <b>montar-negocio</b>: ela organiza o caminho e diz qual skill usar depois.
+      <div class="skills" id="lista-zips"></div>
+    </li>
+    <li>Abra <a href="https://claude.ai/customize/skills" target="_blank" rel="noopener">claude.ai/customize/skills</a>, clique em <span class="btn-path">+</span>, depois <span class="btn-path">Create skill</span> e <span class="btn-path">Upload a skill</span>. Escolha o arquivo .zip.</li>
+    <li>Repita o passo 3 para cada arquivo que você baixou.</li>
+  </ol>
+  <div class="done">✅ Pronto. Pule para <a href="#primeiro-pedido">o primeiro pedido</a>.</div>
+  <div class="note warn"><b>O que muda no grátis:</b>
+    <ul class="dots">
+      <li>Os arquivos do negócio aparecem na conversa para baixar. Guarde a <b>ficha.md</b> e anexe na próxima conversa, para o Claude lembrar do seu negócio.</li>
+      <li>O chat pesquisa na internet, mas não abre sites para conferir perfis por você.</li>
+      <li>O plano grátis tem limite de uso. A pesquisa completa de preços gasta mais; a skill avisa antes.</li>
+      <li>Quando sair uma versão nova das skills, é preciso enviar os arquivos de novo.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="card" id="chatgpt">
+  <h2>ChatGPT</h2>
+  <div class="need"><span><b>Precisa:</b> ChatGPT Plus ou superior</span><span><b>Onde:</b> computador (Mac ou Windows)</span></div>
+  <p>Na conversa comum do ChatGPT ainda não existe um jeito garantido de instalar skills nos planos pessoais. O caminho que funciona é o <b>Codex</b>, que já vem no seu plano do ChatGPT e trabalha numa pasta do seu computador. Ele usa o Terminal, mas é só copiar e colar.</p>
+  <ol class="steps">
+    <li>Abra o Terminal. <b>No Mac:</b> aperte <code>Cmd</code> + <code>Espaço</code>, digite <b>Terminal</b> e aperte Enter. <b>No Windows:</b> clique no Iniciar, digite <b>PowerShell</b> e aperte Enter.</li>
+    <li>Instale o Codex. Copie a linha do seu computador, cole no Terminal e aperte Enter:
+      <div class="cmd"><span class="os">MAC</span><button class="copy">Copiar</button><code>curl -fsSL https://chatgpt.com/codex/install.sh | sh</code></div>
+      <div class="cmd"><span class="os">WINDOWS</span><button class="copy">Copiar</button><code>powershell -ExecutionPolicy ByPass -c "irm https://chatgpt.com/codex/install.ps1 | iex"</code></div>
+      Quando terminar, feche o Terminal e abra de novo.
+    </li>
+    <li>Coloque as skills. Cole uma linha de cada vez e aperte Enter:
+      <div class="cmd"><button class="copy">Copiar</button><code>codex plugin marketplace add omarcusdev/skills-primeira-venda</code></div>
+      <div class="cmd"><button class="copy">Copiar</button><code>codex plugin add skills-primeira-venda@omarcusdev</code></div>
+    </li>
+    <li>Crie a pasta do negócio e entre nela:
+      <div class="cmd"><span class="os">MAC</span><button class="copy">Copiar</button><code>mkdir -p ~/Documents/meu-negocio && cd ~/Documents/meu-negocio</code></div>
+      <div class="cmd"><span class="os">WINDOWS</span><button class="copy">Copiar</button><code>mkdir $HOME\Documents\meu-negocio; cd $HOME\Documents\meu-negocio</code></div>
+    </li>
+    <li>Abra o Codex, escolha <span class="btn-path">Sign in with ChatGPT</span> e entre com a sua conta do ChatGPT:
+      <div class="cmd"><button class="copy">Copiar</button><code>codex</code></div>
+    </li>
+  </ol>
+  <div class="done">✅ Pronto. Escreva o seu pedido ali mesmo, como numa conversa. Veja <a href="#primeiro-pedido">o primeiro pedido</a>.</div>
+  <div class="note"><b>Da próxima vez</b>, abra o Terminal e cole a linha do seu computador:
+    <div class="cmd"><span class="os">MAC</span><button class="copy">Copiar</button><code>cd ~/Documents/meu-negocio && codex</code></div>
+    <div class="cmd"><span class="os">WINDOWS</span><button class="copy">Copiar</button><code>cd $HOME\Documents\meu-negocio; codex</code></div>
+  </div>
+</section>
+
+<section class="card" id="terminal">
+  <h2>Claude Code</h2>
+  <div class="need"><span><b>Precisa:</b> plano Pro, Max ou superior do Claude</span><span><b>Onde:</b> computador (Mac ou Windows)</span></div>
+  <p>Se você já usa o Claude Code, pule para o passo 4.</p>
+  <ol class="steps">
+    <li>Abra o Terminal. <b>No Mac:</b> aperte <code>Cmd</code> + <code>Espaço</code>, digite <b>Terminal</b> e aperte Enter. <b>No Windows:</b> clique no Iniciar, digite <b>PowerShell</b> e aperte Enter.</li>
+    <li>Instale o Claude Code. Copie a linha do seu computador, cole e aperte Enter:
+      <div class="cmd"><span class="os">MAC</span><button class="copy">Copiar</button><code>curl -fsSL https://claude.ai/install.sh | bash</code></div>
+      <div class="cmd"><span class="os">WINDOWS</span><button class="copy">Copiar</button><code>irm https://claude.ai/install.ps1 | iex</code></div>
+      Quando terminar, feche o Terminal e abra de novo.
+    </li>
+    <li>Crie a pasta do negócio, entre nela e abra o Claude Code. Na primeira vez ele abre o navegador para você entrar na sua conta.
+      <div class="cmd"><span class="os">MAC</span><button class="copy">Copiar</button><code>mkdir -p ~/Documents/meu-negocio && cd ~/Documents/meu-negocio && claude</code></div>
+      <div class="cmd"><span class="os">WINDOWS</span><button class="copy">Copiar</button><code>mkdir $HOME\Documents\meu-negocio; cd $HOME\Documents\meu-negocio; claude</code></div>
+    </li>
+    <li>Dentro do Claude Code, cole uma linha de cada vez e aperte Enter:
+      <div class="cmd"><button class="copy">Copiar</button><code>/plugin marketplace add omarcusdev/skills-primeira-venda</code></div>
+      <div class="cmd"><button class="copy">Copiar</button><code>/plugin install skills-primeira-venda@omarcusdev</code></div>
+      Se ele perguntar onde instalar, escolha <span class="btn-path">Install for you (user scope)</span>. Se pedir, rode <code>/reload-plugins</code>.
+    </li>
+  </ol>
+  <div class="done">✅ Pronto. Agora é só pedir. Veja <a href="#primeiro-pedido">o primeiro pedido</a>.</div>
+  <div class="note"><b>Da próxima vez</b>, abra o Terminal e cole a linha do seu computador:
+    <div class="cmd"><span class="os">MAC</span><button class="copy">Copiar</button><code>cd ~/Documents/meu-negocio && claude</code></div>
+    <div class="cmd"><span class="os">WINDOWS</span><button class="copy">Copiar</button><code>cd $HOME\Documents\meu-negocio; claude</code></div>
+  </div>
+  <p class="note">Não quer usar o Terminal? Com o plano pago, o jeito mais simples é o <a href="#claude-pago">Cowork, no app do Claude</a>: instala com cliques e também guarda os arquivos numa pasta sua.</p>
+</section>
+
+<section class="card" id="qual">
+  <h2>Qual jeito funciona melhor?</h2>
+  <table class="cmp">
+    <thead><tr><th>Onde</th><th>Guarda os arquivos numa pasta sua</th><th>Instala tudo de uma vez</th></tr></thead>
+    <tbody>
+      <tr><td>Claude Cowork (pago)</td><td class="y">Sim</td><td class="y">Sim</td></tr>
+      <tr><td>Claude Code (pago)</td><td class="y">Sim</td><td class="y">Sim</td></tr>
+      <tr><td>Codex (ChatGPT Plus ou superior)</td><td class="y">Sim</td><td class="y">Sim</td></tr>
+      <tr><td>Claude no chat, pago</td><td class="n">Não, você baixa</td><td class="y">Sim</td></tr>
+      <tr><td>Claude no chat, grátis</td><td class="n">Não, você baixa</td><td class="n">Não, uma por vez</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="card" id="primeiro-pedido">
+  <h2>O primeiro pedido</h2>
+  <p>Escreva do seu jeito, como mandaria para alguém no WhatsApp. Alguns exemplos:</p>
+  <div class="ask">
+    <div>"quero montar a presença do meu salão do zero"</div>
+    <div>"vê o que já tem do meu pet shop e me diz o que falta"</div>
+    <div>"quero vender mais sem pagar anúncio"</div>
+    <div>"escreve as respostas do WhatsApp da minha barbearia"</div>
+  </div>
+  <p style="margin-top:14px">A IA vai fazer poucas perguntas por vez sobre o seu negócio e guardar as respostas numa ficha. Nos jeitos com pasta (Cowork, Claude Code e Codex), a ficha fica salva e a próxima conversa continua de onde parou. No chat, baixe a ficha e anexe na conversa seguinte.</p>
+</section>
+
+<section class="card" id="duvidas">
+  <h2>Deu algum problema?</h2>
+  <details><summary>Não acho o "Customize" ou o "Plugins"</summary><p>Os plugins só aparecem nos planos pagos. Se a sua conta é grátis, siga a parte <a href="#claude-gratis">Claude grátis</a>. Se é paga, atualize o app ou use o claude.ai no navegador.</p></details>
+  <details><summary>O Terminal diz "command not found" ou "não é reconhecido"</summary><p>Feche o Terminal e abra de novo depois de instalar. Se continuar, rode a linha de instalação mais uma vez e espere terminar: ela não mostra barra de progresso.</p></details>
+  <details><summary>O upload do .zip deu erro no Claude grátis</summary><p>Envie o arquivo do jeito que baixou, sem abrir nem renomear. E confira se a opção do passo 1 (criar arquivos) está ligada.</p></details>
+  <details><summary>A IA não usa as skills</summary><p>Comece uma conversa nova depois de instalar. Se mesmo assim não usar, peça pelo nome: "usa a skill montar-negocio".</p></details>
+  <details><summary>A IA pediu senha, CPF ou cartão</summary><p>Não digite. As skills não pedem esses dados; essas partes você faz direto no Instagram, no WhatsApp ou no banco. Se a IA pedir, responda que você mesmo faz.</p></details>
+</section>
+
+<section class="card">
+  <h2>Perguntas comuns</h2>
+  <details><summary>Quanto custa?</summary><p>As skills são grátis. O que pode custar é o seu plano do Claude ou do ChatGPT, o chip do número do negócio e, só se você quiser, anúncio. A IA avisa antes de qualquer coisa que tenha custo.</p></details>
+  <details><summary>Preciso saber programar?</summary><p>Não. Os comandos desta página são para copiar e colar, e o resto é conversa.</p></details>
+  <details><summary>Meus dados vão para algum lugar?</summary><p>As skills são só instruções; elas não mandam nada para fora sozinhas. Os arquivos do seu negócio ficam na sua pasta ou na sua conversa. Nada é publicado ou enviado sem o seu ok.</p></details>
+  <details><summary>Dá para usar no celular?</summary><p>No Claude com plano pago, depois de instaladas no computador, as skills também aparecem no app do celular. Para instalar, use o computador.</p></details>
+</section>
+
+<footer>
+  <p>Código aberto, licença MIT: <a href="https://github.com/omarcusdev/skills-primeira-venda">github.com/omarcusdev/skills-primeira-venda</a></p>
+  <p style="margin-top:6px">Feito por <a href="https://instagram.com/omarcusdev" target="_blank" rel="noopener">@omarcusdev</a>.</p>
+</footer>
+
+</div>
+<script>
+(function () {
+  var REPO = "https://github.com/omarcusdev/skills-primeira-venda";
+  var SKILLS = [
+    ["montar-negocio", "Organiza tudo", true],
+    ["pesquisa-e-plano", "Preço e concorrentes"],
+    ["marca", "Nome e logo"],
+    ["presenca-nas-redes", "Instagram, WhatsApp, Google"],
+    ["conteudo", "Posts e legendas"],
+    ["vender-sem-anuncio", "Clientes sem pagar anúncio"],
+    ["atendente-ia", "Respostas do WhatsApp"],
+    ["anuncios", "Anúncio, se quiser"],
+    ["acompanhar-vendas", "Vendas da semana"]
+  ];
+  var list = document.getElementById("lista-zips");
+  SKILLS.forEach(function (s) {
+    var a = document.createElement("a");
+    a.href = REPO + "/releases/latest/download/" + s[0] + ".zip";
+    if (s[2]) a.className = "first";
+    a.innerHTML = "<span><b>" + s[0] + "</b><br>" + s[1] + "</span><span>Baixar .zip</span>";
+    list.appendChild(a);
+  });
+
+  function copyText(text, button) {
+    var done = function () {
+      var label = button.textContent;
+      button.textContent = "Copiado!";
+      button.classList.add("ok");
+      setTimeout(function () { button.textContent = label; button.classList.remove("ok"); }, 1600);
+    };
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(text).then(done, function () { fallback(text); done(); });
+    } else { fallback(text); done(); }
+  }
+  function fallback(text) {
+    var t = document.createElement("textarea");
+    t.value = text; t.style.position = "fixed"; t.style.opacity = "0";
+    document.body.appendChild(t); t.select();
+    try { document.execCommand("copy"); } catch (e) {}
+    document.body.removeChild(t);
+  }
+  document.querySelectorAll("button.copy").forEach(function (b) {
+    b.addEventListener("click", function () {
+      if (b.hasAttribute("data-copy-url")) { copyText(location.href.split("#")[0], b); return; }
+      var code = b.parentElement.querySelector("code");
+      copyText(code.textContent, b);
+    });
+  });
+})();
+</script>
+</body>
+</html>

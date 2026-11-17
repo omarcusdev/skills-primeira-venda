@@ -15,6 +15,7 @@ As skills criam e usam esta estrutura na pasta do negócio. Para agência, uma p
 ├── midia/inventario.md       com a coluna "autorização de imagem"
 ├── conteudo/<semana>/        peças, legendas.md, revisao.md
 ├── publicar/                 kit numerado para o humano colar (LEIA-PRIMEIRO.md)
+├── organico/plano.md, historias.md, placar.md, google/campos.md
 ├── anuncios/conta.md, anuncios/rodada-N/{plano.md,passo-a-passo.md,resultado.md}
 ├── atendente/prompt.md, testes.md, erros.md
 ├── gestao/brief.md, gestao/diario/AAAA-MM-DD.md, gestao/toques.md
@@ -33,6 +34,7 @@ Cada skill cria só as pastas de que precisa. `montar-negocio` cria `negocio/` c
 | `marca/` | `marca` |
 | `midia/`, `conteudo/` | `conteudo` |
 | `publicar/` | `presenca-nas-redes` |
+| `organico/` | `vender-sem-anuncio` |
 | `anuncios/` | `anuncios` |
 | `atendente/` | `atendente-ia` |
 | `gestao/`, `vendas/` | `acompanhar-vendas` |

@@ -39,7 +39,7 @@ Cliente: use só o primeiro nome ou um id em `obs`, nunca o telefone completo.
 
 ## 3. Origens padrão
 
-`conhecido` (círculo de pessoas próximas), `status`, `instagram`, `anuncio`, `indicacao`, `passou_na_porta`, `outro`, `nao_anotada`.
+`conhecido` (círculo de pessoas próximas), `status`, `instagram`, `google` (Perfil da Empresa no Google ou Maps), `grupo` (grupo do bairro), `parceiro` (indicação de um negócio vizinho), `anuncio`, `indicacao`, `passou_na_porta`, `outro`, `nao_anotada`. Os códigos de canal de `vender-sem-anuncio` (G1, S1, I1, B1, P1, Q1) caem nessas origens.
 
 `nao_anotada` é uma resposta honesta. Prefira ela a chutar. É comum boa parte das vendas ficar sem origem, porque quem vende não pergunta de onde o cliente veio, e a origem gravada pela plataforma às vezes falta ou só guarda a primeira. Diga isso no relatório sempre que `nao_anotada` for grande.
 

@@ -11,7 +11,7 @@ As lições que aparecem nas skills vêm de um único negócio pequeno, o caso d
 
 ## Quando não usar
 
-Pedido de uma coisa só (um post, um logo, um anúncio, o perfil, o robô do WhatsApp) vai direto para `marca`, `conteudo`, `anuncios`, `presenca-nas-redes` ou `atendente-ia`. Não abra a entrevista inteira para isso. Se faltar a ficha, a própria skill da etapa faz as perguntas mínimas.
+Pedido de uma coisa só (um post, um logo, um anúncio, o perfil, o robô do WhatsApp, vender sem anúncio) vai direto para `marca`, `conteudo`, `anuncios`, `presenca-nas-redes`, `atendente-ia` ou `vender-sem-anuncio`. Não abra a entrevista inteira para isso. Se faltar a ficha, a própria skill da etapa faz as perguntas mínimas.
 
 ## Como falar com o dono (vale em todos os passos)
 
@@ -27,7 +27,7 @@ Pedido de uma coisa só (um post, um logo, um anúncio, o perfil, o robô do Wha
 3. **Grave os três arquivos** ao fim da entrevista, antes de mostrar a ordem: `negocio/ficha.md`, `negocio/estado.md` e `negocio/decisoes.md`. No "do zero", o `estado.md` traz o que falta e, depois do passo 5, a ordem de trabalho. Confira que os três existem; se faltar um, grave antes de seguir. A seção de atendimento com IA da ficha fica sem preencher até o dono escolher IA.
 4. **Levantamento (só na entrada "completar").** Separe o que é público do que pede login. O público (perfil do Instagram, Página, catálogo do WhatsApp) você lê pelo navegador, se houver Claude in Chrome, ou por links, uma página por vez. O resto vem por print: peça os prints dos três canais quando forem relevantes (Instagram, WhatsApp Business e Página do Facebook), cada um com o caminho no app. Preencha `negocio/estado.md` com tem / falta / está ruim e a coluna "como sei". "Tem" só com visto ou print; o que o dono só disse fica "dito, falta ver". Veja `references/diagnostico-do-que-existe.md`.
 5. **Ordem de trabalho.** Monte a ordem a partir de `references/ordem-de-montagem.md`, já cortada para o que falta, e grave inteira em `negocio/estado.md`, com quem faz e o custo em dinheiro de cada passo. No chat, só o resumo: o que começa hoje e o que vem depois. Diga com todas as letras que o número do negócio começa já e que o plano e a marca andam em paralelo enquanto o número não chega, não um depois do outro. Peça o ok da ordem. Depois, cada ação para fora tem o seu ok.
-6. **Chamar as etapas.** Uma de cada vez, seguindo `references/ordem-de-montagem.md`. Primeiro, o guia do número (`presenca-nas-redes`, só `references/numero-do-negocio.md`). Enquanto o número não chega, `pesquisa-e-plano` e `marca`, ao mesmo tempo. Depois `presenca-nas-redes` (o resto), `conteudo`, `atendente-ia`, `anuncios` e `acompanhar-vendas`. O atendimento pode ser com ou sem IA: quem decide é o dono, e `atendente-ia` explica as duas. Ao fim de cada etapa, atualize `negocio/estado.md`.
+6. **Chamar as etapas.** Uma de cada vez, seguindo `references/ordem-de-montagem.md`. Primeiro, o guia do número (`presenca-nas-redes`, só `references/numero-do-negocio.md`). Enquanto o número não chega, `pesquisa-e-plano` e `marca`, ao mesmo tempo. Depois `presenca-nas-redes` (o resto), `conteudo`, `atendente-ia`, `vender-sem-anuncio` (o caminho sem anúncio vem antes de qualquer anúncio), `anuncios` (opcional, só se o dono quiser) e `acompanhar-vendas`. O atendimento pode ser com ou sem IA: quem decide é o dono, e `atendente-ia` explica as duas. Ao fim de cada etapa, atualize `negocio/estado.md`.
 7. **Fechar a sessão** com 5 linhas: o que ficou pronto, o que espera o humano, o próximo passo.
 
 ## O que é com você (humano)
