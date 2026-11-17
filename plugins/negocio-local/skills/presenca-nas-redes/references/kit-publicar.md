@@ -14,7 +14,7 @@ publicar/
 │   ├── textos.md            nome, categoria, descrição
 │   └── foto-de-perfil.png, capa.png
 ├── 3-instagram/
-│   ├── bio.md               nome, @, bio de 3 linhas, link wa.me com texto pré-preenchido
+│   ├── bio.md               nome, @, bio de 3 linhas, link wa.me com texto pré-preenchido (com {telefone} até o número existir; colar só quando ele chegar)
 │   ├── foto-de-perfil.png
 │   ├── post-1/ (imagens + legenda.md), post-2/, post-3/
 │   └── destaques/ (capas + manifesto.md)

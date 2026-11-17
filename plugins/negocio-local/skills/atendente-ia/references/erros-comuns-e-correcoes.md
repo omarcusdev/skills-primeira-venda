@@ -1,6 +1,6 @@
 # Erros comuns e a regra que cada um vira
 
-Tabela genérica, tirada de um caso real e reescrita para qualquer negócio. Use como checklist de revisão antes de ligar e como ponto de partida quando um erro aparecer.
+Tabela genérica, escrita para qualquer negócio. Use como checklist de revisão antes de ligar e como ponto de partida quando um erro aparecer.
 
 ## O método
 
@@ -59,7 +59,7 @@ Modelo de linha em `atendente/erros.md`:
 
 ## Erros de operação (não se corrigem no prompt)
 
-- **Narra o envio da foto** ("vou te mandar a foto") e esquece a pergunta de fechamento. No caso, isso foi corrigido na plataforma, não no prompt. Teste o envio de mídia antes de ligar e, se acontecer, avise o suporte da ferramenta em vez de empilhar regras.
+- **Narra o envio da foto** ("vou te mandar a foto") e esquece a pergunta de fechamento. Isso pode ser defeito da plataforma, não do prompt. Teste o envio de mídia antes de ligar e, se acontecer, avise o suporte da ferramenta em vez de empilhar regras.
 - **Texto junto de uma chamada de ferramenta some ou vaza raciocínio** em alguns modelos. Se uma resposta aparecer cortada ou com texto interno, anote a conversa e avise o suporte.
 - **Filtro de teste ligado com o atendimento aberto ao público:** quem vem do anúncio ou do boca a boca fica sem resposta. Confira o modo de teste antes de divulgar o número.
 - **Timestamps vêm em UTC** nas ferramentas de leitura; converta para o fuso do negócio antes de dizer "respondeu em X minutos".

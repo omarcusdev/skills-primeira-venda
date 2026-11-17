@@ -48,7 +48,7 @@ Exemplos de outros negócios: no salão, "Oi, {nome}! Faz {x} semanas do seu úl
 
 ## 4. Antes de propor, olhe o que já se aprendeu
 
-- Toque só de texto converteu pouco no caso; o que reabre a conversa costuma ser a resposta a uma pergunta travada ou um fato novo, não o "oi, tudo bem?".
+- Toque só de texto pode converter pouco; o que reabre a conversa costuma ser a resposta a uma pergunta travada ou um fato novo, não o "oi, tudo bem?".
 - Foto junto do toque é hipótese: teste com amostra maior antes de dizer que funciona (veja `medicao-e-veredito.md`).
 - Quando o cliente travou depois do cardápio em texto, o cardápio com foto pode ajudar o atendimento; isso é do `atendente-ia`.
 
@@ -63,4 +63,4 @@ Exemplos de outros negócios: no salão, "Oi, {nome}! Faz {x} semanas do seu úl
 
 ## 6. Se o dono recusar o toque automático
 
-Recusar é normal. No caso, o dono preferiu aprovar texto por texto, e isso ficou barato porque cada item vinha com o texto pronto, o motivo e o dado. Não tente convencer: registre a decisão em `negocio/decisoes.md`.
+Recusar é normal. É comum o dono preferir aprovar texto por texto, e isso fica barato quando cada item vem com o texto pronto, o motivo e o dado. Não tente convencer: registre a decisão em `negocio/decisoes.md`.

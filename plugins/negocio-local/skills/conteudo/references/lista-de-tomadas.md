@@ -1,6 +1,6 @@
 # Lista de tomadas
 
-Material novo gravado no celular rende mais do que arte feita no computador. Num caso real, o vídeo gravado pelo dono do negócio foi o criativo com melhor custo por conversa (amostra pequena). Esta é a lista para pedir a ele.
+Material novo gravado no celular rende mais do que arte feita no computador. Vale começar pelo vídeo real gravado pelo dono: mostra o que o cliente vai receber e pode sair mais barato por conversa do que arte gráfica. Esta é a lista para pedir a ele.
 
 ## Regras de gravação (valem para qualquer negócio)
 

@@ -10,6 +10,8 @@ Os nomes de menu e os campos da Meta mudam. O que está aqui é a ideia e a orde
 
 O que perde: o rastreio por anúncio (fica mais difícil dizer qual criativo vendeu) e o controle fino de horário. Serve para a primeira rodada de uma conta nova, ou de um perfil recente.
 
+Pelo celular: no app do Instagram, abra o post e toque em "Impulsionar"; no app do Facebook, abra a Página, o post e "Impulsionar publicação". Os nomes mudam; confira na tela com o dono.
+
 A skill ainda faz o resto: a conta de `conta-antes-de-gastar.md`, a mensagem pronta com código, o resumo do ok e a leitura. O toque em "impulsionar" e o pagamento são do dono.
 
 ### Opção B: campanha no Gerenciador
@@ -18,21 +20,21 @@ Dá o controle por anúncio e a programação de horário. Em conta sem históri
 
 ## O que escolher na opção B
 
-- **Objetivo:** campanha de mensagens, com destino WhatsApp. No caso: engajamento, mensagens, WhatsApp.
+- **Objetivo:** campanha de mensagens, com destino WhatsApp. Por exemplo: engajamento, mensagens, WhatsApp (os nomes mudam).
 - **Posicionamentos:** os automáticos servem para começar. Confira como a peça aparece em feed e em story antes do ok.
-- **Local:** um raio em volta do negócio (no caso, 2 km), pessoas que moram ou estiveram ali. Marque o ponto no mapa e confira no mapa se o pino caiu no bairro certo. Se o público estimado ficar pequeno demais, aumente o raio e diga ao dono.
+- **Local:** um raio pequeno em volta do negócio (por exemplo, 2 km), pessoas que moram ou estiveram ali. Marque o ponto no mapa e confira no mapa se o pino caiu no bairro certo. Se o público estimado ficar pequeno demais, aumente o raio e diga ao dono.
 - **Idade:** 18+. Sem interesses e sem gênero na primeira rodada, para a Meta ter espaço de achar quem responde.
 - **Orçamento diário ou total:** programar horário exige orçamento total, e a grade aceita só hora cheia (se o atendimento vai até 19h30, escolha 19h ou 20h e diga o motivo). O conjunto com orçamento diário não troca de tipo: duplique o conjunto. Orçamento total com data de fim muito curta entrega devagar em público pequeno. Orçamento total longo vira rajada depois de uma parada. Prefira blocos de 3 a 4 dias.
-- **Horário:** só no horário em que alguém atende. Se a IA atende, diga ao dono que o cliente que precisar dele (frete, foto, encomenda) vai esperar. Confira, depois, em que horas chegaram as conversas e em que horas saíram as vendas; no caso, a janela escolhida terminava antes do horário em que as vendas saíram (amostra de 11 conversas, pequena).
+- **Horário:** só no horário em que alguém atende. Se a IA atende, diga ao dono que o cliente que precisar dele (frete, foto, encomenda) vai esperar. Confira, depois, em que horas chegaram as conversas e em que horas saíram as vendas: acontece de a janela escolhida terminar antes do horário em que as vendas saem.
 - **Desligue** as melhorias e variações geradas por IA da Meta: imagem, animação, música, mídia flexível, melhoria de texto. Elas podem mostrar uma cena que não é o produto real. Algumas aparecem de novo num aviso ao publicar: recuse de novo.
 
 ## Mensagem pronta com código por anúncio
 
 A mensagem pronta é o texto que já vem escrito no WhatsApp do cliente quando ele toca no botão. Faça uma por anúncio, cada uma com um código curto no fim, por exemplo "Oi! Vi o anúncio e quero marcar um horário (B2)". O cliente pode apagar o código: o que chegar sem ele entra como "origem não anotada".
 
-Duas lições do caso:
+Dois cuidados:
 
-- Uma mensagem muito curta ("Quero ver o cardápio") torna o tráfego fácil de reconhecer, mas leva o cliente a pedir só o cardápio e parar. Prefira uma mensagem que já diga o que ele quer fazer (pedir para hoje, marcar um horário). Isso é hipótese: no caso não foi testado.
+- Uma mensagem muito curta ("Quero ver o cardápio") torna o tráfego fácil de reconhecer, mas leva o cliente a pedir só o cardápio e parar. Prefira uma mensagem que já diga o que ele quer fazer (pedir para hoje, marcar um horário). Isso é hipótese, ainda não testada.
 - Em editor da Meta, a mensagem pronta fica num modelo salvo. Ao duplicar um anúncio, confira que o modelo certo foi escolhido de novo, senão volta o modelo sugerido.
 
 ## Um criativo por anúncio
@@ -57,7 +59,7 @@ Rodada N
 - Período e horário (quem atende nele): ______
 - Raio e público: ______
 - Criativos: A (código), B (código) ...
-- Corte: pausar o anúncio com ______ gasto e nenhuma conversa, com ok.
+- Corte: pausar o anúncio com R$ ______ gastos (uns R$ ______ no cartão) e nenhuma conversa, com ok.
 - Leitura: com cerca de 10 conversas por grupo; decidir por venda.
 - Passa / ajusta / para: ______
 ```
@@ -75,4 +77,8 @@ Mostre, numa lista numerada, para o dono responder "sim 1, 3":
 7. Número de destino do WhatsApp, lido na tela.
 8. Melhorias automáticas: desligadas.
 
-Item sem "sim" não segue. Grave os oks em `negocio/decisoes.md`.
+Item sem "sim" não segue. Grave os oks em `negocio/decisoes.md`. Todo valor do resumo, inclusive o de pausa e de corte, vai com a estimativa no cartão ao lado.
+
+## Passo a passo para o dono
+
+Sem Claude in Chrome, grave o passo a passo em `anuncios/rodada-N/passo-a-passo.md`, com os campos e os valores. Se o dono só usa celular, escreva pelo app (opção A). No chat, mande só os próximos 3 passos, na ordem, e diga quanto tempo leva. Depois que ele fizer, mande os 3 seguintes.

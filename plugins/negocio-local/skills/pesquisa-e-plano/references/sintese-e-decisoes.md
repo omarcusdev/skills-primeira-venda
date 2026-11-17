@@ -21,16 +21,16 @@ Gerado em: <data> | Tamanho: leve | completa
 5 a 8 linhas. O que o negócio faz, o que a pesquisa achou, o que recomendamos e o que falta saber.
 
 ## Números-chave
-| Número | Valor | Base (medido | fonte | estimativa) |
+| Número | Valor | Base (medido | dito pelo dono | fonte | estimativa) |
 
-## Onde os relatórios discordam e qual valor adotamos
-| Assunto | O que cada relatório disse | Valor adotado | Por quê |
+## Onde as fontes não batem e qual número usamos
+| Assunto | O que cada fonte disse | Valor adotado | Por quê |
 
 ## Decisões
 (formato abaixo; de 5 a 15 na leve, até cerca de 30 na completa)
 
-## Premissas
-| id | Premissa | Base: medido | fonte | estimativa |
+## O que supomos, e de onde veio
+| id | Suposição | Base: medido | dito pelo dono | fonte | estimativa |
 
 ## Riscos
 | Risco | Probabilidade | Impacto | O que fazer |
@@ -38,8 +38,8 @@ Gerado em: <data> | Tamanho: leve | completa
 ## Pendências para o dono
 | id | Pergunta | Por que importa | Quem responde |
 
-## Verificação (soma das frentes)
-Checadas, confirmadas, corrigidas, desatualizadas, não verificáveis.
+## O que foi conferido
+Em uma ou duas frases: quantos números foram conferidos na fonte, quantos se confirmaram, quantos foram corrigidos e quantos não deu para conferir.
 
 ## O que este plano não cobre
 ```
@@ -50,7 +50,7 @@ A síntese é obrigada a expor as contradições entre frentes (custo, preço, e
 
 ### Premissas
 
-Toda premissa leva a base: **medido** (veio do dono ou do negócio rodando), **fonte** (link e data) ou **estimativa** (com a conta). Premissa "estimativa" que mexe no resultado vira item do teste: o teste existe para medi-la.
+Toda premissa leva a base: **medido** (veio do negócio rodando: caderno de vendas, prints, números do anúncio), **dito pelo dono** (ele contou, sem registro), **fonte** (link e data) ou **estimativa** (com a conta). Faixa de preço tirada de buscas cujas páginas não foram abertas é **pista**: não serve de base para dizer que o preço do dono está caro ou barato. Premissa "estimativa" que mexe no resultado vira item do teste: o teste existe para medi-la.
 
 ## Formato de decisão (A/B/C)
 
@@ -79,11 +79,11 @@ Regras:
 4. Decisão com regra legal: escreva a opção de formalizar e a de esperar, o que cada uma arrisca e "confira com a fonte oficial da sua cidade". A skill não dá parecer jurídico.
 5. Corte o que não muda nada. Decisão que ninguém vai tomar agora é ruído.
 
-## Apresentar ao dono (uma rodada)
+## Apresentar ao dono (uma vez cada)
 
-1. Mande as decisões numa **lista numerada no chat**, cada uma com as opções e a recomendada. Peça resposta por item, por exemplo "1 A, 2 B, 3 recomendada".
+1. Todas as decisões ficam em `plano/plano.md`. No chat, peça só as que travam o próximo passo, **no máximo 2 por mensagem**, numeradas, cada uma com as opções e a recomendada, em palavras de dono. Peça resposta por item, por exemplo "1 A, 2 recomendada". As outras esperam a hora de agir.
 2. Grave cada escolha em `negocio/decisoes.md`: id, escolha, data, quem decidiu.
-3. Se o dono votar contra a recomendada, **execute o voto dele** e registre a divergência ("o plano recomendava A; o dono escolheu B"). No caso de origem, o dono escolheu o contrário do plano numa decisão sobre imagem, e a execução seguiu o voto dele.
-4. Guarde as respostas em arquivo local. Página de votação não é armazenamento durável: no caso, as páginas de votação sumiram dias depois.
-5. Votação só uma vez. Depois da decisão, execute e relate fatos. O dono se irritou com páginas de votação repetidas.
-6. Burocracia que o dono quer adiar até o teste mostrar se vende (formalização, rótulo definitivo, vigilância): registre em `decisoes.md` com "adiado por escolha do dono". Diga em uma linha que adiar não elimina a obrigação, e quando ela deve voltar à pauta (por exemplo, "quando passar no veredito").
+3. Se o dono votar contra a recomendada, **execute o voto dele** e registre a divergência ("o plano recomendava A; o dono escolheu B").
+4. Guarde as respostas em arquivo local. Página de votação não é armazenamento durável: ela pode sumir dias depois.
+5. Cada decisão é perguntada uma vez só. Depois da decisão, execute e relate fatos. Votação repetida cansa o dono.
+6. Burocracia que o dono quer adiar até o teste mostrar se vende (formalização, rótulo definitivo, vigilância): registre em `decisoes.md` com "adiado por escolha do dono". Diga em uma linha que adiar não elimina a obrigação, e quando ela deve voltar à pauta (por exemplo, "quando o teste mostrar que dá para seguir").

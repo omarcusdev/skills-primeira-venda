@@ -2,7 +2,7 @@
 
 O diário é a memória do gestor. Um arquivo por ciclo em `gestao/diario/AAAA-MM-DD.md` (se houver mais de um no dia, acrescente `-manha`, `-tarde`, `-fechamento`). O registro de toques é um arquivo só, `gestao/toques.md`, e é a única fonte de "quem recebeu o quê".
 
-Dados de cliente minimizados: primeiro nome ou id da conversa, nunca telefone completo. A pasta `gestao/` entra no `.gitignore`.
+Dados de cliente minimizados: primeiro nome ou id da conversa, nunca telefone completo. A pasta `gestao/` não vai para e-mail nem nuvem compartilhada.
 
 ## Modelo do diário
 

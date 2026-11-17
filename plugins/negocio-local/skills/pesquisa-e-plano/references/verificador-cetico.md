@@ -2,7 +2,7 @@
 
 Um agente por frente grande, rodando depois da pesquisa. Na versão leve, todas as 3 frentes; na completa, as que movem dinheiro e regra: custos, regras e formalização, logística, marketing, operação, concorrência. Sem subagentes, o próprio Claude faz a verificação em um segundo passo, reabrindo as fontes.
 
-Por quê: no caso de origem, de 182 afirmações checadas, 120 foram confirmadas, 34 corrigidas e 28 não puderam ser verificadas. Cerca de 19% estavam erradas. Amostra de um caso, mas o padrão se repete: o pesquisador acerta o tom e erra o número.
+Por quê: o pesquisador costuma acertar o tom e errar o número. No caso de origem do plugin, cerca de 1 em 5 afirmações checadas estava errada (amostra de um caso; não conte isso ao dono). Ao dono, diga só "conferi as fontes" e o que ficou sem confirmar.
 
 ## O que verificar primeiro
 

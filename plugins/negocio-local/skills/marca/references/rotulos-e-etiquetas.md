@@ -4,7 +4,7 @@ Use só se o negócio vende produto embalado (comida, cosmético, vela, artesana
 
 ## Antes de gerar
 
-1. **O número do negócio existe?** Se não, a peça leva `{telefone}` e não vai para a gráfica. No caso, o telefone pessoal impresso num adesivo vazou em todas as fotos e recortes, e foi preciso refazer o adesivo.
+1. **O número do negócio existe?** Se não, a peça leva `{telefone}` e não vai para a gráfica. Telefone pessoal impresso num adesivo aparece em toda foto e recorte, e o conserto é refazer o adesivo.
 2. **Quem confirma os dados do produto é o dono:** ingredientes, alergênicos, peso, validade, conservação. O Claude não preenche isso de cabeça nem copia de produto parecido.
 3. Pergunte qual é o suporte: adesivo redondo, etiqueta retangular, selo de caixa. Pergunte o tamanho em mm, ou meça com o dono.
 
@@ -30,11 +30,11 @@ Use só se o negócio vende produto embalado (comida, cosmético, vela, artesana
 
 - Enquanto o dono não confirmar a lista de ingredientes e de alergênicos, a etiqueta sai com uma faixa diagonal ou horizontal escrita **RASCUNHO**, bem visível. A faixa só some quando o dono diz, por escrito, que confirmou.
 - Registre a confirmação em `negocio/decisoes.md`.
-- No caso, a etiqueta de um item saiu com a faixa até a receita confirmar trigo, ovos e soja.
+- Exemplo: a etiqueta de um item sai com a faixa até a receita confirmar trigo, ovos e soja.
 
 ## Regra de rotulagem: confira na fonte oficial
 
-A exigência varia com o tipo de produto, o tamanho da embalagem e a venda ser caseira, de pequeno produtor ou industrial. No caso, usou-se como referência a norma da Anvisa sobre alergênicos em alimentos embalados (RDC 26/2015: caixa alta, negrito, contraste, com altura mínima de letra em embalagem pequena). Isso aconteceu num caso; **confira a regra atual, para o seu produto, na fonte oficial** (Anvisa, vigilância sanitária local, ou outro órgão do seu ramo). Este material não é parecer jurídico nem sanitário.
+A exigência varia com o tipo de produto, o tamanho da embalagem e a venda ser caseira, de pequeno produtor ou industrial. Para alimento embalado, uma referência é a norma da Anvisa sobre alergênicos (RDC 26/2015: caixa alta, negrito, contraste, com altura mínima de letra em embalagem pequena). **Confira a regra atual, para o seu produto, na fonte oficial** (Anvisa, vigilância sanitária local, ou outro órgão do seu ramo). Este material não é parecer jurídico nem sanitário.
 
 ## Entrega
 

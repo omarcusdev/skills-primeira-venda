@@ -1,6 +1,6 @@
 # Inventário de mídias
 
-Faça antes de criar qualquer peça. Num caso real, só 1 de 39 mídias novas tinha entrado em alguma peça quando o inventário foi feito. Sem a lista, o material bom fica parado e as peças saem com o que estava à mão.
+Faça antes de criar qualquer peça. Sem a lista, é comum o material bom ficar parado e as peças saírem com o que estava à mão.
 
 ## Como fazer
 

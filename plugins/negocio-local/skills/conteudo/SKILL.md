@@ -7,6 +7,13 @@ description: Produz o conteúdo de um negócio local a partir de fotos e vídeos
 
 Foto e vídeo reais do negócio, legendas no tom dele e uma revisão antes de sair. Esta skill prepara as peças. Publicar é com `presenca-nas-redes`, e gastar em anúncio é com `anuncios`.
 
+## Como falar com o dono (vale em todos os passos)
+
+- Palavra de dono: sem termo interno da skill (veredito, piso, verificador, plano leve, cota); termo da Meta ou de marketing ganha explicação curta entre parênteses na primeira vez; campo técnico fica só no arquivo.
+- No máximo 3 perguntas e 1 ou 2 decisões por mensagem. Lista longa vai para um arquivo; o chat traz o resumo e o passo de hoje.
+- Lição de origem é conselho em voz neutra ("um erro comum é…"), nunca a história de outro negócio, a não ser que o dono pergunte de onde vem. Não fale de git com quem não pediu.
+- Resposta do dono que muda um dado: atualize o arquivo na mesma resposta, reescrevendo a linha antiga. Detalhes em `../montar-negocio/references/falar-com-o-dono.md`.
+
 ## Passos
 
 1. **Sem a ficha.** Se `negocio/ficha.md` não existe, pergunte o que o negócio vende, os preços e o tom de voz, e grave a ficha antes de seguir. Se existir `marca/marca.json`, use as cores, as fontes e o `{telefone}` de lá.
@@ -42,9 +49,9 @@ Se o atendimento do negócio manda cardápio ou tabela de serviços por mensagem
 - Custos ditos antes: chaves pagas de imagem e voz, e a licença do Remotion para empresa maior.
 - Regras completas: `../montar-negocio/references/regras-da-casa.md`.
 
-## O que aprendemos num caso real de uma doceria pequena
+## Lições de origem (para você, Claude; não narre ao dono)
 
-Amostra pequena, um único caso. É lição, não promessa de resultado.
+Vêm do caso de origem do plugin, uma doceria pequena. Amostra pequena, um único caso. É lição, não promessa de resultado. Use como conselho em voz neutra; cite a origem só se o dono perguntar de onde vem o conselho.
 
 - Um vídeo real gravado no celular teve cerca de 3 vezes menos custo por conversa do que as artes gráficas, que ficaram caras ou sem nenhuma conversa.
 - Só 1 de 39 mídias novas tinha sido usada quando o inventário foi feito. Faça o inventário antes de criar.

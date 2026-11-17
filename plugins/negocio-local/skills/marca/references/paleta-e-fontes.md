@@ -3,10 +3,10 @@
 ## Como tirar as cores do produto
 
 1. Peça fotos do que já existe: embalagem, adesivo, papel, uniforme, fachada, o produto em si.
-2. Escolha de 3 a 4 cores que já aparecem nesses objetos. No caso, saíram do adesivo (azul claro e azul de letra), do papel da embalagem (cobre) e de um detalhe vermelho do próprio doce.
+2. Escolha de 3 a 4 cores que já aparecem nesses objetos. Por exemplo: do adesivo, do papel da embalagem e de um detalhe do próprio produto.
 3. Complete com 2 neutros: um fundo claro e um escuro para texto. O escuro nunca é preto puro; um marrom ou azul muito escuro cansa menos.
 4. Monte 6 a 8 cores. Cada uma leva nome, hexadecimal, origem e uso.
-5. **Se você não conseguiu ver a foto** e definiu a cor pela descrição do dono, diga isso na tabela e peça para ele comparar com o objeto real. No caso, as cores azuis foram definidas pela descrição e a comparação com o adesivo real ficou como pendência.
+5. **Se você não conseguiu ver a foto** e definiu a cor pela descrição do dono, diga isso na tabela e peça para ele comparar com o objeto real. Deixe essa comparação como pendência na ficha até o dono confirmar.
 
 Exemplo inventado ("Doceria Aurora"):
 

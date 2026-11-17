@@ -1,17 +1,17 @@
 # Ordem de montagem
 
-A ordem recomendada e o porquê de cada dependência. Corte para o que falta (`negocio/estado.md`). Mostre ao usuário a ordem já cortada, com quem faz cada passo e o custo em dinheiro.
+A ordem recomendada e o porquê de cada dependência. Corte para o que falta (`negocio/estado.md`). Grave a ordem já cortada em `negocio/estado.md`, com quem faz cada passo e o custo em dinheiro, e mostre ao dono só o resumo (veja "Como apresentar a ordem").
 
 ## Em uma linha
 
-Número do negócio primeiro (começa já). Plano leve e marca andam em paralelo enquanto o número não chega. Depois WhatsApp Business, Página, Instagram, conteúdo base, atendimento (com ou sem IA), anúncio (só com tudo pronto) e acompanhamento.
+Número do negócio primeiro (começa já). Plano curto e marca andam em paralelo, ao mesmo tempo, enquanto o número não chega. Depois WhatsApp Business, Página, Instagram, conteúdo base, atendimento (com ou sem IA), anúncio (só com tudo pronto) e acompanhamento.
 
 ## Os passos
 
 | # | Passo | Skill | Quem faz | Custo em dinheiro | Depende de |
 |---|---|---|---|---|---|
-| 1 | Número só do negócio (chip ou eSIM) e registro no WhatsApp Business | `presenca-nas-redes` (guia) | **humano** (CPF, pagamento, celular) | chip ou eSIM e a recarga da operadora; o valor depende da operadora | nada. **Começa já**: demora e depende de gente |
-| 2 | Plano leve: custos, concorrência, canais de venda, teste curto de venda | `pesquisa-e-plano` | Claude pesquisa; dono passa preços e decide | só a cota do Claude; a versão completa gasta mais e a skill avisa antes | ficha |
+| 1 | Número só do negócio (chip comum ou eSIM, o chip digital) e registro no WhatsApp Business | `presenca-nas-redes` (guia) | **humano** (CPF, pagamento, celular) | chip ou eSIM e a recarga da operadora; o valor depende da operadora | nada. **Começa já**: demora e depende de gente |
+| 2 | Plano curto: custos, concorrência, canais de venda, teste curto de venda | `pesquisa-e-plano` | Claude pesquisa; dono passa preços e decide | nada em dinheiro (usa o plano do Claude do dono); a versão completa usa bem mais e a skill avisa antes | ficha |
 | 3 | Marca: nome, paleta, fontes, logo, foto de perfil | `marca` | Claude propõe; dono escolhe o nome | nada por padrão; impressão de rótulo ou adesivo é custo da gráfica | ficha; as peças com telefone esperam o passo 1 (usam `{telefone}`) |
 | 4 | Inventário das fotos e vídeos, lista de tomadas | `conteudo` | Claude inventaria; **dono filma e fotografa** | nada | ficha |
 | 5 | WhatsApp Business: perfil, saudação, ausência, respostas rápidas, catálogo | `presenca-nas-redes` | **dono** configura no app com o kit do Claude | nada além do passo 1 | passo 1 |
@@ -20,17 +20,17 @@ Número do negócio primeiro (começa já). Plano leve e marca andam em paralelo
 | 8 | Instagram profissional, ligado à Página | `presenca-nas-redes` | **dono** cria e digita os códigos | nada | passo 1 (o código pode chegar pelo número) e passo 6 |
 | 9 | Conteúdo base: alguns posts e o cardápio ou tabela com foto | `conteudo`, `presenca-nas-redes` | Claude prepara; dono aprova item por item; em conta nova, **o dono publica pelo app** | nada; chave paga de imagem ou voz só se o dono quiser | passos 3, 4 e 8 |
 | 10 | Atendimento, com ou sem IA | `atendente-ia` | Claude escreve; dono aprova e decide ligar | sem IA, nada. Com IA, a skill diz as condições e o plano pago depois do período de teste antes de o dono decidir | passos 1 e 5 |
-| 11 | Anúncio de mensagem para o WhatsApp | `anuncios` | **dono** cria a conta, paga e dá o clique final | verba **mais o imposto** sobre o gasto (no caso, 12% a 15% acima do valor do Gerenciador no cartão; confira na sua fatura) | passos 6 a 10, e a conta da skill `anuncios` dizendo se compensa |
+| 11 | Anúncio de mensagem para o WhatsApp | `anuncios` | **dono** cria a conta, paga e dá o clique final | verba **mais o imposto** que a Meta cobra por cima do valor do anúncio (o dono confere o percentual na fatura) | passos 6 a 10, e a conta da skill `anuncios` dizendo se compensa |
 | 12 | Acompanhamento das vendas em ciclos | `acompanhar-vendas` | Claude lê e propõe; dono aprova cada envio | nada além do que já foi escolhido | atendimento rodando e o teste de `pesquisa-e-plano` |
 
 ## Por que esta ordem
 
-- **O número vem primeiro.** Chip ou eSIM, CPF e o registro num celular dependem do dono e demoram. Enquanto ele não chega, o Claude trabalha no plano e na marca, que não dependem dele.
-- **Número antes da marca impressa.** No caso real, quando o número novo chegou foi preciso refazer criativos, adesivo e etiquetas. E o telefone pessoal impresso num adesivo vazou em toda foto e recorte; a correção foi um adesivo novo. Por isso, até o número existir, as peças usam `{telefone}` e nada com telefone vai para a gráfica.
+- **O número vem primeiro.** Chip ou eSIM, CPF e o registro num celular dependem do dono e demoram. Enquanto ele não chega, o Claude trabalha no plano e na marca ao mesmo tempo, porque nenhum dos dois depende do número.
+- **Número antes da marca impressa.** Trocar o número depois obriga a refazer criativos, adesivo e etiquetas, e telefone pessoal impresso num adesivo aparece em toda foto e recorte. Por isso, até o número existir, as peças usam `{telefone}` e nada com telefone vai para a gráfica.
 - **O Instagram espera o número.** O código de verificação pode chegar pelo WhatsApp do número informado. Pedidos de código muito seguidos travam o envio; nesse caso o cadastro por e-mail é o caminho. Quem decide e digita é o dono.
 - **A Página precisa de um perfil pessoal real** como administrador. Sem ele, `anuncios` para e explica: não há como contornar.
 - **A campanha de WhatsApp precisa de** Página, Instagram ligado, WhatsApp ligado à Página, alguns posts e atendimento pronto. O teste final: alguém de fora manda a mensagem pronta do anúncio e recebe resposta. Se faltar um desses, o anúncio não sai e a skill diz o que falta.
-- **Quem chega do anúncio precisa de resposta.** No caso, a primeira pessoa que veio do anúncio ficou sem resposta por causa de um filtro de teste do atendimento e não voltou.
+- **Quem chega do anúncio precisa de resposta.** Um erro comum: um filtro de teste do atendimento deixa sem resposta a primeira pessoa que vem do anúncio, e ela não volta.
 - **Anúncio é o último a ser ligado**, e só depois da conta de quanto pode custar cada venda, com o imposto. A skill `anuncios` diz com franqueza se a primeira compra cobre o anúncio.
 
 ## O que pode esperar
@@ -39,24 +39,31 @@ Formalização, rótulo definitivo e outras burocracias podem esperar o teste de
 
 ## Como apresentar a ordem
 
-Uma lista numerada curta, só dos passos que faltam, cada um com "quem faz" e "custo". Peça o ok da ordem inteira numa resposta ("sim" ou os números que ele quer cortar). Esse ok não vale para as ações para fora: cada uma volta a pedir o seu, item por item.
+A ordem inteira, com "quem faz" e "custo" em cada passo, vai para `negocio/estado.md`, na seção "Ordem de trabalho". No chat, só o resumo, em poucas linhas e sem bloco de código:
 
-Exemplo de fechamento da apresentação, para um salão que só tem fotos de celular:
+- o que começa hoje, com quem faz e o custo;
+- a frase de que o plano e a marca andam em paralelo enquanto o número não chega;
+- o resto em uma ou duas linhas, com o custo em dinheiro de cada parte;
+- um pedido de ok só: o da ordem ("sim" ou o que ele quer cortar).
 
-```
-Ordem proposta (já cortada para o que falta):
-1. Número do salão (você, hoje; custo: chip ou eSIM e recarga)
-2. Plano leve de preço e concorrência (eu; custo: só a cota do Claude)
-3. Marca: nome e logo (eu proponho, você escolhe; sem custo)
-4. Lista de tomadas para você gravar o antes e depois (você; sem custo)
-5. WhatsApp Business, quando o número chegar (você, com o kit que eu preparo; sem custo)
-...
-Anúncio e IA no atendimento ficam para o fim, e eu digo o custo de cada um antes de você decidir.
-Responda "sim" ou os números que quer cortar.
-```
+Esse ok não vale para as ações para fora: cada uma volta a pedir o seu, item por item.
 
-## Lições do caso (amostra pequena, uma doceria)
+Exemplo de resumo, para um salão que só tem fotos de celular:
 
-- Votar uma vez, depois executar. O dono reclamou de páginas de votação repetidas; a votação padrão é uma lista numerada no chat, gravada em `negocio/decisoes.md`.
-- O plano de 90 dias virou um teste de 4 semanas com meta, piso e veredito escrito antes. Prove que vende antes de gastar com o resto.
-- Guarde votos e decisões em arquivo local: a página de votação do caso sumiu dias depois.
+> Gravei a ordem completa em `negocio/estado.md`. O resumo:
+>
+> **Começa hoje, ao mesmo tempo:**
+> 1. Número só do salão: você compra o chip. Custo: o chip e a recarga, no valor da operadora. Vem primeiro porque demora.
+> 2. Enquanto o número não chega, eu faço em paralelo um plano curto de preços e concorrência e a marca (nome e logo). Sem custo em dinheiro.
+>
+> **Depois que o número chegar:** WhatsApp Business, Página, Instagram e os primeiros posts. Você cria as contas com os textos que eu preparo. Sem custo.
+>
+> **No fim, se você quiser:** anúncio (a verba mais o imposto que a Meta cobra por cima) e IA no atendimento (ferramenta paga depois de um teste grátis). Eu digo o custo de cada um antes.
+>
+> Posso seguir nessa ordem? Responda "sim" ou diga o que quer cortar.
+
+## Cuidados ao conduzir
+
+- Votar uma vez, depois executar. Votação repetida cansa o dono; a votação padrão é uma lista numerada curta no chat, com 1 ou 2 decisões por mensagem, gravada em `negocio/decisoes.md`.
+- Um plano longo pode virar um teste curto, de 3 a 4 semanas, com meta, mínimo da semana e resultado esperado escritos antes. Provar que vende vem antes de gastar com o resto.
+- Guarde votos e decisões em arquivo local: página de votação pode sumir em poucos dias.

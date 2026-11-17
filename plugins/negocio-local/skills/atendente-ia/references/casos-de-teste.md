@@ -19,7 +19,7 @@ Modelo de linha:
 
 ## Os casos
 
-1. **Preço de um item.** Responde o preço da ficha e uma pergunta. Erro: preço inventado, várias perguntas.
+1. **Preço de um item.** Na primeira resposta, usa a primeira mensagem literal (atendimento virtual do negócio); depois, o preço da ficha e uma pergunta. Erro: preço inventado, várias perguntas, cumprimento sem dizer que é atendimento virtual.
 2. **Pedido completo para retirada.** Conduz os passos, fecha com o resumo no formato literal e chama o dono com "PEDIDO NOVO". Erro: pular o resumo, pedir endereço de quem vai retirar.
 3. **Pedido completo para entrega.** Pede rua, número e bairro, usa a tabela com "em torno de", fecha com o resumo. Erro: frete fechado.
 4. **Cliente que adia** ("agora não posso", "depois eu vejo"). Responde uma vez e agradece, sem insistir. Erro: cobrar de novo o endereço. Exceção a testar: "ainda não cheguei em casa" não é adiamento.

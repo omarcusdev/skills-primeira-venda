@@ -6,10 +6,10 @@ Duas coisas vêm antes de qualquer campanha: a base da conta (quem é dono de qu
 
 Confirme cada ponto com o usuário e anote em `anuncios/conta.md`.
 
-1. **Perfil pessoal real no Facebook.** A Página precisa de um perfil pessoal como administrador. Ele deve ter a verificação em duas etapas ligada (quem liga é o dono do perfil). Se o perfil foi criado agora, avise: conta nova tem mais chance de cair em revisão. Nesse caso, comece pelo impulsionar um post pelo app (opção A em `montar-campanha.md`) e deixe o Gerenciador para depois.
-2. **Portfólio de negócios criado pelo próprio humano.** O Claude não cria portfólio. Dê o passo a passo e peça que o usuário diga o nome que aparece na tela.
+1. **Perfil pessoal real no Facebook.** A Página precisa de um perfil pessoal como administrador. Ele deve ter a verificação em duas etapas (um código a mais, além da senha) ligada, e quem liga é o dono do perfil. Pelo celular: app do Facebook > menu (três linhas) > Configurações e privacidade > Configurações > Central de Contas > Senha e segurança > Autenticação de dois fatores (os nomes mudam; confira na tela). Se o perfil foi criado agora, avise: conta nova tem mais chance de cair em revisão. Nesse caso, comece pelo impulsionar um post pelo app (opção A em `montar-campanha.md`) e deixe o Gerenciador para depois.
+2. **Portfólio de negócios criado pelo próprio humano.** Na primeira vez, explique: "portfólio de negócios é a 'pasta' da Meta que junta a Página, o Instagram, o WhatsApp e a conta de anúncios". O Claude não cria portfólio. Dê o passo a passo e peça que o usuário diga o nome que aparece na tela. Pergunte se ele usa só o celular: a criação do portfólio pode só aparecer no navegador (business.facebook.com); o app Meta Business Suite mostra o portfólio que já existe. Se o dono só usa celular, comece pela opção A (impulsionar pelo app do Instagram ou do Facebook), que costuma não pedir o portfólio na tela, e confira com ele o que a tela mostra.
 3. **Forma de pagamento escolhida pelo humano.** As opções mudam por conta e por país. Não afirme quais existem: peça que o usuário olhe as que o Gerenciador oferece a ele e escolha. Anote quem paga. O Claude nunca pede nem digita dado de cartão.
-4. **Conta de anúncios criada pelo humano,** separada de outros negócios do mesmo dono, se houver. Depois de criada, a conta não sai do portfólio onde nasceu: confira o portfólio antes de criar. Ao criar, confira moeda (BRL) e fuso (no caso, a conta nasceu com um fuso do outro lado do mundo e foi preciso corrigir).
+4. **Conta de anúncios criada pelo humano,** separada de outros negócios do mesmo dono, se houver. Depois de criada, a conta não sai do portfólio onde nasceu: confira o portfólio antes de criar. Ao criar, confira moeda (BRL) e fuso: a conta pode nascer com o fuso de outro país.
 
 **Se não há perfil pessoal, pare.** Explique que a Página, e portanto o anúncio, depende dele. Não sugira perfil falso nem nenhum jeito de contornar. Só um perfil de uma pessoa real serve.
 
@@ -17,21 +17,21 @@ Confirme cada ponto com o usuário e anote em `anuncios/conta.md`.
 
 - O cliente cria o próprio portfólio de negócios e dá acesso de parceiro à agência. A agência nunca usa a senha do cliente.
 - A conta de anúncios nasce no portfólio do cliente, não no da agência.
-- Antes de qualquer gasto ou publicação, o Claude confere na tela o nome da conta e do portfólio e escreve os dois no resumo que pede o ok. Abrir o Gerenciador pode cair na conta errada: no caso, abriu primeiro a conta de outro negócio.
+- Antes de qualquer gasto ou publicação, o Claude confere na tela o nome da conta e do portfólio e escreve os dois no resumo que pede o ok. Abrir o Gerenciador pode cair na conta errada, de outro negócio.
 - Guarde em `negocio/decisoes.md` a autorização por escrito do dono para tratar os dados dos clientes dele.
 
 ## A conta de dinheiro
 
-Imposto: o cartão sai com um acréscimo sobre o valor que o Gerenciador mostra. No caso ficou na casa de 12% a 15%. Use 14% como suposição e peça ao usuário para conferir na fatura. Abaixo, `imp` = 1,14.
+Imposto: a Meta cobra imposto por cima do valor que o Gerenciador mostra. Diga ao dono: "confira o percentual na sua fatura". Até ele conferir, use 14% como suposição e escreva "suposição" ao lado. Todo valor em R$ que vai ao dono leva a estimativa no cartão ao lado, inclusive em regra de pausa e de corte: "R$ 20 por dia, uns R$ 23 no cartão com o imposto". Abaixo, `imp` = 1,14.
 
 ### Variante produto
 
 Pergunte ou peça ao dono (nada de chute; o que faltar fica como pendência):
 
-- ticket médio do pedido;
+- ticket médio do pedido (ao dono: "quanto cada cliente gasta, em média, por pedido");
 - sobra por pedido: preço menos insumo, embalagem, gás e energia, taxa de pagamento e entrega paga pelo dono. Diga se a hora de trabalho do dono entrou ou não;
 - custo por conversa esperado: use uma faixa de referência marcada "(estimativa)" ou diga que não há dado;
-- conversão esperada de conversa em venda: idem, "(estimativa)".
+- conversão esperada de conversa em venda (ao dono: "de cada 10 conversas, quantas viram venda"): idem, "(estimativa)".
 
 Contas:
 
@@ -62,7 +62,7 @@ Exemplo inventado, barbearia: corte R$ 50, sobra R$ 35. O dono diz que um client
 
 ### Ponto de equilíbrio e a verba de teste
 
-Verba de teste = o que o dono aceita perder sem aperto. Escreva a frase: "esta verba pode não voltar". Em negócio de ticket baixo, considere antes de anunciar o que sai de graça: indicação, status do WhatsApp, cliente que já conhece. No caso, a maior parte das vendas da semana veio de conhecidos, que custam zero.
+Verba de teste = o que o dono aceita perder sem aperto. Escreva a frase: "esta verba pode não voltar". Em negócio de ticket baixo, considere antes de anunciar o que sai de graça: indicação, status do WhatsApp, cliente que já conhece. É comum a maior parte das vendas vir de conhecidos, que custam zero.
 
 Os valores mínimos de orçamento da Meta e a "fase de aprendizado" (um número de eventos por semana, citado por blogs) não foram verificados na documentação oficial. Não os afirme; peça ao usuário para ler o que o Gerenciador mostra na tela.
 
@@ -83,7 +83,7 @@ Os valores mínimos de orçamento da Meta e a "fase de aprendizado" (um número 
 - Ticket ou valor do atendimento: ______   Sobra: ______ (hora do dono inclusa? sim / não)
 - Custo por conversa esperado: ______ (fonte ou estimativa)
 - Conversão esperada: ______ (fonte ou estimativa)
-- Imposto suposto: 14% (conferir na fatura)
+- Imposto suposto: 14% (suposição até conferir na fatura; troque pelo percentual real assim que o dono disser)
 - Custo por venda ou por cliente novo, no cartão: ______
 - A primeira compra paga? sim / não. Compras ou visitas para pagar: ______ (conta, não medição)
 - Verba de teste e frase de risco: ______

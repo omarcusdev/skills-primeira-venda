@@ -1,25 +1,25 @@
 # Cobrança e armadilhas
 
-Quase tudo que custou caro no caso foi cobrança, não criativo. Leia antes de ligar o primeiro anúncio e de novo toda vez que o gasto de um dia sair zerado.
+Em anúncio pequeno, muito do que custa caro é cobrança, não criativo. Leia antes de ligar o primeiro anúncio e de novo toda vez que o gasto de um dia sair zerado.
 
 ## Imposto sobre o gasto
 
-O Gerenciador mostra o gasto sem imposto. No cartão sai mais: no caso, na casa de 12% a 15% a mais. Em todo ok, escreva os dois valores. O percentual exato depende do país e do tipo de conta: o usuário confere na fatura.
+O Gerenciador mostra o gasto sem imposto. No cartão sai mais, e o percentual exato depende do país e do tipo de conta: o usuário confere na fatura. Diga ao dono: "confira o percentual na sua fatura". Até ele conferir, use 14% como suposição e escreva "suposição" ao lado. Todo valor em R$ que vai ao dono leva a estimativa no cartão ao lado, inclusive em regra de pausa e de corte: "R$ 20 por dia, uns R$ 23 no cartão com o imposto". Em todo ok, escreva os dois valores.
 
 ## Saldo devedor e "valor a pagar"
 
-- A Meta cobra segundo as regras da conta (limite de gasto ou data); veja o que vale na tela de Cobrança do usuário. Se uma cobrança falhar, o anúncio para de entregar, mas pode continuar com status "ativo" e gasto R$ 0. No caso, ficou parado quase um dia assim antes de alguém olhar a cobrança.
+- A Meta cobra segundo as regras da conta (limite de gasto ou data); veja o que vale na tela de Cobrança do usuário. Se uma cobrança falhar, o anúncio para de entregar, mas pode continuar com status "ativo" e gasto R$ 0. Acontece de ficar parado quase um dia assim antes de alguém olhar a cobrança.
 - **Dia com R$ 0 e status ativo: abra Cobrança e o sino de notificações do Gerenciador antes de concluir qualquer coisa.** "Zero conversas" num dia com anúncio ligado: primeiro o pagamento.
 - Pagar, quitar saldo ou trocar a forma de pagamento é **sempre do humano.** O banco pode pedir aprovação no app. O Claude diz o valor e onde olhar, e não clica em pagar.
-- Ao publicar, pode abrir uma janela "valor a pagar". O valor dela pode estar velho (no caso, uma segunda tela pedia outro valor). Não pague para "ver se passa". Recarregue a página, releia o valor e peça o ok ao usuário com o valor dito.
+- Ao publicar, pode abrir uma janela "valor a pagar". O valor dela pode estar velho (uma segunda tela pode pedir outro valor). Não pague para "ver se passa". Recarregue a página, releia o valor e peça o ok ao usuário com o valor dito.
 
 ## Rajada depois de parada
 
-Orçamento total acumula enquanto o anúncio está parado. Quando volta, a Meta pode gastar boa parte do que acumulou em pouco tempo. No caso, depois de quitar o saldo, uma única hora consumiu uma fatia grande do orçamento e não trouxe nenhuma conversa. Prefira blocos curtos, de 3 a 4 dias, e renove com ok. Depois de qualquer parada, olhe o gasto da primeira hora.
+Orçamento total acumula enquanto o anúncio está parado. Quando volta, a Meta pode gastar boa parte do que acumulou em pouco tempo. Acontece de, depois de quitar o saldo, uma única hora consumir uma fatia grande do orçamento sem trazer conversa. Prefira blocos curtos, de 3 a 4 dias, e renove com ok. Depois de qualquer parada, olhe o gasto da primeira hora.
 
 ## Orçamento e entrega
 
-- Orçamento total com fim muito curto, em público pequeno, entrega devagar: no caso, um anúncio ativo gastou quase nada no primeiro dia.
+- Orçamento total com fim muito curto, em público pequeno, entrega devagar: um anúncio ativo pode gastar quase nada no primeiro dia.
 - Programar horário exige orçamento total e hora cheia. Para trocar de diário para total, duplique o conjunto.
 - A Meta concentra o gasto em um anúncio. Com verba pequena, o primeiro a receber o dinheiro leva quase tudo e o resto fica sem dado.
 

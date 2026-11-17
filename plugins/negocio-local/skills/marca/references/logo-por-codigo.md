@@ -32,7 +32,7 @@ Regras:
 - Todo gerador (logo, perfil, rótulo, peça de conteúdo) **lê este arquivo**. Ninguém copia o nome para outro lugar.
 - **Telefone:** quando o número do negócio chegar à ficha, atualize `telefone` no `marca.json` no mesmo passo e **regenere logo, rótulos e peças**. Sem isso, as peças saem com `{telefone}` ou com o número antigo. Se a ficha e o `marca.json` divergirem, vale a ficha.
 - Trocar o nome = mudar `nome` e `arroba`, **fazer backup da pasta `marca/` e `conteudo/`**, regenerar tudo e **olhar cada peça**. Nome mais largo quebra layout.
-- `marca/marca.md` é gerado a partir deste arquivo (cores, fontes, regras de uso). Não mantenha o `.md` e o `.json` à mão em paralelo: no caso, o documento de marca ficou com texto de uma versão antiga do nome.
+- `marca/marca.md` é gerado a partir deste arquivo (cores, fontes, regras de uso). Não mantenha o `.md` e o `.json` à mão em paralelo: o documento mantido à mão acaba com texto de uma versão antiga do nome.
 
 ## 2. Caminho padrão: SVG e página de prova, sem instalar nada
 

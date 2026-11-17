@@ -8,7 +8,7 @@ Só para conta que já tem posts e algumas semanas de uso. Em conta nova, as pri
 
 ## Instagram web (feed e reel)
 
-Fluxo que funcionou no caso:
+Fluxo que já funcionou:
 
 1. Criar (menu lateral) > Publicação.
 2. Enviar o arquivo. O Claude in Chrome acha o campo de arquivo da janela de criar e envia o arquivo. Esse envio aceita até 10 MB por chamada (confira o limite atual). Vídeo maior: exporte menor no celular ou, com ok, reduza com ffmpeg (instalação com ok; veja a skill `conteudo`).
@@ -33,7 +33,7 @@ Armadilhas:
 
 ## Programar
 
-O Business Suite tem "Programar" para data e hora futuras. **O caso não fez isso.** Tudo que saiu foi publicado na hora, depois do ok. Se o dono quiser programar:
+O Business Suite tem "Programar" para data e hora futuras. **Este caminho ainda não foi testado com estas skills.** Se o dono quiser programar:
 
 1. Cada item agendado tem ok próprio, com data e hora dito no resumo.
 2. Confira na tela o fuso e a data antes de confirmar.
@@ -46,7 +46,7 @@ O último post fica em cima. Para a linha do perfil sair, por exemplo, bolo, bro
 
 ## Escala: API oficial (avançado, não testado)
 
-Para publicar de forma automática toda semana, o caminho técnico é a API oficial de publicação da Meta: criar um app de desenvolvedor, autorizar a permissão de publicação e hospedar a imagem numa URL pública. No caso, foi avaliada e não adotada; para poucos posts, o navegador bastou. Marque como avançado e não prometa que funciona sem testar.
+Para publicar de forma automática toda semana, o caminho técnico é a API oficial de publicação da Meta: criar um app de desenvolvedor, autorizar a permissão de publicação e hospedar a imagem numa URL pública. Para poucos posts, o navegador basta. Marque como avançado e não prometa que funciona sem testar.
 
 ## Antes de cada "sim"
 

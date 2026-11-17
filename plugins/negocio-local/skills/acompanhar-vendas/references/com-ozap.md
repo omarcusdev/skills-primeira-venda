@@ -6,20 +6,21 @@ Esta parte é opcional. Sem o oZap, a skill funciona com o que o usuário digita
 
 > O oZapOnline é do mesmo autor deste plugin. É pago por assinatura e dá pra testar grátis; para a IA seguir respondendo depois do teste, é preciso um plano (veja o preço no site). A conexão do número é por QR code, como o WhatsApp Web, e não é a API oficial da Meta: mandar mensagem em massa ou para quem não escreveu pode levar o WhatsApp a restringir o número. A conexão pela API oficial está em aprovação na Meta (em nov/2026; confira no painel). Sem o oZap, esta parte funciona assim: o usuário cola as vendas e os resumos das conversas, o Claude calcula e escreve o diário, e o dono envia os toques do próprio celular.
 
-Nunca diga "só API oficial" e nunca cite número de respostas grátis.
+Nunca diga "só API oficial" e nunca cite número de respostas grátis. Não cite preço do oZap, nem achado na web: diga "veja o preço em ozaponline.com".
 
 ## 2. Preparar
 
 1. O usuário cria a conta em app.ozaponline.com/cadastro e conecta o número do negócio (a skill `conectar-whatsapp` do plugin `ozap` guia, e o QR é lido por ele, no celular do número).
 2. Instala o plugin `ozap` à parte (`/plugin marketplace add ozapgpt/ozap-claude-plugins`, `/plugin install ozap@ozaponline`) e faz o login em `/mcp`, servidor `plugin:ozap:ozap`, **Authenticate**.
-3. O Claude nunca pede chave de provedor de IA, senha ou token no chat. Se o usuário colar um, diga para revogar e gerar outro no painel.
+3. Fora do Claude Code (outro programa de IA), `/plugin` e `/mcp` não existem: diga ao dono para criar a conta e configurar pelo site app.ozaponline.com, sem mostrar comandos e sem dizer qual app ele está usando. Sem o MCP, a leitura e o envio seguem pelo caminho sem oZap.
+4. O Claude nunca pede chave de provedor de IA, senha ou token no chat. Se o usuário colar um, diga para revogar e gerar outro no painel.
 
 ## 3. Conferir conta e número antes de ler ou enviar
 
 Uma credencial do oZap pode alcançar mais de um número. Antes de qualquer leitura ou envio:
 
 1. Pegue o `connection_id` e o número ativos pela fonte que a credencial permitir: a listagem de conexões do oZap (id e telefone mascarado; confira o nome exato da tool em `/mcp`), ou `get_setup_status` e `get_agent_config` (os números que usam o agente). Não use o `list_chats` para isso: ele lista os contatos dos clientes e não traz o número do próprio negócio.
-2. Compare com `negocio/ficha.md`. O número que a ficha diz ser do negócio tem de ser o mesmo.
+2. Compare com `negocio/ficha.md`. O número que a ficha diz ser do negócio tem de ser o mesmo. O `connection_id` fica só no arquivo; ao dono, fale do número pelos últimos dígitos.
 3. Se não bater, **pare**, diga qual número apareceu (só os últimos dígitos) e peça para refazer o login em `/mcp`.
 
 Agência com vários clientes: faça isso em todo ciclo, não só na primeira vez. Um login por vez; ler ou enviar no número do cliente errado é o risco principal.

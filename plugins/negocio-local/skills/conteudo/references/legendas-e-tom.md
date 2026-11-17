@@ -24,7 +24,7 @@ https://wa.me/{telefone}?text=Oi!%20Vi%20o%20post%20{codigo}%20e%20quero%20pedir
 - Na legenda do Instagram o link não é clicável. Ele vale no link da bio, no anúncio e em mensagens. Em post, escreva "link na bio" e deixe o link na bio com `presenca-nas-redes`.
 - Registre o mapa peça, código e link em `conteudo/<semana>/legendas.md`.
 
-Atenção: uma mensagem pronta muito curta rastreia bem, mas pode levar o cliente a pedir só o cardápio e parar. Se isso acontecer, o atendimento precisa ter foto do cardápio ou da tabela para mandar logo em seguida (veja `atendente-ia`). No caso, 5 de 8 conversas pararam depois de um cardápio só em texto.
+Atenção: uma mensagem pronta muito curta rastreia bem, mas pode levar o cliente a pedir só o cardápio e parar. Se isso acontecer, o atendimento precisa ter foto do cardápio ou da tabela para mandar logo em seguida (veja `atendente-ia`). É comum a conversa parar depois de um cardápio só em texto.
 
 ## O que não dizer
 

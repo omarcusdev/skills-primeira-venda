@@ -58,7 +58,7 @@ follow-ups e ideias com dado, escrever o diário. Quem decide é o dono.
 
 ## Por que o "Nunca" é longo
 
-Cada linha dele veio de algo que deu errado num caso real: toques fora do horário, promessa de estoque, dono que se sentiu vigiado quando cobraram venda não anotada. Se o dono quiser mudar uma regra, mude no brief e registre em `negocio/decisoes.md`. Uma regra nova do dono vale mais do que uma antiga do brief.
+Cada linha dele evita um erro comum: toque fora do horário, promessa de estoque, dono que se sente vigiado quando cobram venda não anotada. Se o dono quiser mudar uma regra, mude no brief e registre em `negocio/decisoes.md`. Uma regra nova do dono vale mais do que uma antiga do brief.
 
 ## Recriar o gestor
 

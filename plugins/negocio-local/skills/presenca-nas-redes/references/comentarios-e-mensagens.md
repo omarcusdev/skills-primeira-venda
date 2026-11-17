@@ -1,6 +1,6 @@
 # Comentários e mensagens do Instagram
 
-O Claude **não** responde comentário nem mensagem direta pelo navegador. No caso, isso também não foi feito: todos os anúncios levaram ao WhatsApp, e o Instagram não virou canal de atendimento. Aqui o Claude escreve; o dono cola e envia.
+O Claude **não** responde comentário nem mensagem direta pelo navegador. O caminho mais simples é levar os anúncios ao WhatsApp, sem fazer do Instagram um canal de atendimento. Aqui o Claude escreve; o dono cola e envia.
 
 ## Como funciona
 
@@ -26,7 +26,7 @@ Dados pessoais (telefone, endereço) não vão em comentário público. Leve a c
 
 ## Respostas automáticas da Caixa de Entrada
 
-O Business Suite (Caixa de Entrada) e o app do Instagram têm respostas automáticas próprias: saudação, perguntas frequentes e mensagem de ausência. O nome e o lugar variam; confira na tela. O dono configura e liga. Ao ligar o Instagram à Página, o padrão do caso foi manter as mensagens do Instagram na Caixa de Entrada, sem automação.
+O Business Suite (Caixa de Entrada) e o app do Instagram têm respostas automáticas próprias: saudação, perguntas frequentes e mensagem de ausência. O nome e o lugar variam; confira na tela. O dono configura e liga. Ao ligar o Instagram à Página, o padrão recomendado é manter as mensagens do Instagram na Caixa de Entrada, sem automação.
 
 ## O que nunca fazer
 

@@ -13,7 +13,7 @@ E um teste de ponta a ponta antes de ligar: o aviso chegou ao celular do dono?
 
 | Tipo | Quando | O que o aviso traz |
 |---|---|---|
-| PEDIDO NOVO | O pedido está completo | Itens, total, retirada ou entrega, endereço, horário, como conheceu. O prompt exige que o motivo repita o resumo inteiro. |
+| PEDIDO NOVO | O pedido está completo | Itens, total, retirada ou entrega, endereço, horário (e como conheceu, só se o dono pediu essa etapa). O prompt exige que o motivo repita o resumo inteiro. |
 | CLIENTE PRECISA DE VOCÊ | Reclamação, alergia, desconto, encomenda grande, pedido para outro dia | O que o cliente disse, com as palavras dele, e o que a IA já respondeu |
 | NÃO SOUBE RESPONDER | Pergunta fora do que o prompt sabe | A pergunta literal |
 
@@ -24,13 +24,13 @@ PEDIDO NOVO
 Cliente: [primeiro nome]
 Pedido: [itens] = R$ [total]
 [Entrega: rua, número, bairro | Retirada às HH]
-Como conheceu: [origem]
+Como conheceu: [origem]   (só se o dono pediu essa etapa)
 ```
 
 ## Depois do aviso
 
-- No caso real, a IA ficou calada por 12 horas naquela conversa depois do aviso, para não atropelar o dono quando ele assumisse. Confira o tempo no seu painel; pode ser diferente.
-- Se o dono escrever no chat, a IA cala (no caso, por 24 horas) com a opção de intervenção humana ligada.
+- Depois do aviso, a IA pode ficar calada por horas naquela conversa (por exemplo, 12 horas), para não atropelar o dono quando ele assumir. Confira o tempo no seu painel.
+- Se o dono escrever no chat, a IA cala por um tempo (por exemplo, 24 horas; confira no painel) com a opção de intervenção humana ligada.
 - Para devolver a conversa à IA, o dono usa o botão de reativar a IA daquele chat no painel. Pelo MCP, hoje, não dá para destravar a pausa que o aviso cria, e a leitura das conversas pode não mostrar que a IA está pausada: olhe o painel.
 - Enviar uma mensagem pelo MCP não pausa a IA na conversa. Se o Claude for responder um cliente e a IA precisar ficar parada naquele chat, proponha a pausa (`pause_chat`) como item e espere o ok do dono.
 

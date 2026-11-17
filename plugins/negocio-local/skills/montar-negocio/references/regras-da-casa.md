@@ -1,6 +1,6 @@
 # Regras da casa
 
-Valem para todas as skills do plugin. As skills que gastam dinheiro, publicam ou falam com cliente (`anuncios`, `presenca-nas-redes`, `acompanhar-vendas`) repetem no próprio SKILL.md as regras de gasto, publicação e dado sensível. As outras repetem uma linha de resumo (no fim deste arquivo).
+Valem para todas as skills do plugin. As skills que gastam dinheiro, publicam ou falam com cliente (`anuncios`, `presenca-nas-redes`, `acompanhar-vendas`) repetem no próprio SKILL.md as regras de gasto, publicação e dado sensível. As outras repetem uma linha de resumo (no fim deste arquivo). Todas repetem o bloco curto "Como falar com o dono", cujo detalhe está em `falar-com-o-dono.md`.
 
 ## 1. Ação para fora: ok explícito, item por item
 
@@ -40,12 +40,14 @@ Preço, prazo, estoque, endereço, ingrediente, horário, número de mercado: s�
 
 - Nada de "100% IA". Diga o que a IA faz e o que o humano faz.
 - Nada de promessa de venda, de lucro ou de resultado em prazo.
-- Diga os custos antes de o usuário aceitar o passo: chip ou eSIM, chaves pagas de imagem ou voz, imposto sobre o anúncio (no caso, saiu de 12% a 15% acima do valor do Gerenciador no cartão; confira na sua fatura), plano pago de qualquer ferramenta depois do período de teste.
-- Números do caso vêm de um negócio só e de uma amostra pequena. Diga isso toda vez que citar um.
+- Diga os custos antes de o usuário aceitar o passo: chip ou eSIM, chaves pagas de imagem ou voz, imposto que a Meta cobra por cima do valor do anúncio ("confira o percentual na sua fatura"), plano pago de qualquer ferramenta depois do período de teste.
+- As lições das skills vêm de um único negócio pequeno. Viram conselho em voz neutra ("um erro comum é…"); não conte a história de outro negócio ao dono e não use número do caso como se fosse do dono. Só cite a origem se o dono perguntar de onde vem o conselho, e aí com a amostra dita. Detalhe em `falar-com-o-dono.md`.
 
 ## 5. Tudo em arquivo, no projeto do usuário
 
-Ficha, plano, decisões, diário. O chat se perde e a sessão fecha; o arquivo fica. Votações e decisões vão para `negocio/decisoes.md` na hora. A votação padrão é uma lista numerada no chat. Página de votação só se o usuário pedir, e privada: no caso real, uma página de votação sumiu poucos dias depois e os votos só sobreviveram porque estavam em arquivo.
+Ficha, plano, decisões, diário. O chat se perde e a sessão fecha; o arquivo fica. Votações e decisões vão para `negocio/decisoes.md` na hora. A votação padrão é uma lista numerada curta no chat, com 1 ou 2 decisões por mensagem. Página de votação só se o usuário pedir, e privada: ela pode sumir em poucos dias, e o arquivo fica.
+
+Arquivo sempre em dia: quando a resposta do dono muda um dado, atualize o arquivo na mesma resposta e reescreva a linha antiga, em vez de acrescentar uma que a contradiz.
 
 ## 6. Privacidade e LGPD
 
@@ -108,3 +110,7 @@ Nenhuma é obrigatória para começar. Cada skill diz o que usa. Se uma ferramen
 ## 11. Linha de resumo para as skills de etapa
 
 > Ação para fora (publicar, gastar, mandar mensagem, mudar atendente no ar, ligar IA) só com ok explícito do usuário, item por item; contas, senhas, pagamentos e o clique final de publicar são do humano; nada inventado; custos ditos antes. Regras completas em `montar-negocio/references/regras-da-casa.md`.
+
+## 12. Falar com o dono
+
+Palavras de dono, no máximo 3 perguntas e 1 ou 2 decisões por mensagem, lista longa em arquivo, lições em voz neutra, git só se a pasta já usa e arquivos em dia: `falar-com-o-dono.md`.

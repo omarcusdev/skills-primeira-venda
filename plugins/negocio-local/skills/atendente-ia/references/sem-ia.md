@@ -50,7 +50,7 @@ Preços, bairros e faixas vêm só da ficha. Item que a ficha não tem fica como
 2. Primeira mensagem: saudação e uma pergunta.
 3. Confirme itens e total antes de falar de entrega.
 4. Retirada ou entrega? Anote horário, e endereço se for entrega.
-5. Pergunte como conheceu o negócio e anote (isso mede de onde vêm as vendas).
+5. Se o dono quiser medir de onde vêm as vendas, pergunte como o cliente conheceu o negócio e anote. É sugestão: só entra no roteiro com o ok dele.
 6. Mande o resumo com `/pedido` e confirme o pagamento você mesmo.
 7. Etiquete o contato (por exemplo: novo, pediu, pago, entregue).
 8. Cliente que disse "depois eu vejo": responda uma vez e não insista.

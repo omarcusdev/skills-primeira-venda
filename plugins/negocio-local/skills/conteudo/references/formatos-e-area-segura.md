@@ -1,6 +1,6 @@
 # Formatos e área segura
 
-As plataformas mudam tamanhos e limites de tempo. Os números abaixo são os que funcionaram num caso real e são um ponto de partida. Antes de publicar, confira na tela de publicação do aplicativo.
+As plataformas mudam tamanhos e limites de tempo. Os números abaixo são um ponto de partida. Antes de publicar, confira na tela de publicação do aplicativo.
 
 ## Tamanhos
 
@@ -13,12 +13,12 @@ As plataformas mudam tamanhos e limites de tempo. Os números abaixo são os que
 | Reel | 1080 x 1920 | 9:16 | 30 quadros por segundo |
 | Capa de destaque | 1080 x 1920 | 9:16 | O ícone fica no centro, num círculo |
 | Imagem de catálogo | 1080 x 1080 | 1:1 | Produto inteiro, fundo limpo |
-| Criativo de anúncio em vídeo | 1080 x 1920 | 9:16 | No caso, de 6 a 15 s, legível sem som |
+| Criativo de anúncio em vídeo | 1080 x 1920 | 9:16 | de 6 a 15 s, legível sem som |
 
 ## Duração e peso
 
-- No caso, os reels ficaram entre 12 e 25 segundos, os stories em até 15 segundos e os anúncios em vídeo entre 6 e 15 segundos. Os limites de cada plataforma mudam: confira no aplicativo.
-- Cada arquivo abaixo de **10 MB**. Foi o limite do envio pelo navegador no caso, e é um bom teto para qualquer envio. Receita de compressão em `video-do-celular.md`.
+- Ponto de partida: reels entre 12 e 25 segundos, stories em até 15 segundos e anúncios em vídeo entre 6 e 15 segundos. Os limites de cada plataforma mudam: confira no aplicativo.
+- Cada arquivo abaixo de **10 MB**. O envio pelo navegador pode falhar acima disso, e é um bom teto para qualquer envio. Receita de compressão em `video-do-celular.md`.
 - Vídeo de anúncio legível **sem som**: preço e como pedir em texto na tela.
 
 ## Área segura

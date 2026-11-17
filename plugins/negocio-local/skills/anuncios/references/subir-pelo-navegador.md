@@ -37,8 +37,8 @@ Como saber se você tem o Claude in Chrome e como ligar: veja a linha em `montar
 - **Escape fecha o editor do conjunto e perde o que não foi salvo.** Nunca use Escape. Para horas, use as setas dos campos numéricos.
 - A tabela do Gerenciador carrega cerca de 10 linhas por vez. Para ver todos os anúncios, mude a ordenação e junte as leituras.
 - Um ícone vermelho de "compartilhamento de orçamento" pode aparecer num anúncio duplicado. Se a Meta pedir, o ajuste é na campanha, e quem o faz é o usuário olhando.
-- A plataforma trocou sozinha o número de destino do WhatsApp uma vez no caso. Releia o número de destino depois de publicar e depois de cada duplicação.
-- "Em rascunho" na tela pode estar desatualizado: no caso, o anúncio tinha publicado e já gastado. Confira o gasto.
+- A plataforma pode trocar sozinha o número de destino do WhatsApp. Releia o número de destino depois de publicar e depois de cada duplicação.
+- "Em rascunho" na tela pode estar desatualizado: o anúncio pode já ter publicado e gastado. Confira o gasto.
 - Ao final da sessão, feche a aba do Gerenciador e desconecte o Claude in Chrome dela.
 
 ## O que o Claude pode e não pode aqui

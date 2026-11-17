@@ -1,6 +1,6 @@
 # Caderno de vendas
 
-O caderno é o que permite medir. Sem ele, só se sabe quanto o anúncio gastou, não quanto vendeu. Fica em `vendas/caderno.csv`, no projeto do usuário, e entra no `.gitignore`.
+O caderno é o que permite medir. Sem ele, só se sabe quanto o anúncio gastou, não quanto vendeu. Fica em `vendas/caderno.csv`, no projeto do usuário, e não vai para e-mail nem nuvem compartilhada.
 
 ## 1. Como as vendas chegam ao caderno
 
@@ -41,7 +41,7 @@ Cliente: use só o primeiro nome ou um id em `obs`, nunca o telefone completo.
 
 `conhecido` (círculo de pessoas próximas), `status`, `instagram`, `anuncio`, `indicacao`, `passou_na_porta`, `outro`, `nao_anotada`.
 
-`nao_anotada` é uma resposta honesta. Prefira ela a chutar. No caso, a maior parte das vendas ficou sem origem porque quem vendia não dizia quem comprou, e a origem gravada pela plataforma às vezes falta ou só guarda a primeira. Diga isso no relatório sempre que `nao_anotada` for grande.
+`nao_anotada` é uma resposta honesta. Prefira ela a chutar. É comum boa parte das vendas ficar sem origem, porque quem vende não pergunta de onde o cliente veio, e a origem gravada pela plataforma às vezes falta ou só guarda a primeira. Diga isso no relatório sempre que `nao_anotada` for grande.
 
 Para o anúncio, o caminho principal é o código: cada anúncio e cada link de WhatsApp leva uma mensagem pronta com um código diferente (por exemplo "Oi! Vi o anúncio A1"). O código aparece na primeira mensagem do cliente e liga a conversa à venda.
 

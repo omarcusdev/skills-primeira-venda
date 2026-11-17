@@ -19,7 +19,7 @@ Os termos do WhatsApp restringem o uso por meio automatizado. Mesmo campo a camp
 
 O dono instala o app e registra o número. Ler o QR de "Aparelhos conectados" para abrir o WhatsApp Web é do dono. Só se o dono pedir, depois do aviso acima, e com Claude in Chrome nessa aba e ele olhando, o Claude pode preencher os campos da tabela marcados como Web, um por vez, com ok. **Nunca enviar mensagem a cliente pelo WhatsApp Web automatizado.**
 
-## Armadilhas do caso
+## Armadilhas comuns
 
 1. A digitação pelo navegador às vezes come letras. Releia cada texto depois de salvar.
 2. O dono cadastrou o nome sem acento. Nome e acento se corrigem no app.
@@ -27,7 +27,7 @@ O dono instala o app e registra o número. Ler o QR de "Aparelhos conectados" pa
 4. A categoria vem genérica ("Compras e varejo"). Troque por uma específica do negócio.
 5. Foto de produto com adesivo, embalagem ou fachada mostrando número antigo não entra no perfil nem no catálogo. Confira todas as imagens contra o número da ficha.
 6. Endereço em branco por padrão se o negócio funciona em casa. Só entra com ok do dono.
-7. Catálogo novo fica "em análise" pela Meta. No caso, a aprovação saiu em horas. Confira no app.
+7. Catálogo novo fica "em análise" pela Meta. A aprovação pode sair em horas. Confira no app.
 8. Atualizar item de catálogo (frase de entrega, produto novo) pode exigir o celular. Deixe como tarefa do dono se o Web não permitir.
 
 ## Modelos

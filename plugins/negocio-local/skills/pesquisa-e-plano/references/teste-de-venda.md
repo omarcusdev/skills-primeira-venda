@@ -38,11 +38,11 @@ A meta e o veredito só mudam por escrito em `negocio/decisoes.md`, com a razão
 <lista de decisoes.md relevantes, inclusive burocracia adiada por escolha do dono>
 ```
 
-Os números do exemplo (2 semanas, 3 semanas, 1 em 12) vieram do caso de origem. Ajuste ao negócio, e escreva a razão.
+Os números do exemplo (2 semanas, 3 semanas, 1 em 12) são ponto de partida. Ajuste ao negócio e escreva a razão. Ao dono, "piso" é "o mínimo da semana" e "veredito" é "o resultado do teste: seguir, ajustar ou parar".
 
 ## Como definir meta e piso
 
-1. **Meta:** o cenário base do plano. Lembre ao dono que a meta é hipótese: no caso, o resultado de uma semana ficou abaixo dela.
+1. **Meta:** o cenário base do plano. Lembre ao dono que a meta é hipótese: uma semana pode fechar abaixo dela, e isso também é resultado.
 2. **Piso:** o cenário conservador, ou o ponto de equilíbrio semanal de `custo-e-margem.md`, o que for maior.
 3. **Clientes novos:** diga que é proposta do Claude e que o dono pode mudar. A venda que importa para o futuro do negócio é a de quem não conhece o dono; venda para conhecido é boa, mas custa zero e não mostra se o canal funciona.
 4. **Serviço:** troque venda por horário marcado, e some o retorno. Um corte que não volta dentro do prazo esperado conta como aviso.

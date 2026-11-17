@@ -10,7 +10,7 @@
 
 ## Quando não usar
 
-- **Para consertar foto ruim.** A IA melhora fundo e enquadramento, mas amplifica o defeito de uma foto de partida ruim e não cria nitidez nova. No caso, os anúncios que usaram uma imagem refeita a partir de um print borrado não foram os que venceram.
+- **Para consertar foto ruim.** A IA melhora fundo e enquadramento, mas amplifica o defeito de uma foto de partida ruim e não cria nitidez nova. Imagem refeita a partir de um print borrado tende a perder para a foto real.
 - **Para criar produto, pessoa, rosto, pet ou cena que não existe.** Produto de anúncio é sempre foto ou vídeo real. Pessoa gerada por IA não entra.
 - **Para mostrar um tamanho, um sabor ou um acabamento que o produto não tem.** A IA não corrige falta de informação: se o tamanho médio e o grande têm a mesma foto, só uma foto real dos dois lado a lado resolve.
 - **Para fazer o produto parecer melhor do que é.** O produto na imagem é o produto que se entrega. O art. 37 do Código de Defesa do Consumidor trata de publicidade enganosa; confira o texto atual e, na dúvida, fale com um profissional.
@@ -18,8 +18,8 @@
 ## Antes de gastar
 
 1. Pergunte: o usuário tem a chave? Criou com **limite de gasto** no painel do provedor? Se não, explique como pôr um limite e espere.
-2. A chave fica no `.env` do projeto, que o próprio usuário preenche. Crie só um `.env.exemplo` com o nome da variável (por exemplo `CHAVE_IMAGEM=`) e confirme que `.env` está no `.gitignore`. Nunca peça a chave no chat. Nunca imprima a chave, nem em log. Se o usuário colar uma chave no chat, diga para revogá-la no painel e criar outra.
-3. Mostre o plano: quantas imagens, de qual foto, com que prompt, e o **custo estimado**. No caso, uma imagem de edição num modelo de ponta saiu a cerca de US$ 0,06, estimado pelos tokens de saída, e mais com várias imagens de referência. O preço muda, então confira na página do provedor. Mostre a conta (imagens x preço) e o total.
+2. A chave fica no `.env` do projeto, que o próprio usuário preenche. Crie só um `.env.exemplo` com o nome da variável (por exemplo `CHAVE_IMAGEM=`). O `.env` não vai para e-mail nem nuvem compartilhada; só se a pasta já for um repositório git (conferido, veja `montar-negocio/references/falar-com-o-dono.md`), confirme que `.env` está no `.gitignore`. Nunca peça a chave no chat. Nunca imprima a chave, nem em log. Se o usuário colar uma chave no chat, diga para revogá-la no painel e criar outra.
+3. Mostre o plano: quantas imagens, de qual foto, com que prompt, e o **custo estimado**. Como referência, uma imagem de edição num modelo de ponta já saiu a cerca de US$ 0,06, estimado pelos tokens de saída, e mais com várias imagens de referência. O preço muda, então confira na página do provedor. Mostre a conta (imagens x preço) e o total.
 4. Comece com **uma** imagem. O usuário olha e compara com o produto real. Só depois do ok o lote roda.
 5. O resultado vai para `midia/ia/`, nunca por cima da original. Marque no inventário e no plano que a peça usa IA. As plataformas podem pedir um rótulo de conteúdo feito ou editado com IA; confira as regras do aplicativo antes de publicar.
 

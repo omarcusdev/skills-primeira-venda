@@ -21,7 +21,7 @@ Do anúncio:
 custo por venda = (gasto no Gerenciador x (1 + imposto)) / vendas vindas do anúncio
 ```
 
-- O imposto vem na fatura, por cima do valor do Gerenciador. No caso saiu cerca de 15% a mais; confira na sua fatura e use o seu número.
+- O imposto vem na fatura, por cima do valor do Gerenciador. Use o percentual da fatura do dono; até ele conferir, 14% é só suposição, e diga que é.
 - Conversas de anúncio sem venda contam no custo. Venda de conhecido não entra na conta do anúncio.
 - Compare com o custo máximo por venda de `anuncios/conta.md`, se existir.
 
@@ -31,7 +31,7 @@ Quantas compras pagariam o anúncio (recompra) é **conta, não medição**:
 compras para empatar = custo por venda / sobra por compra
 ```
 
-Marque no relatório: "conta feita com a sobra estimada do plano; recompra ainda não medida". No caso, a conta mostrou que a primeira compra não pagava o anúncio; se a recompra pagaria, ninguém tinha medido.
+Marque no relatório: "conta feita com a sobra estimada do plano; recompra ainda não medida". É comum a conta mostrar que a primeira compra não paga o anúncio; se a recompra paga, só a medição diz.
 
 ## 3. Amostra
 
@@ -64,4 +64,4 @@ Use exatamente as definições de Passa, Ajusta e Para gravadas em `plano/teste.
 - Se o veredito for Ajusta, proponha no máximo 3 mudanças, cada uma com métrica.
 - Se for Para, proponha o que fazer com o dinheiro e o tempo que sobraram.
 
-O plano é hipótese; o teste mede. No caso, uma semana fechou abaixo da meta do plano, e isso também é resultado. O gestor propõe o veredito. Quem decide é o dono.
+O plano é hipótese; o teste mede. Semana abaixo da meta também é resultado. O gestor propõe o veredito; ao dono, diga "o resultado do teste: seguir, ajustar ou parar". Quem decide é o dono.

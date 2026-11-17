@@ -4,9 +4,9 @@ A ficha (`negocio/ficha.md`) é a fonte única dos fatos do negócio. Toda skill
 
 ## Como conduzir
 
-- No máximo 10 perguntas, em 3 ou 4 blocos. Espere a resposta de um bloco antes do próximo.
+- No máximo 10 perguntas, em blocos de até 3. Um bloco por mensagem; espere a resposta antes do próximo.
 - Anote o que o dono disser com as palavras dele. O que ele não souber vira pendência, nunca chute.
-- Pergunte cedo as duas coisas que no caso real custaram caro: **marcas vizinhas ou parentes que não podem aparecer** e **a região**. A regra "não citar a marca do vizinho" chegou depois de cerca de 30 peças prontas e derrubou 8. E sem a região, a pesquisa de mercado saiu genérica.
+- Pergunte cedo duas coisas que custam caro quando chegam tarde: **marcas vizinhas ou parentes que não podem aparecer** e **a região**. Se quiser dizer por quê, use voz neutra: "é comum essa regra chegar depois das peças prontas e obrigar a refazer"; sem a região, a pesquisa de mercado sai genérica.
 - O telefone do negócio só entra na ficha quando existir. Até lá, as peças usam o marcador `{telefone}`.
 - Telefone pessoal, e-mail pessoal e endereço da casa não entram na ficha como dado público. Se o dono passar, marque "uso interno, nunca em peça".
 
@@ -32,7 +32,19 @@ A ficha (`negocio/ficha.md`) é a fonte única dos fatos do negócio. Toda skill
 
 Se o dono já respondeu algo no pedido inicial, não repita a pergunta.
 
+## Ao fim da entrevista: os três arquivos
+
+Grave os três antes de mostrar a ordem de trabalho, e confira que existem:
+
+1. `negocio/ficha.md`, no modelo abaixo.
+2. `negocio/estado.md`, no modelo de `diagnostico-do-que-existe.md`. No "do zero", as linhas são o que falta, com "como sei" = "dito pelo dono"; a ordem de trabalho entra nele depois de montada.
+3. `negocio/decisoes.md`, no modelo abaixo, mesmo que só com o cabeçalho.
+
+Se o dono responder algo depois, atualize a linha que mudou na mesma resposta. Não deixe uma pendência já respondida na ficha.
+
 ## Modelo de `negocio/ficha.md`
+
+A seção "Atendimento com IA (se usar)" fica só com a escolha até o dono decidir. Quem completa é a skill `atendente-ia`, e só se a escolha for IA.
 
 ```markdown
 # Ficha: <nome do negócio ou "sem nome ainda">
@@ -72,9 +84,8 @@ Atualizada em: AAAA-MM-DD. Fonte de cada dado: dito pelo dono, print, visto no n
 - Marcas vizinhas ou pessoas que não podem aparecer:
 - Verba e prazo:
 
-## Atendimento com IA (só se usar o oZapOnline, depois de conectar)
-- connection_id:
-- Últimos 4 dígitos do número do negócio:
+## Atendimento com IA (se usar)
+- Com IA ou sem IA: ainda não decidido
 
 ## Uso interno (nunca em peça pública)
 - Telefone pessoal, e-mail pessoal, endereço da casa:
@@ -85,7 +96,7 @@ Atualizada em: AAAA-MM-DD. Fonte de cada dado: dito pelo dono, print, visto no n
 
 ## Modelo de `negocio/decisoes.md`
 
-Uma linha por decisão ou por ok de item. Formato único, para todas as skills: `data | tipo | item | o que | quem aprovou | o que aconteceu`. Tipo é `decisão`, `ok` ou `autorização`. A última coluna fica vazia até acontecer (por exemplo, "publicado pelo usuário no app"). Ordem de cima para baixo, a mais nova no fim. Modelo:
+Uma linha por decisão ou por ok de item. Formato único, para todas as skills: `data | tipo | item | o que | quem aprovou | o que aconteceu`. Tipo é `decisão`, `ok` ou `autorização`. A última coluna fica vazia até acontecer (por exemplo, "publicado pelo usuário no app"). Ordem de cima para baixo, a mais nova no fim. Quando o mesmo item muda (foi aprovado, publicado, cancelado), atualize a linha dele em vez de acrescentar outra que a contradiz. Pendência não entra aqui: vai para a seção "Pendências" da ficha. Modelo:
 
 ```markdown
 # Decisões e oks

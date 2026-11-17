@@ -9,16 +9,25 @@ Esta skill só lê a web e escreve arquivos no projeto do usuário. Não publica
 
 Nada é obrigatório para começar. Sem pesquisa na web, o plano usa só o que o dono informa e tudo leva a marca "não verificado". Sem subagentes, as mesmas frentes rodam em sequência, na versão leve.
 
-1. **Sem ficha.** Se `negocio/ficha.md` não existe, pergunte o mínimo desta etapa: o que vende ou que serviço presta, preços atuais, **cidade e bairro** (só para a pesquisa; nunca entram em peça pública), custos que o dono já sabe, quanto pode gastar e em quanto tempo quer ver resultado. Pergunte também se há marca vizinha ou parente que não pode aparecer. Grave a ficha antes de seguir. Se a pasta aberta tiver vários clientes, pergunte qual é o cliente (ou peça para abrir a sessão na pasta dele) e nunca crie ficha na pasta de cima. Sem a região, a pesquisa sai genérica.
-2. **Escolha o tamanho e diga o custo antes.** Leve: 3 frentes (custos e preço, concorrência, canais de venda), cada uma com verificador. Completa: até 9 frentes, mais preço e finanças, crítico de completude, até 4 frentes de lacuna e síntese. Cada agente gasta a cota do plano do Claude do usuário. No caso de origem, a completa usou 22 agentes e a cota de busca acabou no meio. A leve é o padrão; a completa só com ok.
-3. **Oriente as buscas antes.** Defina um limite de buscas por frente e uma reserva para a verificação (modelo em `references/frentes-de-pesquisa.md`). Pergunte se o usuário sabe a cota dele; se não souber, comece pela leve. Cota acabando: pare, grave o que tem e liste o que ficou de fora. Nunca preencha com chute.
+## Como falar com o dono (vale em todos os passos)
+
+- Palavra de dono: sem termo interno da skill (veredito, piso, verificador, plano leve, cota); termo da Meta ou de marketing ganha explicação curta entre parênteses na primeira vez; campo técnico fica só no arquivo.
+- No máximo 3 perguntas e 1 ou 2 decisões por mensagem. Lista longa vai para um arquivo; o chat traz o resumo e o passo de hoje.
+- Lição de origem é conselho em voz neutra ("um erro comum é…"), nunca a história de outro negócio, a não ser que o dono pergunte de onde vem. Não fale de git com quem não pediu.
+- Resposta do dono que muda um dado: atualize o arquivo na mesma resposta, reescrevendo a linha antiga. Detalhes em `../montar-negocio/references/falar-com-o-dono.md`.
+
+## Passos
+
+1. **Sem ficha.** Se `negocio/ficha.md` não existe, pergunte o mínimo desta etapa, em blocos de até 3 perguntas por mensagem: o que vende ou que serviço presta, preços atuais, **cidade e bairro** (só para a pesquisa; nunca entram em peça pública), custos que o dono já sabe, quanto pode gastar e em quanto tempo quer ver resultado. Pergunte também se há marca vizinha ou parente que não pode aparecer. Grave a ficha antes de seguir. Se a pasta aberta tiver vários clientes, pergunte qual é o cliente (ou peça para abrir a sessão na pasta dele) e nunca crie ficha na pasta de cima. Sem a região, a pesquisa sai genérica.
+2. **Escolha o tamanho e diga o custo antes.** Leve: 3 frentes (custos e preço, concorrência, canais de venda), cada uma com verificador. Completa: até 9 frentes, mais preço e finanças, crítico de completude, até 4 frentes de lacuna e síntese. Cada agente gasta do plano do Claude do usuário, e a completa usa muitos agentes e pode esgotar as buscas no meio. A leve é o padrão; a completa só com ok. Ao dono, diga em palavras simples: "um plano curto, que não custa dinheiro" ou "um plano completo, que usa bem mais do seu plano do Claude".
+3. **Oriente as buscas antes.** Defina um limite de buscas por frente e uma reserva para a verificação (modelo em `references/frentes-de-pesquisa.md`). Não pergunte da cota ao dono: comece pela leve, a não ser que ele peça a completa. Cota acabando: pare, grave o que tem e liste o que ficou de fora. Nunca preencha com chute.
 4. **Monte o bloco CONTEXTO** único para todos os pesquisadores: fatos da ficha, formato A/B/C, "todo número com fonte e data, ou marcado (estimativa) com a conta à mostra", proibido inventar concorrente, preço ou lei, preferência por fonte primária e do ano corrente, concorrência só por busca e páginas públicas.
 5. **Rode as frentes** (em paralelo se a cota deixar; senão em lotes ou em sequência). Cada uma grava `pesquisa/NN-frente.md`.
-6. **Verificador cético** em cada frente grande: reabre as fontes, busca segunda fonte e dá veredito por afirmação (confirmado, corrigido, desatualizado, não verificável; na dúvida, não confirma). Corrige o arquivo e anexa "## Verificação" com as contagens. Veja `references/verificador-cetico.md`.
+6. **Verificador cético** em cada frente grande: reabre as fontes, busca segunda fonte e dá veredito por afirmação (confirmado, corrigido, desatualizado, não verificável; na dúvida, não confirma). Corrige o arquivo e anexa "## Verificação" com as contagens. Ao dono, diga só "conferi as fontes" e o que ficou sem confirmar. Veja `references/verificador-cetico.md`.
 7. **Crítico de completude** (só na completa): lista as lacunas por importância. Pesquise as 4 principais e diga quais ficaram de fora.
-8. **Síntese** em `plano/plano.md`: resumo, números-chave, "onde os relatórios discordam e qual valor adotamos", decisões A/B/C (exatamente uma recomendada, com custo e urgência), premissas (medido, fonte ou estimativa), riscos e pendências. Modelo em `references/sintese-e-decisoes.md`; contas em `references/custo-e-margem.md`.
+8. **Síntese** em `plano/plano.md`: resumo, números-chave, "onde as fontes não batem e qual número usamos", decisões A/B/C (exatamente uma recomendada, com custo e urgência), premissas (medido, dito pelo dono, fonte ou estimativa), riscos e pendências. Modelo em `references/sintese-e-decisoes.md`; contas em `references/custo-e-margem.md`.
 9. **Teste curto de venda** em `plano/teste.md`: de 3 a 4 semanas, meta semanal, piso, clientes novos de fora do círculo de conhecidos, origem de cada venda e o veredito (passa, ajusta, para) escrito antes de começar. Veja `references/teste-de-venda.md`.
-10. **Decisões numa lista numerada no chat**, uma vez. O dono responde por item e você grava tudo em `negocio/decisoes.md`, inclusive quando ele vota contra a recomendação (execute o voto dele e registre a divergência). Página de votação só se o usuário pedir, e privada.
+10. **Decisões, poucas por vez.** Todas ficam em `plano/plano.md`. No chat, peça só as que travam o próximo passo, no máximo 2 por mensagem, cada uma com as opções e a recomendada; as outras esperam a hora de agir. Cada decisão é perguntada uma vez só. O dono responde por item e você grava em `negocio/decisoes.md`, inclusive quando ele vota contra a recomendação (execute o voto dele e registre a divergência). Página de votação só se o usuário pedir, e privada.
 
 ## O que é com você
 
@@ -29,19 +38,21 @@ Nada é obrigatório para começar. Sem pesquisa na web, o plano usa só o que o
 
 ## Custos
 
-Esta skill não custa dinheiro além da cota do seu plano do Claude. Se o plano indicar anúncio, o gasto real (com o imposto da plataforma) só entra com o ok da skill `anuncios`.
+Esta skill não custa dinheiro: usa o seu plano do Claude. Se o plano indicar anúncio, o gasto real (com o imposto que a Meta cobra por cima) só entra com o ok da skill `anuncios`.
 
 ## Regras
 
 - Número de pesquisa leva fonte e data, ou "(estimativa)" com a conta. Preço, prazo, estoque e lei nunca são inventados; o que faltar vira pergunta ao dono.
+- Faixa de preço tirada de buscas cujas páginas você não abriu é pista, com o rótulo "pista". Não serve de base para dizer que o preço do dono está caro ou barato.
+- O que o dono contou é "dito pelo dono", não "medido".
 - Pesquisa de concorrente só por busca na web e páginas públicas. Nada de raspar perfil, entrar em conta ou seguir alguém. Site que bloqueia (erro 403, captcha) vira "não verificável", sem contornar.
 - Nomes e números vindos de prints de conversa do dono não vão para os relatórios.
 - O plano é hipótese. O teste mede. Nenhuma promessa de venda ou lucro.
 - Depois de decidido, execute. Não mande outra rodada de votação sobre o que já foi decidido.
 
-## O que aprendemos no caso
+## Lições de origem (para você, Claude; não narre ao dono)
 
-Vem de um único caso real, de uma doceria pequena. Amostra minúscula: é lição de processo, não estatística de mercado.
+Vêm do caso de origem do plugin, uma doceria pequena. Amostra minúscula: é lição de processo, não estatística de mercado. Use como conselho em voz neutra; cite a origem só se o dono perguntar de onde vem o conselho.
 
 - Das 182 afirmações que os verificadores checaram, 34 (cerca de 19%) estavam erradas, incluindo a margem de um produto. Sem verificador, o plano teria nascido com conta errada.
 - A cota de busca acabou no meio: a concorrência ficou com 8 vendedores verificados em vez de 15 a 30. Oriente as buscas por frente.

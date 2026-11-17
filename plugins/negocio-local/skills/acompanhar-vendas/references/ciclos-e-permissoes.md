@@ -20,7 +20,7 @@ O fechamento é o único ciclo que precisa de números de anúncio: o dono traz 
 
 - só roda com a sessão aberta e a máquina ligada;
 - some quando a sessão fecha ou a máquina reinicia;
-- lembretes recorrentes da sessão expiram (no caso, em 7 dias). O comportamento pode mudar: confira na documentação do Claude Code antes de prometer um intervalo ao dono;
+- lembretes recorrentes da sessão expiram (em 7 dias, quando isto foi escrito). O comportamento pode mudar: confira na documentação do Claude Code antes de prometer um intervalo ao dono;
 - agentes de fundo morrem com a sessão.
 
 Se o loop sumir, nada se perde: o diário e o brief estão em arquivo. Recomece pelo ciclo à mão.

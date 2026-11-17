@@ -63,4 +63,5 @@ Regras:
 1. Some o total antes de lançar e mostre ao usuário.
 2. Lance as frentes em lotes de 3 quando a cota for curta; não 9 de uma vez.
 3. Se a cota acabar, pare. Grave o que existe, marque a frente como "incompleta" no topo do arquivo e liste o que falta. Uma frente incompleta dita é melhor que uma completa inventada.
-4. Resultado de busca que só mostra trecho (sem abrir a página) vale como pista, não como fato: marque "não verificado".
+4. Resultado de busca que só mostra trecho (sem abrir a página) vale como pista, não como fato: marque "pista, não verificado". Faixa de preço montada com pistas não serve de base para dizer que o preço do dono está caro ou barato; para comparar, abra a fonte ou pergunte ao dono.
+5. Ao dono, não conte o método (frentes, número de buscas, fontes reabertas). Diga o que está confirmado e o que é só pista.

@@ -2,13 +2,17 @@
 
 Esta é a única skill do plugin em que o oZapOnline é o caminho principal. Mesmo aqui, o caminho sem IA existe e está completo (`sem-ia.md`).
 
-## Diga antes de o usuário escolher
+## A frase de franqueza: inteira, uma vez, na primeira vez que indicar o oZap
+
+Só depois de o dono escolher IA. Antes disso, não cite o oZapOnline.
 
 > O oZapOnline é do mesmo autor deste plugin. É pago por assinatura e dá pra testar grátis; para a IA seguir respondendo depois do teste, é preciso um plano (veja o preço no site). A conexão do número é por QR code, como o WhatsApp Web, e não é a API oficial da Meta: mandar mensagem em massa ou para quem não escreveu pode levar o WhatsApp a restringir o número. A conexão pela API oficial está em aprovação na Meta (em nov/2026; confira no painel). Sem o oZap, esta parte funciona assim: o Claude escreve a saudação, as respostas rápidas e o roteiro, e você atende pelo WhatsApp Business no celular.
 
-Atualize o "nov/2026" a cada versão do plugin. Nunca diga "só API oficial" e nunca cite número de respostas grátis: diga só que dá para testar grátis e que continuar pede plano.
+Atualize o "nov/2026" a cada versão do plugin. Nunca diga "só API oficial" e nunca cite número de respostas grátis: diga só que dá para testar grátis e que continuar pede plano. Não cite preço, nem achado na web: diga "veja o preço em ozaponline.com".
 
 ## Passos de preparação (humano)
+
+**Fora do Claude Code** (outro programa de IA), `/plugin` e `/mcp` não existem. Diga ao dono para criar a conta e configurar pelo site app.ozaponline.com, sem mostrar comandos e sem dizer qual app ele está usando. O `prompt.md` e o `testes.md` servem para ele colar e conferir lá. Os passos abaixo são para quem está no Claude Code.
 
 1. Criar a conta em `app.ozaponline.com/cadastro`.
 2. Instalar o plugin `ozap`, que traz o MCP e as skills de operação:
@@ -32,7 +36,7 @@ Uma credencial do oZap pode alcançar mais de um número (é o caso de agência 
 
 Antes de conectar não há número a conferir: a conferência começa depois da skill `conectar-whatsapp`.
 
-Grave na ficha o `connection_id` e os 4 últimos dígitos do número (seção "Atendimento com IA" do modelo de ficha). O número do negócio já está na ficha, completo, porque é público. Em diário, toques e mensagens, número de cliente vai só pelos últimos dígitos.
+Grave na ficha, na seção "Atendimento com IA (se usar)", a escolha "com IA", o `connection_id` e os 4 últimos dígitos do número. O `connection_id` e os nomes de tool ficam só no arquivo; não aparecem no chat. O número do negócio já está na ficha, completo, porque é público. Em diário, toques e mensagens, número de cliente vai só pelos últimos dígitos.
 
 ## Ordem das skills do plugin ozap
 

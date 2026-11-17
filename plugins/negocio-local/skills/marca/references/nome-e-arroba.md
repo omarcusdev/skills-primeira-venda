@@ -31,7 +31,7 @@ Exemplo inventado. As colunas "Risco" e "Nota" só se preenchem depois da pesqui
 
 - A busca na web **não enxerga bem o Instagram**. Disponibilidade só se confirma dentro do app, pelo dono.
 - No Instagram, o @ aceita letras, números, ponto e sublinhado, com limite de tamanho. Confira as regras atuais no app.
-- No caso, o @ sem sufixo já era de outro negócio, e variações com ponto ou sublinhado davam "página não disponível". O @ final levou o sufixo da cidade.
+- Acontece de o @ sem sufixo já ser de outro negócio, e de variações com ponto ou sublinhado darem "página não disponível". Um sufixo da cidade costuma resolver.
 - Peça para o dono testar as variações na ordem da tabela e dizer qual funcionou. Anote em `negocio/decisoes.md`.
 - **Não crie o Instagram antes de o número do negócio existir.** O código de verificação pode chegar por ele. Criar a conta é do dono, nunca do Claude.
 

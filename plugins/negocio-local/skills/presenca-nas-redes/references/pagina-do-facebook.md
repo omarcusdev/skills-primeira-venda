@@ -35,12 +35,12 @@ Ao criar a Página, o Facebook troca a sessão para o perfil da Página. Para ve
 3. O código chega como mensagem no WhatsApp Business do número. O dono digita. O Claude não digita código de verificação.
 4. Resultado: aparece o botão "Enviar mensagem pelo WhatsApp" na Página.
 
-Armadilha: se aparecer "número não associado a uma conta", tente o número sem o 9 inicial. Em alguns DDDs, o WhatsApp registrou o número sem o 9. Aconteceu num DDD no caso; confira o seu. Por SMS comum, o 9 funcionou.
+Armadilha: se aparecer "número não associado a uma conta", tente o número sem o 9 inicial. Em alguns DDDs, o WhatsApp registra o número sem o 9. Confira o seu; por SMS comum, o número com o 9 pode funcionar.
 
 O Facebook pode sugerir um post público anunciando o botão. Só publique se o dono pedir, com ok.
 
 ## Depois
 
 - Ligue o Instagram à Página (`instagram.md`).
-- Posts na Página: no caso, nunca houve post na Página; os posts foram só no Instagram. Se o dono quiser a Página ativa, é um item da lista de publicação, com ok.
+- Posts na Página: é comum postar só no Instagram. Se o dono quiser a Página ativa, é um item da lista de publicação, com ok.
 - Atualize `negocio/estado.md`.

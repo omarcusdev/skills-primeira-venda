@@ -1,6 +1,8 @@
 # O que aprendemos no caso
 
-Fonte: um caso real de uma doceria pequena, vendendo por WhatsApp, numa rodada de anúncios de poucos dias. Amostra minúscula (18 conversas, 2 vendas) e um negócio só. Nada aqui é média, meta ou promessa. Serve para decidir o próximo teste e para saber onde olhar.
+> **Para você, Claude; não é para narrar ao dono.** Estas lições servem para você decidir o que checar. Ao dono, dê o conselho em voz neutra ("acontece de…", "um erro comum é…", "vale fazer X antes, porque…"), sem contar a história de outro negócio e sem usar número daqui como se fosse do dono. Só cite a origem se o dono perguntar de onde vem o conselho, e aí com a amostra dita.
+
+Fonte: o caso de origem do plugin, uma doceria pequena, vendendo por WhatsApp, numa rodada de anúncios de poucos dias. Amostra minúscula (18 conversas, 2 vendas) e um negócio só. Nada aqui é média, meta ou promessa. Serve para decidir o próximo teste e para saber onde olhar.
 
 ## Números, sem valores
 
@@ -9,7 +11,7 @@ Fonte: um caso real de uma doceria pequena, vendendo por WhatsApp, numa rodada d
 - O custo por conversa ficou dentro de uma faixa que blogs citam (não auditada). O que falhou foi converter conversa em venda, e o ticket era baixo.
 - A primeira compra não pagou o anúncio. Pela conta, só pagaria se o cliente comprasse de 3 a 4 vezes, e isso não foi medido.
 - A maior parte das vendas da semana (72% a 77%) veio de conhecidos, que custam zero.
-- Na fatura, o anúncio saiu cerca de 15% acima do valor do Gerenciador, por imposto.
+- Na fatura, o anúncio saiu cerca de 15% acima do valor do Gerenciador, por imposto. É o número daquele caso; para o dono, vale o percentual da fatura dele.
 - O vídeo real foi o melhor criativo: ficou com 8 das 18 conversas, a cerca de um terço do custo por conversa das artes gráficas, e as artes gráficas, em grande parte, nem trouxeram conversa. Amostra pequena.
 - De 8 conversas acompanhadas de perto, 5 pararam depois do cardápio em texto; 4 perguntaram de frete ou endereço e o atendimento não respondeu o frete.
 

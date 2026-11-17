@@ -215,7 +215,7 @@ Se algo falhou, refaça com o preset mais leve ou volte ao original. Nunca "cons
 
 Serve para limpar um fundo feio ou para montar uma foto de catálogo. Duas ideias valem em qualquer ferramenta:
 
-1. **Tire a máscara na foto em tamanho original, não na ampliada.** A ampliação confunde o recorte: no caso, o recorte juntava a bandeja ao doce.
+1. **Tire a máscara na foto em tamanho original, não na ampliada.** A ampliação confunde o recorte: ele pode juntar a bandeja ao produto.
 2. Confira a borda. Franja de cor do fundo antigo e dedo que sobrou são os defeitos comuns.
 
 ### Portátil (Windows, macOS e Linux)

@@ -69,7 +69,7 @@ O plugin não traz scripts. O que for código vem como bloco dentro das referenc
 ## Instalar
 
 ```
-/plugin marketplace add <organização>/negocio-local
+/plugin marketplace add omarcusdev/negocio-local
 /plugin install negocio-local@negocio-local
 ```
 

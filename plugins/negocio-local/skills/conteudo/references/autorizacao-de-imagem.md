@@ -37,7 +37,7 @@ Se a pessoa for menor de idade, o responsável preenche o nome dele e o do menor
 ## Como registrar
 
 1. O aceite pode ser uma assinatura em papel (foto do papel) ou a resposta escrita "autorizo" a essa mensagem, com data. Guarde o que mostra o texto, a data e quem autorizou.
-2. Guarde em `midia/autorizacoes/`, fora do repositório (acrescente `midia/autorizacoes/` ao `.gitignore`, junto com `midia/originais/`). Não guarde CPF, RG nem telefone completo: só o que prova o aceite. Se aparecerem no papel, cubra antes de guardar a foto.
+2. Guarde em `midia/autorizacoes/`. Essa pasta não vai para e-mail, nuvem compartilhada nem peça pública. Só se a pasta do projeto já for um repositório git (conferido), sugira pôr `midia/autorizacoes/` e `midia/originais/` no `.gitignore`. Não guarde CPF, RG nem telefone completo: só o que prova o aceite. Se aparecerem no papel, cubra antes de guardar a foto.
 3. Marque na coluna "autorização de imagem" de `midia/inventario.md`: "registrada em AAAA-MM-DD, vale até AAAA-MM-DD, por <primeiro nome ou id>".
 4. Ponha uma lembrança no inventário para o fim do prazo. Passou o prazo: tire a peça do ar ou peça uma nova.
 

@@ -70,4 +70,4 @@ Responda por item, por exemplo: "sim 1, 3". O que não tiver "sim" não segue.
 
 Cada "sim" vai para `negocio/decisoes.md`, com a data e a peça. O "sim" aprova a peça, não a publicação: publicar tem o ok próprio em `presenca-nas-redes`.
 
-Não monte uma página só para votação. Num caso real, páginas de votação repetidas irritaram o dono. A lista no chat basta. Página só se o usuário pedir, e privada.
+Não monte uma página só para votação. Página de votação repetida cansa o dono. A lista no chat basta. Página só se o usuário pedir, e privada.

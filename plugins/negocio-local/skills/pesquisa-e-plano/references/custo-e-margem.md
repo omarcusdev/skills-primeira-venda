@@ -33,7 +33,7 @@ Rendimento real (quantas unidades saem de uma embalagem de insumo) deve vir do d
 
 ## 3. Piso de margem
 
-Regra sugerida: só vender o que deixa uma margem mínima **depois** da hora. O piso é do dono. No caso de origem foi 25%, calibrado para a hora dele; use como ponto de partida, não como norma de mercado. Produto abaixo do piso: suba o preço, mude a receita ou o tamanho, ou corte do cardápio. Verifique primeiro o produto de menor margem, porque é onde um erro de custo vira prejuízo.
+Regra sugerida: só vender o que deixa uma margem mínima **depois** da hora. O piso é do dono (ao dono: "a sobra mínima que vale o trabalho"). Um ponto de partida é 25% depois da hora, para ele ajustar; não é norma de mercado. Produto abaixo do piso: suba o preço, mude a receita ou o tamanho, ou corte do cardápio. Verifique primeiro o produto de menor margem, porque é onde um erro de custo vira prejuízo.
 
 ## 4. Ponto de equilíbrio
 
@@ -59,13 +59,13 @@ a primeira compra paga o anúncio se: sobra por pedido >= custo por venda
 compras para pagar = custo por venda / sobra por pedido, arredondado para cima
 ```
 
-Imposto: use o percentual da fatura do usuário. No caso de origem, o anúncio saiu entre 12% e 15% mais caro no cartão do que no Gerenciador.
+Imposto: a Meta cobra imposto por cima do valor do anúncio. Use o percentual da fatura do usuário; até ele conferir, 14% é suposição (a mesma da skill `anuncios`), e diga que é.
 
 ### Exemplo (Lanchonete Teste)
 
-Ticket R$ 38,00, sobra R$ 14,00 por pedido. Conversa a R$ 5,00 no Gerenciador, com 15% de imposto, vira R$ 5,75. Se 20% das conversas viram venda, o custo por venda é 5,75 / 0,20 = R$ 28,75. A sobra (R$ 14,00) não cobre: o cliente precisa comprar 3 vezes (28,75 / 14,00 = 2,05, arredonde para cima) para o anúncio se pagar.
+Ticket R$ 38,00, sobra R$ 14,00 por pedido. Conversa a R$ 5,00 no Gerenciador, com 14% de imposto (suposição), vira R$ 5,70. Se 20% das conversas viram venda, o custo por venda é 5,70 / 0,20 = R$ 28,50. A sobra (R$ 14,00) não cobre: o cliente precisa comprar 3 vezes (28,50 / 14,00 = 2,04, arredonde para cima) para o anúncio se pagar.
 
-Seja franco com o dono: a recompra é hipótese até medir. No caso, a primeira compra não pagou o anúncio e a recompra não foi medida. A taxa de conversa do exemplo é inventada; no caso, ficou bem abaixo do que o plano supunha.
+Seja franco com o dono: a recompra é hipótese até medir, e é comum a primeira compra não pagar o anúncio. A taxa de conversa do exemplo é inventada; a real pode sair bem abaixo do que o plano supõe.
 
 ### Serviço
 

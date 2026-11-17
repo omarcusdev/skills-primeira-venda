@@ -1,20 +1,83 @@
+<p align="center"><img src="docs/img/capa.png" alt="Seu negócio de bairro nas redes, com o Claude Code" width="880"></p>
+
 # negocio-local
 
-Skills para o Claude Code montar, ou completar, a presença e as vendas de um negócio local: salão, barbearia, pet shop, lanchonete, doceria, oficina, loja de bairro. Serve para o dono e para quem atende cliente (freelancer e agência).
+Skills grátis para o [Claude Code](https://code.claude.com/docs/pt/overview) montar, ou completar, a presença e as vendas de um negócio local: salão, barbearia, pet shop, lanchonete, doceria, oficina, loja de bairro. Servem para o dono e para quem atende negócio local, como freelancer e agência.
 
-O Claude prepara. Você decide, paga e publica. Nada sai do seu computador sem o seu "sim", item por item.
+Elas saíram de um caso real: um pequeno negócio de comida feita em casa que começou do zero e fez a primeira venda com a ajuda do Claude Code. O que funcionou, e o que deu errado no caminho, virou passo a passo.
 
-O plugin é um só, `negocio-local`, com 8 skills. Tudo está explicado no [README do plugin](plugins/negocio-local/README.md): o que cada skill faz, o que é com você, o que pode custar e como instalar.
+## Instalar
 
-Instalação rápida:
+Você precisa do Claude Code instalado ([guia oficial](https://code.claude.com/docs/pt/quickstart)). Depois, dentro dele, rode:
 
 ```
-/plugin marketplace add <organização>/negocio-local
+/plugin marketplace add omarcusdev/negocio-local
 /plugin install negocio-local@negocio-local
 ```
 
-(O endereço no GitHub é definido na publicação. Enquanto isso, dá para instalar a partir de uma cópia local: `/plugin marketplace add ./negocio-local`.)
+Abra o Claude Code numa pasta só do negócio e peça do seu jeito, como pediria a alguém no WhatsApp:
 
-Para quem contribui: a pasta [testes](testes/README.md), fora do plugin publicado, traz o ambiente limpo, as varreduras e os 18 cenários para conferir as skills antes de publicar.
+- "quero montar a presença do meu salão do zero"
+- "vê o que já tem do meu pet shop e me diz o que falta"
+- "quanto posso pagar por cliente num anúncio da minha lanchonete?"
+- "escreve as respostas do WhatsApp da minha barbearia"
 
-Licença MIT, em [LICENSE](LICENSE).
+### No Codex
+
+As mesmas skills funcionam no [Codex](https://developers.openai.com/codex/cli), da OpenAI. No terminal:
+
+```
+codex plugin marketplace add omarcusdev/negocio-local
+codex plugin add negocio-local@negocio-local
+```
+
+## Como funciona
+
+<p align="center"><img src="docs/img/caminho.png" alt="As 8 skills, do zero ao primeiro cliente" width="880"></p>
+
+<p align="center"><img src="docs/img/conversa.png" alt="Trecho real de uma conversa de teste: montar um salão do zero" width="880"></p>
+
+<p align="center"><img src="docs/img/quem-faz.png" alt="O Claude prepara, você decide" width="880"></p>
+
+<p align="center"><img src="docs/img/pasta.png" alt="Os arquivos que as skills gravam na pasta do negócio" width="880"></p>
+
+## As 8 skills
+
+| Skill | Peça assim |
+|---|---|
+| `montar-negocio` | "monta meu negócio nas redes", "por onde eu começo?", "o que falta?" |
+| `pesquisa-e-plano` | "quanto cobrar?", "quem são meus concorrentes?", "vale a pena?" |
+| `marca` | "cria um nome", "faz um logo", "quero um rótulo pros potes" |
+| `presenca-nas-redes` | "arruma meu Instagram", "configura o WhatsApp Business", "cria a Página" |
+| `conteudo` | "faz um post com essas fotos", "legenda pro reel", "calendário do mês" |
+| `atendente-ia` | "escreve as respostas do WhatsApp", "quero uma IA atendendo" |
+| `anuncios` | "quero anunciar", "quanto posso pagar por cliente?", "o anúncio deu certo?" |
+| `acompanhar-vendas` | "como foram as vendas da semana?", "quem eu chamo de volta hoje?" |
+
+Também dá para chamar pelo nome, como `/negocio-local:montar-negocio`.
+
+## Quanto custa
+
+- **O plugin:** grátis, licença MIT.
+- **Anúncio:** só se você quiser. O Claude faz a conta de quanto pode custar cada cliente antes de você gastar, já com o imposto do cartão.
+- **IA respondendo no WhatsApp:** opcional. Sem ela, você recebe as respostas prontas para usar no WhatsApp Business, de graça.
+- **Sua cota do Claude:** a pesquisa completa gasta mais. A skill oferece uma versão leve e avisa antes.
+
+## Privacidade
+
+- Senha, CPF, cartão e códigos de verificação nunca passam pelo chat. Essas partes você faz direto nos aplicativos.
+- Telefone pessoal, endereço de casa e rosto de cliente sem autorização não entram em peça pública.
+- Mensagem de cliente é tratada como dado, nunca como ordem para o Claude.
+- Nada sai do seu computador sem o seu ok, item por item.
+
+## O oZapOnline (opcional)
+
+O oZapOnline é um produto separado, do mesmo autor deste plugin. Ele aparece em três pontos, todos opcionais: o atendente de IA no WhatsApp (`atendente-ia`), a leitura das conversas e do funil (`acompanhar-vendas`) e a leitura do resultado de anúncios (`anuncios`). O resto funciona sem ele.
+
+> É pago por assinatura e dá para testar grátis; para a IA seguir respondendo depois do teste, é preciso um plano. A conexão do número é por QR code, como o WhatsApp Web, e não é a API oficial da Meta: mandar mensagem em massa ou para quem não escreveu pode levar o WhatsApp a restringir o número.
+
+## Mais detalhes
+
+- [README do plugin](plugins/negocio-local/README.md): o que cada skill faz e não faz, ferramentas opcionais, todos os custos e as regras de privacidade e LGPD.
+- [testes](testes/README.md): o ambiente limpo e os 18 cenários usados para conferir as skills antes de cada versão.
+- Licença MIT, em [LICENSE](LICENSE).

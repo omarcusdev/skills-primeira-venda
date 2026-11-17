@@ -104,7 +104,7 @@ npx remotion still src/index.ts F01 saida/F01.png
 npx remotion render src/index.ts R01 saida/R01.mp4 --crf=21
 ```
 
-Regras do caso que valem aqui:
+Regras que valem aqui:
 
 - Animação sempre pelo quadro atual (`useCurrentFrame`), não por transição CSS.
 - Vídeo real entra pelo componente de vídeo do Remotion, em cima do arquivo tratado.

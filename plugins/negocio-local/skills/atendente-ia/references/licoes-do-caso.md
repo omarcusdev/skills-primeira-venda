@@ -1,6 +1,8 @@
 # O que aprendemos
 
-Estas lições vêm de um caso real de uma doceria pequena, um único negócio e uma amostra pequena. São o que aconteceu lá, não uma média nem uma promessa. Os números são contagens, sem valores do negócio.
+> **Para você, Claude; não é para narrar ao dono.** Estas lições servem para você decidir o que checar. Ao dono, dê o conselho em voz neutra ("acontece de…", "um erro comum é…", "vale fazer X antes, porque…"), sem contar a história de outro negócio e sem usar número daqui como se fosse do dono. Só cite a origem se o dono perguntar de onde vem o conselho, e aí com a amostra dita.
+
+Estas lições vêm do caso de origem do plugin, uma doceria pequena, um único negócio e uma amostra pequena. São o que aconteceu lá, não uma média nem uma promessa. Os números são contagens, sem valores do negócio.
 
 ## Prompt
 

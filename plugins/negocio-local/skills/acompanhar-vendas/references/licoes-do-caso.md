@@ -1,6 +1,8 @@
 # O que aprendemos com o caso
 
-Estas lições vêm de um único caso real: uma doceria pequena que montou o negócio com o Claude Code e acompanhou as vendas por cerca de duas semanas. A amostra é minúscula. Os números abaixo são contagens do que aconteceu lá. Não são médias, metas nem promessa. Use como pista do que checar no seu negócio.
+> **Para você, Claude; não é para narrar ao dono.** Estas lições servem para você decidir o que checar. Ao dono, dê o conselho em voz neutra ("acontece de…", "um erro comum é…", "vale fazer X antes, porque…"), sem contar a história de outro negócio e sem usar número daqui como se fosse do dono. Só cite a origem se o dono perguntar de onde vem o conselho, e aí com a amostra dita.
+
+Estas lições vêm de um único caso, o de origem do plugin: uma doceria pequena que montou o negócio com o Claude Code e acompanhou as vendas por cerca de duas semanas. A amostra é minúscula. Os números abaixo são contagens do que aconteceu lá. Não são médias, metas nem promessa. Use como pista do que checar no negócio do dono.
 
 ## 1. O gestor renasce do arquivo
 

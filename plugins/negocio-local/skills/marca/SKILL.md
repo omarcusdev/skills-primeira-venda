@@ -9,9 +9,16 @@ Regras da casa em uma linha: o Claude prepara; usar o nome, a foto de perfil ou 
 
 Esta skill não custa nada em ferramenta. O que custa é a impressão dos rótulos, e quem paga é o dono.
 
+## Como falar com o dono (vale em todos os passos)
+
+- Palavra de dono: sem termo interno da skill (veredito, piso, verificador, plano leve, cota); termo da Meta ou de marketing ganha explicação curta entre parênteses na primeira vez; campo técnico fica só no arquivo.
+- No máximo 3 perguntas e 1 ou 2 decisões por mensagem. Lista longa vai para um arquivo; o chat traz o resumo e o passo de hoje.
+- Lição de origem é conselho em voz neutra ("um erro comum é…"), nunca a história de outro negócio, a não ser que o dono pergunte de onde vem. Não fale de git com quem não pediu.
+- Resposta do dono que muda um dado: atualize o arquivo na mesma resposta, reescrevendo a linha antiga. Detalhes em `../montar-negocio/references/falar-com-o-dono.md`.
+
 ## Passos
 
-1. **Sem ficha:** se `negocio/ficha.md` não existe, pergunte o que o negócio vende, o tom de voz e o que já existe (embalagem, adesivo, uniforme, fachada, fotos), e grave a ficha. Pergunte também: **há alguma marca vizinha ou de parente que não pode aparecer em nenhuma peça?** Anote em `negocio/ficha.md`. Se a pasta aberta tiver vários clientes, pergunte qual é o cliente (ou peça para abrir a sessão na pasta dele) e nunca crie ficha na pasta de cima.
+1. **Sem ficha:** se `negocio/ficha.md` não existe, pergunte, em até 3 perguntas por mensagem, o que o negócio vende, o tom de voz e o que já existe (embalagem, adesivo, uniforme, fachada, fotos), e grave a ficha. Pergunte também, na mensagem seguinte se for preciso: **há alguma marca vizinha ou de parente que não pode aparecer em nenhuma peça?** Anote em `negocio/ficha.md`. Se a pasta aberta tiver vários clientes, pergunte qual é o cliente (ou peça para abrir a sessão na pasta dele) e nunca crie ficha na pasta de cima.
 2. **Parta do que existe.** Peça foto da embalagem, do adesivo, do uniforme ou da fachada, e das cores do produto. A marca sai daí. Nada de estilo inventado por cima. Se não conseguir ler uma foto, diga e peça outra; não adivinhe a cor.
 3. **Nome (só se faltar).** De 5 a 10 opções, com significado, como soa falado, risco de homônimo na região e 2 ou 3 variações de @ cada. Use `references/nome-e-arroba.md`. Diga: a busca na web não enxerga bem o Instagram, então **o @ só se confirma no app**, pelo dono. O Instagram só deve ser criado depois que o número do negócio existir.
 4. **Paleta** de 6 a 8 cores tiradas do produto, cada uma com o uso e o contraste de texto calculado (alvo WCAG AA). Use `references/paleta-e-fontes.md`.
@@ -36,7 +43,9 @@ Esta skill não custa nada em ferramenta. O que custa é a impressão dos rótul
 - Opcional: Python (`fonttools`, `uharfbuzz`) num ambiente isolado dentro de `ferramentas/`, e Chrome, Edge ou Chromium para gerar PNG. Antes de instalar, o Claude mostra o comando e espera seu ok. Os comandos para Windows, macOS e Linux estão no reference.
 - Sem nada disso: abra a página de prova, tire um print e recorte em quadrado no editor do celular, ou exporte o SVG para um editor gráfico.
 
-## O que aprendemos (num caso real de uma doceria pequena; amostra de um só caso)
+## Lições de origem (para você, Claude; não narre ao dono)
+
+Vêm do caso de origem do plugin, uma doceria pequena (amostra de um só caso). Use como conselho em voz neutra; cite a origem só se o dono perguntar de onde vem o conselho.
 
 - **Nome e logo num ponto só.** Trocar o nome refez logo, perfil, adesivo, etiquetas e todas as peças em cerca de 9 minutos, com backup.
 - **Depois de trocar o nome, gere tudo de novo e olhe.** Um nome mais largo quebrou uma peça.
