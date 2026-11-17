@@ -23,6 +23,7 @@ Esta skill monta o plano e a rotina para trazer clientes sem pagar anúncio. Ela
 - Resposta do dono que muda um dado: atualize o arquivo na mesma resposta, reescrevendo a linha antiga. Detalhes em `../montar-negocio/references/falar-com-o-dono.md`.
 - Nesta skill, explique na primeira vez: Perfil da Empresa no Google (a ficha do negócio que aparece na busca e no Maps), Status (fotos e vídeos do WhatsApp que somem em 24 horas), reel (vídeo curto vertical do Instagram), placar (a lista de onde veio cada conversa). Diga "sem pagar anúncio" em vez de "orgânico".
 - Recusa cabe em 2 linhas: o motivo e o que fazer no lugar. Sem sermão.
+- Toda tarefa que aparece no chat leva o dia da semana ("terça"), em qualquer passo. A primeira vez que "placar" aparecer no chat, explique entre parênteses.
 - O dono contou que fez uma tarefa (criou o perfil, postou, mandou a mensagem)? Na mesma resposta, risque a tarefa e reescreva a linha em `negocio/ficha.md`, `negocio/estado.md` e `organico/plano.md`. Nada de deixar "não tem" ou "falta criar" para trás.
 
 ## Passos
