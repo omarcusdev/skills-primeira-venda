@@ -667,7 +667,7 @@ dialog.zoom-dlg[open] .frame { animation: pop .38s var(--spring); }
     <p>As skills não mandam nada para ninguém. Esta página e o chat de dúvidas guardam o seguinte:</p>
     <ul class="dots">
       <li><b>Cliques, sem nome:</b> que você abriu a página, de que site veio, se está no celular ou no computador, o caminho que escolheu, os comandos que copiou e as imagens que ampliou. Eles ficam ligados a um código aleatório guardado no seu navegador. O seu IP não é guardado: só uma versão embaralhada (hash), usada para barrar abuso.</li>
-      <li><b>Se você usar o chat:</b> o seu nome, o que você é (dono de negócio, dev ou freelancer, outro), o tipo de negócio e o WhatsApp se você contar, as perguntas que você faz e as respostas da IA. Se aparecer chave, CPF, cartão, e-mail ou telefone no meio do texto, ele é escondido antes de guardar. Tudo fica ligado ao mesmo código, ou seja, também aos cliques que você fez antes nesta página.</li>
+      <li><b>Se você usar o chat:</b> o seu nome, o que você é (dono de negócio, dev ou freelancer, outro), o tipo de negócio, se prefere que o Marcus monte para você e o WhatsApp, se você contar, as perguntas que você faz e as respostas da IA. Se aparecer chave, CPF, cartão, e-mail ou telefone no meio do texto, ele é escondido antes de guardar. Tudo fica ligado ao mesmo código, ou seja, também aos cliques que você fez antes nesta página.</li>
       <li><b>Se você entrar na lista de espera:</b> o seu WhatsApp, o que você é (dono de negócio, dev ou freelancer, outro) e o nome, se você der. Fica ligado ao mesmo código.</li>
       <li><b>Para quê:</b> responder as suas dúvidas, avisar do próximo material e melhorar esta página. Mensagem no WhatsApp só se você pedir: marcando a caixa da lista de espera ou tocando em "Sim, quero receber" no chat (novidades das skills, do oZap e dos materiais do @omarcusdev). Para sair, é só responder pedindo.</li>
       <li><b>Por quanto tempo:</b> 180 dias. Depois disso, apagamos.</li>
@@ -1138,7 +1138,7 @@ dialog.zoom-dlg[open] .frame { animation: pop .38s var(--spring); }
   var CHAT_KEY = "spv-chat";
   var SUGGESTIONS = ["Como instalo pelo navegador?", "Preciso pagar alguma coisa?", "O que é o Claude Code?", "Qual caminho é o meu?"];
   var MAX_MESSAGES = 20, MAX_CHARS = 1500;
-  var chat = Object.assign({ lead: null, mensagens: [], convite: null, cartaoNegocio: null }, readStore(CHAT_KEY, {}));
+  var chat = Object.assign({ lead: null, mensagens: [], convite: null, cartaoNegocio: null, cartaoServico: null }, readStore(CHAT_KEY, {}));
   var BUSINESS_CHIPS = ["Salão/beleza", "Comida", "Pet", "Loja", "Serviço", "Outro"];
   var fab = $("#chat-fab"), panel = $("#chat-panel"), leadForm = $("#chat-lead"), talk = $("#chat-talk");
   var announce = $("#chat-announce");
@@ -1166,12 +1166,12 @@ dialog.zoom-dlg[open] .frame { animation: pop .38s var(--spring); }
     var sent = chat.lead;
     var sentSession = sessionId;
     // The server merges: null fields never erase what an earlier send stored.
-    postJson("/lead", { session_id: sessionId, nome: sent.nome, perfil: sent.perfil || null, negocio: sent.negocio || null, whatsapp: sent.whatsapp || null, aceita_whatsapp: !!sent.aceita, caminho: currentPath })
+    postJson("/lead", { session_id: sessionId, nome: sent.nome, perfil: sent.perfil || null, negocio: sent.negocio || null, whatsapp: sent.whatsapp || null, aceita_whatsapp: !!sent.aceita, quer_servico: typeof sent.querServico === "boolean" ? sent.querServico : null, caminho: currentPath })
       .then(function (result) {
         leadInFlight = false;
         if (!chat.lead || sentSession !== sessionId) return;
         if (result.ok) {
-          var changed = chat.lead.whatsapp !== sent.whatsapp || chat.lead.aceita !== sent.aceita || chat.lead.negocio !== sent.negocio;
+          var changed = chat.lead.whatsapp !== sent.whatsapp || chat.lead.aceita !== sent.aceita || chat.lead.negocio !== sent.negocio || chat.lead.querServico !== sent.querServico;
           patchLead({ pendente: changed });
           track("lead_enviado", { perfil: sent.perfil || null, tem_negocio: !!sent.negocio, tem_whatsapp: !!sent.whatsapp, aceita_whatsapp: !!sent.aceita, origem: origem });
           if (changed) sendLead(origem);
@@ -1197,10 +1197,29 @@ dialog.zoom-dlg[open] .frame { animation: pop .38s var(--spring); }
   }
 
   function scrollLog() { log.scrollTop = log.scrollHeight; }
+  // Answers can carry links (the oZap ones have UTM). Only http(s) becomes a link, built as DOM nodes (never innerHTML),
+  // and the visible text drops the query string so the UTM doesn't clutter the bubble.
+  var LINK_PATTERN = /\[([^\]\n]{1,80})\]\((https?:\/\/[^\s)]+)\)|https?:\/\/[^\s<>"')\]]*[^\s<>"').,;:!?\]]/g;
+  function setTextWithLinks(element, text) {
+    element.textContent = "";
+    var last = 0;
+    String(text).replace(LINK_PATTERN, function (match, label, labelledHref, offset) {
+      element.appendChild(document.createTextNode(text.slice(last, offset)));
+      var link = document.createElement("a");
+      link.href = labelledHref || match;
+      link.target = "_blank"; link.rel = "noopener";
+      link.textContent = label || match.replace(/^https?:\/\//, "").replace(/[?#].*$/, "").replace(/\/$/, "");
+      element.appendChild(link);
+      last = offset + match.length;
+      return match;
+    });
+    element.appendChild(document.createTextNode(text.slice(last)));
+  }
   function addBubble(role, text, extraClass) {
     var bubble = document.createElement("div");
     bubble.className = "msg " + (role === "user" ? "user" : "bot") + (extraClass ? " " + extraClass : "");
-    if (text) bubble.textContent = text;
+    if (text && role === "user") bubble.textContent = text;
+    else if (text) setTextWithLinks(bubble, text);
     log.appendChild(bubble);
     scrollLog();
     return bubble;
@@ -1226,6 +1245,7 @@ dialog.zoom-dlg[open] .frame { animation: pop .38s var(--spring); }
     addBubble("assistant", greeting());
     chat.mensagens.forEach(function (m) { addBubble(m.role, m.content); });
     if (chat.cartaoNegocio === "aberto") showBusinessCard();
+    if (chat.cartaoServico === "aberto") showServiceCard();
     if (chat.convite === "aberto") showInvite();
     renderSuggestions();
   }
@@ -1281,7 +1301,7 @@ dialog.zoom-dlg[open] .frame { animation: pop .38s var(--spring); }
     if (nome.length < 2) { err.textContent = "Coloque o seu nome."; $("input[name=nome]", leadForm).focus(); return; }
     if (!perfil) { err.textContent = "Escolha o que você é: dono de negócio, dev ou freelancer, ou outro."; $("#chat-perfil input").focus(); return; }
     err.textContent = "";
-    setChat({ lead: { nome: nome, perfil: perfil, negocio: null, whatsapp: null, aceita: false }, convite: null, cartaoNegocio: null });
+    setChat({ lead: { nome: nome, perfil: perfil, negocio: null, whatsapp: null, aceita: false }, convite: null, cartaoNegocio: null, cartaoServico: null });
     sendLead("formulario");
     showStage();
     input.focus();
@@ -1290,7 +1310,7 @@ dialog.zoom-dlg[open] .frame { animation: pop .38s var(--spring); }
   leadForm.addEventListener("input", function () { $("#lead-err").textContent = ""; });
 
   function showInvite(problem) {
-    var existing = $(".invite", log);
+    var existing = $(".invite:not(.biz):not(.servico)", log);
     if (existing && $("input", existing)) {
       if (problem) { $(".err", existing).textContent = problem; scrollLog(); }
       return;
@@ -1353,17 +1373,54 @@ dialog.zoom-dlg[open] .frame { animation: pop .38s var(--spring); }
     log.appendChild(card);
     scrollLog();
   }
-  // Business card after the 1st answer (business owners only); WhatsApp card after the 2nd. One card at a time.
+  // Counts how many would rather have Marcus set it up (Marcus, 18/11): no price, no promise, only the count.
+  function answerService(wantsIt, card) {
+    patchLead({ querServico: wantsIt });
+    setChat({ cartaoServico: "respondido" });
+    sendLead("cartao_servico");
+    track("servico_respondido", { quer: wantsIt, perfil: chat.lead.perfil || null, caminho: currentPath });
+    card.classList.add("done-card");
+    card.textContent = "";
+    var note = document.createElement("span");
+    var hasPhone = !!chat.lead.whatsapp;
+    note.textContent = !wantsIt ? "Beleza! Sigo aqui para as suas dúvidas."
+      : hasPhone ? "Anotado! Se abrir, o aviso vai para o seu WhatsApp."
+      : "Anotado! Se quiser saber quando abrir, deixe o seu WhatsApp aqui embaixo.";
+    card.appendChild(note);
+    var reopenInvite = wantsIt && chat.convite === "fechado";
+    if (!hasPhone && (!chat.convite || reopenInvite)) { setChat({ convite: "aberto" }); showInvite(); }
+    input.focus();
+  }
+  function showServiceCard() {
+    if ($(".invite.servico", log)) return;
+    var card = document.createElement("div");
+    card.className = "invite servico";
+    card.innerHTML = '<strong class="invite-t">Prefere que o Marcus monte isso para você?</strong><span class="invite-sub">Só estamos contando quantas pessoas querem. Ainda não tem preço nem compromisso.</span><div class="chips"><button type="button" class="press" data-quer="sim">Sim, quero que monte</button><button type="button" class="press" data-quer="nao">Não, vou fazer eu mesmo</button></div>';
+    $$("button", card).forEach(function (button) {
+      button.addEventListener("click", function () { answerService(button.getAttribute("data-quer") === "sim", card); });
+    });
+    log.appendChild(card);
+    scrollLog();
+  }
+  function dropStaleCard(stateKey, selector) {
+    if (chat[stateKey] !== "aberto") return;
+    var patch = {};
+    patch[stateKey] = "ignorado";
+    setChat(patch);
+    var stale = $(selector, log);
+    if (stale) stale.remove();
+  }
+  // One card at a time: business (1st answer, owners), "Marcus monta?" (2nd, owners and "outro"), WhatsApp (after that).
   function maybeInvite() {
     var answers = chat.mensagens.filter(function (m) { return m.role === "assistant"; }).length;
     var lead = chat.lead || {};
-    if (answers >= 2 && chat.cartaoNegocio === "aberto") {
-      setChat({ cartaoNegocio: "ignorado" });
-      var staleCard = $(".invite.biz", log);
-      if (staleCard) staleCard.remove();
-    }
+    var mayWantService = lead.perfil === "dono" || lead.perfil === "outro";
+    if (answers >= 2) dropStaleCard("cartaoNegocio", ".invite.biz");
+    if (answers >= 3) dropStaleCard("cartaoServico", ".invite.servico");
     if (answers >= 1 && lead.perfil === "dono" && !lead.negocio && !chat.cartaoNegocio) { setChat({ cartaoNegocio: "aberto" }); showBusinessCard(); return; }
-    if (answers >= 2 && !lead.whatsapp && !chat.convite) { setChat({ convite: "aberto" }); showInvite(); }
+    if (answers >= 2 && mayWantService && !chat.cartaoServico) { setChat({ cartaoServico: "aberto" }); showServiceCard(); return; }
+    var inviteAfter = mayWantService ? 3 : 2;
+    if (answers >= inviteAfter && !lead.whatsapp && !chat.convite) { setChat({ convite: "aberto" }); showInvite(); }
   }
 
   function historyForApi() {
@@ -1470,7 +1527,7 @@ dialog.zoom-dlg[open] .frame { animation: pop .38s var(--spring); }
     }).then(function (full) {
       var text = (full || received).trim();
       if (!text) throw { status: 0 };
-      bubble.textContent = text;
+      setTextWithLinks(bubble, text);
       setChat({ mensagens: chat.mensagens.concat([{ role: "assistant", content: text }]) });
       maybeInvite();
     }).catch(function (error) {
@@ -1507,7 +1564,7 @@ dialog.zoom-dlg[open] .frame { animation: pop .38s var(--spring); }
     sendMessage(value, false);
   });
   $("#chat-clear").addEventListener("click", function () {
-    chat = { lead: null, mensagens: [], convite: null, cartaoNegocio: null };
+    chat = { lead: null, mensagens: [], convite: null, cartaoNegocio: null, cartaoServico: null };
     removeStore(CHAT_KEY);
     sessionId = storeSessionId(makeUuid());
     leadForm.reset();
