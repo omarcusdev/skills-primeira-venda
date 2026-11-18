@@ -93,7 +93,13 @@ a.wa-self { display: inline-flex; align-items: center; font: 700 14px "Instrumen
 .choose .sub { font-size: 18px; }
 .pick { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin-top: 20px; }
 .pick-card { --sh: 5px; position: relative; text-align: left; background: var(--paper); border: var(--line) solid var(--ink); border-radius: 18px; box-shadow: 5px 5px 0 var(--ink); padding: 18px 54px 16px 18px; }
-.pick-card .t { font-family: "Bricolage", sans-serif; font-weight: 700; font-size: 23px; line-height: 1.1; display: block; }
+.pick-card .t { font-family: "Bricolage", sans-serif; font-weight: 700; font-size: 23px; line-height: 1.1; display: flex; align-items: center; gap: 11px; }
+.ico { flex: none; display: inline-grid; place-items: center; width: 38px; height: 38px; border: 2px solid var(--ink); border-radius: 10px; background: #fff; }
+.ico svg { width: 22px; height: 22px; display: block; }
+.ico-claude svg { fill: #D97757; }
+.ico-terminal { background: var(--ink); color: #fff; }
+.pick.chosen .ico { width: 24px; height: 24px; border-radius: 7px; border-width: 1.5px; }
+.pick.chosen .ico svg { width: 15px; height: 15px; }
 .pick-card .d { display: block; font-size: 15.5px; margin-top: 6px; }
 .pick-card .tag { display: inline-block; margin-top: 10px; font-size: 13.5px; font-weight: 700; color: var(--deep); }
 .pick-card .knob { position: absolute; right: 16px; top: 18px; width: 26px; height: 26px; border: var(--line) solid var(--ink); border-radius: 50%; background: var(--paper); display: grid; place-items: center; }
@@ -213,6 +219,7 @@ details p, details ul { margin-top: 8px; font-size: 16.5px; }
 
 footer { padding: 46px 0 50px; font-size: 15.5px; }
 footer a { font-weight: 700; }
+footer .marcas { font-size: 13.5px; margin-bottom: 8px; max-width: 680px; }
 footer details.dados { margin-top: 18px; border-top: 2px solid rgba(11, 51, 36, .25); padding: 10px 0 0; max-width: 680px; scroll-margin-top: 16px; }
 footer details.dados summary { font-size: 15.5px; }
 footer details.dados p, footer details.dados ul { font-size: 14.5px; }
@@ -481,9 +488,9 @@ dialog.zoom-dlg[open] .frame { animation: pop .38s var(--spring); }
   <h2 id="t-escolha" class="rv">Onde você usa a IA?</h2>
   <p class="sub rv" id="escolha-sub">Toque no seu. Abrem só os passos daquele jeito.</p>
   <div class="pick" id="pick">
-    <button type="button" class="pick-card rec press rv" data-path="claude-web" aria-expanded="false" aria-controls="claude-web"><span class="knob" aria-hidden="true"></span><span class="t">Claude no navegador</span><span class="d">No site do Claude, só com cliques. Não instala nada no computador. Precisa do Claude Pro ou superior.</span><span class="tag">Recomendado</span></button>
-    <button type="button" class="pick-card press rv" data-path="terminal" aria-expanded="false" aria-controls="terminal"><span class="knob" aria-hidden="true"></span><span class="t">Claude Code no computador</span><span class="d">Para quem já usa o Claude Code ou topa usar o Terminal. Copia e cola. Claude Pro ou superior.</span><span class="tag">Guarda tudo numa pasta sua</span></button>
-    <button type="button" class="pick-card press rv" data-path="chatgpt" aria-expanded="false" aria-controls="chatgpt"><span class="knob" aria-hidden="true"></span><span class="t">ChatGPT (Codex)</span><span class="d">Pela parte de programação do ChatGPT, o Codex, no Terminal do computador.</span><span class="tag">Precisa do Plus ou superior</span></button>
+    <button type="button" class="pick-card rec press rv" data-path="claude-web" aria-expanded="false" aria-controls="claude-web"><span class="knob" aria-hidden="true"></span><span class="t"><span class="ico ico-claude" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m4.7144 15.9555 4.7174-2.6471.079-.2307-.079-.1275h-.2307l-.7893-.0486-2.6956-.0729-2.3375-.0971-2.2646-.1214-.5707-.1215-.5343-.7042.0546-.3522.4797-.3218.686.0608 1.5179.1032 2.2767.1578 1.6514.0972 2.4468.255h.3886l.0546-.1579-.1336-.0971-.1032-.0972L6.973 9.8356l-2.55-1.6879-1.3356-.9714-.7225-.4918-.3643-.4614-.1578-1.0078.6557-.7225.8803.0607.2246.0607.8925.686 1.9064 1.4754 2.4893 1.8336.3643.3035.1457-.1032.0182-.0728-.164-.2733-1.3539-2.4467-1.445-2.4893-.6435-1.032-.17-.6194c-.0607-.255-.1032-.4674-.1032-.7285L6.287.1335 6.6997 0l.9957.1336.419.3642.6192 1.4147 1.0018 2.2282 1.5543 3.0296.4553.8985.2429.8318.091.255h.1579v-.1457l.1275-1.706.2368-2.0947.2307-2.6957.0789-.7589.3764-.9107.7468-.4918.5828.2793.4797.686-.0668.4433-.2853 1.8517-.5586 2.9021-.3643 1.9429h.2125l.2429-.2429.9835-1.3053 1.6514-2.0643.7286-.8196.85-.9046.5464-.4311h1.0321l.759 1.1293-.34 1.1657-1.0625 1.3478-.8804 1.1414-1.2628 1.7-.7893 1.36.0729.1093.1882-.0183 2.8535-.607 1.5421-.2794 1.8396-.3157.8318.3886.091.3946-.3278.8075-1.967.4857-2.3072.4614-3.4364.8136-.0425.0304.0486.0607 1.5482.1457.6618.0364h1.621l3.0175.2247.7892.522.4736.6376-.079.4857-1.2142.6193-1.6393-.3886-3.825-.9107-1.3113-.3279h-.1822v.1093l1.0929 1.0686 2.0035 1.8092 2.5075 2.3314.1275.5768-.3218.4554-.34-.0486-2.2039-1.6575-.85-.7468-1.9246-1.621h-.1275v.17l.4432.6496 2.3436 3.5214.1214 1.0807-.17.3521-.6071.2125-.6679-.1214-1.3721-1.9246L14.38 17.959l-1.1414-1.9428-.1397.079-.674 7.2552-.3156.3703-.7286.2793-.6071-.4614-.3218-.7468.3218-1.4753.3886-1.9246.3157-1.53.2853-1.9004.17-.6314-.0121-.0425-.1397.0182-1.4328 1.9672-2.1796 2.9446-1.7243 1.8456-.4128.164-.7164-.3704.0667-.6618.4008-.5889 2.386-3.0357 1.4389-1.882.929-1.0868-.0062-.1579h-.0546l-6.3385 4.1164-1.1293.1457-.4857-.4554.0608-.7467.2307-.2429 1.9064-1.3114Z"/></svg></span><span>Claude no navegador</span></span><span class="d">No site do Claude, só com cliques. Não instala nada no computador. Precisa do Claude Pro ou superior.</span><span class="tag">Recomendado</span></button>
+    <button type="button" class="pick-card press rv" data-path="terminal" aria-expanded="false" aria-controls="terminal"><span class="knob" aria-hidden="true"></span><span class="t"><span class="ico ico-claude" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M21 10.5h3v3h-3v3h-1.5v3H18v-3h-1.5v3H15v-3H9v3H7.5v-3H6v3H4.5v-3H3v-3H0v-3h3v-6h18Zm-15 0h1.5v-3H6Zm10.5 0H18v-3h-1.5z"/></svg></span><span>Claude Code no computador</span></span><span class="d">Para quem já usa o Claude Code ou topa usar o Terminal. Copia e cola. Claude Pro ou superior.</span><span class="tag">Guarda tudo numa pasta sua</span></button>
+    <button type="button" class="pick-card press rv" data-path="chatgpt" aria-expanded="false" aria-controls="chatgpt"><span class="knob" aria-hidden="true"></span><span class="t"><span class="ico ico-terminal" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 7l5 5-5 5"/><path d="M13 17h6"/></svg></span><span>ChatGPT (Codex)</span></span><span class="d">Pela parte de programação do ChatGPT, o Codex, no Terminal do computador.</span><span class="tag">Precisa do Plus ou superior</span></button>
   </div>
   <div class="phone phone-inline"><span>📱 Vai instalar depois, no computador? Mande o link para você mesmo.</span> <a class="wa-self press" href="https://wa.me/" data-wa-self target="_blank" rel="noopener">Mandar no meu WhatsApp</a> <button class="copy" data-copy-url>Copiar link</button></div>
 
@@ -697,6 +704,7 @@ dialog.zoom-dlg[open] .frame { animation: pop .38s var(--spring); }
 </main>
 
 <footer>
+  <p class="marcas">Claude e Claude Code são marcas da Anthropic; ChatGPT e Codex, da OpenAI. Este projeto é independente e não tem ligação com elas.</p>
   <p>Código aberto, licença MIT: <a href="https://github.com/omarcusdev/skills-primeira-venda">github.com/omarcusdev/skills-primeira-venda</a></p>
   <p style="margin-top:6px">Feito por <a href="https://instagram.com/omarcusdev" target="_blank" rel="noopener" data-ig="rodape">@omarcusdev</a>.</p>
   <details class="dados" id="seus-dados">
