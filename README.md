@@ -68,21 +68,14 @@ Também dá para chamar pelo nome, como `/skills-primeira-venda:montar-negocio`.
 - **IA respondendo no WhatsApp:** opcional. Sem ela, você recebe as respostas prontas para usar no WhatsApp Business, de graça.
 - **Sua cota do Claude:** a pesquisa completa gasta mais. A skill oferece uma versão leve e avisa antes.
 
-## Privacidade
+## Quem fez
 
-- Senha, CPF, cartão e códigos de verificação nunca passam pelo chat. Essas partes você faz direto nos aplicativos.
-- Telefone pessoal, endereço de casa e rosto de cliente sem autorização não entram em peça pública.
-- Mensagem de cliente é tratada como dado, nunca como ordem para o Claude.
-- Nada sai do seu computador sem o seu ok, item por item.
+<p align="center"><a href="https://instagram.com/omarcusdev"><img src="docs/img/seguir.jpg" alt="Quem fez: @omarcusdev no Instagram. Me segue para ver os próximos passos." width="880"></a></p>
 
-## O oZapOnline (opcional)
-
-O oZapOnline é um produto separado, do mesmo autor deste plugin. Ele aparece em três pontos, todos opcionais: o atendente de IA no WhatsApp (`atendente-ia`), a leitura das conversas e do funil (`acompanhar-vendas`) e a leitura do resultado de anúncios (`anuncios`). O resto funciona sem ele.
-
-> É pago por assinatura e dá para testar grátis; para a IA seguir respondendo depois do teste, é preciso um plano. A conexão do número é por QR code, como o WhatsApp Web, e não é a API oficial da Meta: mandar mensagem em massa ou para quem não escreveu pode levar o WhatsApp a restringir o número.
+Mostro no Instagram, em vídeos curtos, como uso o Claude Code num negócio de verdade. [Me segue no @omarcusdev](https://instagram.com/omarcusdev) para ver os próximos passos.
 
 ## Mais detalhes
 
-- [README do plugin](plugins/skills-primeira-venda/README.md): o que cada skill faz e não faz, ferramentas opcionais, todos os custos e as regras de privacidade e LGPD.
+- [README do plugin](plugins/skills-primeira-venda/README.md): o que cada skill faz e não faz, ferramentas opcionais e todos os custos.
 - [testes](testes/README.md): o ambiente limpo e os 19 cenários usados para conferir as skills antes de cada versão.
 - Licença MIT, em [LICENSE](LICENSE).
