@@ -1,6 +1,6 @@
 # Negócio local: presença e vendas
 
-Skills em português para o Claude Code montar do zero, ou completar, a presença e as vendas de um negócio local, próprio ou de cliente. O plugin cobre pesquisa e plano, marca, fotos e conteúdo, WhatsApp Business, Página do Facebook, Instagram, anúncios de mensagem, atendimento no WhatsApp (com ou sem IA) e o acompanhamento das vendas depois que tudo está no ar.
+Skills em português para o Claude Code montar do zero, ou completar, a presença e as vendas de um negócio local, próprio ou de cliente. O plugin cobre pesquisa e plano, marca, fotos e conteúdo, WhatsApp Business, Página do Facebook, Instagram, caminho para vender sem anúncio (Perfil da Empresa no Google, Status do WhatsApp, clientes que já compraram), anúncios de mensagem, atendimento no WhatsApp (com ou sem IA) e o acompanhamento das vendas depois que tudo está no ar.
 
 Estas skills saíram de um caso real de um pequeno negócio de comida feita em casa, transformado em passos genéricos. Os números do caso aparecem como "o que aprendemos", com a amostra dita, e nunca como promessa. A amostra é pequena e é de um único negócio. Não use como garantia de resultado.
 
@@ -11,9 +11,9 @@ Estas skills saíram de um caso real de um pequeno negócio de comida feita em c
 - Não promete: venda, lucro ou "100% automático". Um atendente de IA ajuda a responder, mas você continua no comando.
 - Ação para fora (publicar, gastar em anúncio, mandar mensagem a cliente, mudar o atendente no ar, ligar a IA num número, salvar um campo público de perfil) só com o seu ok explícito, item por item. O Claude mostra exatamente o que vai sair e espera o "sim".
 
-## As 8 skills
+## As 9 skills
 
-Chame pelo nome (`/negocio-local:montar-negocio`) ou peça em texto livre.
+Chame pelo nome (`/skills-primeira-venda:montar-negocio`) ou peça em texto livre.
 
 | Skill | Quando usar |
 |---|---|
@@ -22,20 +22,21 @@ Chame pelo nome (`/negocio-local:montar-negocio`) ou peça em texto livre.
 | `marca` | Nome (com checagem de homônimo e de @), paleta, fontes, logo, foto de perfil, rótulo, etiqueta ou adesivo. |
 | `conteudo` | Post, story, reel, carrossel, legenda, criativo, catálogo ou calendário, a partir de fotos e vídeos reais. Revisa privacidade, autorização de imagem, preço e área segura antes de publicar. |
 | `presenca-nas-redes` | Criar ou arrumar o WhatsApp Business, a Página do Facebook e o Instagram: escolha do número, kit de textos e imagens para colar, ligação entre as contas e publicações. |
+| `vender-sem-anuncio` | Conseguir clientes sem pagar anúncio: vê o que o negócio já tem, escolhe 2 ou 3 canais (Perfil da Empresa no Google, Status do WhatsApp, quem já comprou, Instagram com vídeo real, grupos do bairro, vizinhos parceiros), organiza as histórias reais do dono, monta uma rotina semanal que cabe no dia e um placar de onde veio cada conversa. Não publica nem manda mensagem: prepara, e você faz. |
 | `anuncios` | Anunciar ou impulsionar com destino no WhatsApp: a conta de quanto pode custar cada venda antes de gastar, conferência da conta de anúncios, criativos e leitura do resultado por venda, não por clique. |
 | `atendente-ia` | Atendimento no WhatsApp: prompt do atendente com IA, casos de teste e regras de aviso ao dono. Sem IA, entrega saudação, respostas rápidas e roteiro para o WhatsApp Business. Também serve para entender por que o atendente erra. |
 | `acompanhar-vendas` | O "agente gestor": ciclos diários ou semanais que leem o caderno de vendas, as conversas e os números de anúncio, calculam o funil e o custo por venda, propõem follow-ups com o texto exato e escrevem um diário. |
 
 ### As duas entradas
 
-1. **Do zero.** A skill `montar-negocio` faz uma entrevista curta, grava a ficha e propõe a ordem. O número do negócio vem primeiro, porque depende de você e demora. Plano leve e marca andam em paralelo enquanto isso. Depois vêm WhatsApp Business, Página, Instagram, conteúdo base, atendimento, anúncio (só com tudo pronto) e acompanhamento.
+1. **Do zero.** A skill `montar-negocio` faz uma entrevista curta, grava a ficha e propõe a ordem. O número do negócio vem primeiro, porque depende de você e demora. Plano leve e marca andam em paralelo enquanto isso. Depois vêm WhatsApp Business, Página, Instagram, conteúdo base, atendimento, o caminho sem anúncio, anúncio (opcional, só com tudo pronto) e acompanhamento.
 2. **Completar.** O Claude levanta o que já existe e monta um quadro "tem / falta / está ruim". Cada linha diz como ele sabe: visto pelo navegador, print seu, dito por você ou não verificado. Depois propõe só o que falta.
 
 Pedidos de uma peça só, de um anúncio, do perfil ou do atendente vão direto para a skill daquela etapa.
 
 ## O que é com você
 
-- Criar as contas: Página, Instagram, portfólio de negócios, conta de anúncios e, se quiser IA no atendimento, a conta do oZap.
+- Criar as contas: Página, Instagram, Perfil da Empresa no Google, portfólio de negócios, conta de anúncios e, se quiser IA no atendimento, a conta do oZap.
 - Senhas, CPF, forma de pagamento e qualquer pagamento. O Claude nunca digita nem pede isso no chat.
 - Códigos de verificação e QR code.
 - Foto e vídeo do produto ou do serviço. Use fotos e vídeos reais: é o que o cliente vai encontrar na entrega, e no caso que originou o plugin (amostra pequena, um só negócio) o vídeo real teve o melhor custo por conversa.
@@ -69,11 +70,11 @@ O plugin não traz scripts. O que for código vem como bloco dentro das referenc
 ## Instalar
 
 ```
-/plugin marketplace add omarcusdev/negocio-local
-/plugin install negocio-local@negocio-local
+/plugin marketplace add omarcusdev/skills-primeira-venda
+/plugin install skills-primeira-venda@omarcusdev
 ```
 
-O endereço no GitHub é definido na publicação. Para instalar de uma cópia local do repositório, use o caminho da pasta: `/plugin marketplace add ./negocio-local`.
+Para instalar de uma cópia local do repositório, use o caminho da pasta: `/plugin marketplace add ./skills-primeira-venda`.
 
 Depois, abra o Claude Code na pasta do negócio (para agência, uma pasta por cliente) e peça, por exemplo:
 

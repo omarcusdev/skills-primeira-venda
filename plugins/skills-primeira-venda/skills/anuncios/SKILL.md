@@ -7,6 +7,8 @@ description: Planeja e acompanha anúncios de mensagem da Meta (Facebook e Insta
 
 Esta skill faz a conta, prepara a campanha e lê o resultado. Quem cria a conta, paga e clica em publicar é o dono (ou quem opera por ele). Ninguém aqui promete venda nem lucro: anúncio pode não se pagar, e a conta é feita antes justamente para isso.
 
+Se o negócio ainda não tem nenhum post que já trouxe conversas, sugira uma vez, antes de gastar, o caminho sem anúncio (`vender-sem-anuncio`): ele mostra qual peça funciona e essa vira o anúncio. Se o dono quiser anunciar mesmo assim, siga; a escolha é dele.
+
 ## Regras desta skill (valem em todos os passos)
 
 - **Nenhum gasto, publicação, mudança de verba ou pausa sem ok daquele item.** Antes do ok, mostre exatamente o que vai acontecer: conta, portfólio, valor, período, criativos, público, mensagem e número de destino.

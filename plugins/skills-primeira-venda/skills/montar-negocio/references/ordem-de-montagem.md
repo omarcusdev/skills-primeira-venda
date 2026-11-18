@@ -4,7 +4,7 @@ A ordem recomendada e o porquê de cada dependência. Corte para o que falta (`n
 
 ## Em uma linha
 
-Número do negócio primeiro (começa já). Plano curto e marca andam em paralelo, ao mesmo tempo, enquanto o número não chega. Depois WhatsApp Business, Página, Instagram, conteúdo base, atendimento (com ou sem IA), anúncio (só com tudo pronto) e acompanhamento.
+Número do negócio primeiro (começa já). Plano curto e marca andam em paralelo, ao mesmo tempo, enquanto o número não chega. Depois WhatsApp Business, Página, Instagram, conteúdo base, atendimento (com ou sem IA), o caminho sem anúncio (Perfil no Google, Status, quem já comprou), anúncio (opcional, só com tudo pronto) e acompanhamento.
 
 ## Os passos
 
@@ -20,8 +20,9 @@ Número do negócio primeiro (começa já). Plano curto e marca andam em paralel
 | 8 | Instagram profissional, ligado à Página | `presenca-nas-redes` | **dono** cria e digita os códigos | nada | passo 1 (o código pode chegar pelo número) e passo 6 |
 | 9 | Conteúdo base: alguns posts e o cardápio ou tabela com foto | `conteudo`, `presenca-nas-redes` | Claude prepara; dono aprova item por item; em conta nova, **o dono publica pelo app** | nada; chave paga de imagem ou voz só se o dono quiser | passos 3, 4 e 8 |
 | 10 | Atendimento, com ou sem IA | `atendente-ia` | Claude escreve; dono aprova e decide ligar | sem IA, nada. Com IA, a skill diz as condições e o plano pago depois do período de teste antes de o dono decidir | passos 1 e 5 |
-| 11 | Anúncio de mensagem para o WhatsApp | `anuncios` | **dono** cria a conta, paga e dá o clique final | verba **mais o imposto** que a Meta cobra por cima do valor do anúncio (o dono confere o percentual na fatura) | passos 6 a 10, e a conta da skill `anuncios` dizendo se compensa |
-| 12 | Acompanhamento das vendas em ciclos | `acompanhar-vendas` | Claude lê e propõe; dono aprova cada envio | nada além do que já foi escolhido | atendimento rodando e o teste de `pesquisa-e-plano` |
+| 11 | Caminho sem anúncio: 2 ou 3 canais (Perfil da Empresa no Google, Status, quem já comprou, Instagram com vídeo real), rotina semanal e placar de onde veio cada conversa | `vender-sem-anuncio` | Claude planeja e escreve; **dono** cria o perfil do Google, publica e manda cada mensagem | nada em dinheiro | ficha e passo 1; os posts dependem do passo 9 |
+| 12 | Anúncio de mensagem para o WhatsApp (opcional) | `anuncios` | **dono** cria a conta, paga e dá o clique final | verba **mais o imposto** que a Meta cobra por cima do valor do anúncio (o dono confere o percentual na fatura) | passos 6 a 10, de preferência um post do passo 11 que já trouxe conversas, e a conta da skill `anuncios` dizendo se compensa |
+| 13 | Acompanhamento das vendas em ciclos | `acompanhar-vendas` | Claude lê e propõe; dono aprova cada envio | nada além do que já foi escolhido | atendimento rodando e o teste de `pesquisa-e-plano` |
 
 ## Por que esta ordem
 
@@ -31,7 +32,8 @@ Número do negócio primeiro (começa já). Plano curto e marca andam em paralel
 - **A Página precisa de um perfil pessoal real** como administrador. Sem ele, `anuncios` para e explica: não há como contornar.
 - **A campanha de WhatsApp precisa de** Página, Instagram ligado, WhatsApp ligado à Página, alguns posts e atendimento pronto. O teste final: alguém de fora manda a mensagem pronta do anúncio e recebe resposta. Se faltar um desses, o anúncio não sai e a skill diz o que falta.
 - **Quem chega do anúncio precisa de resposta.** Um erro comum: um filtro de teste do atendimento deixa sem resposta a primeira pessoa que vem do anúncio, e ela não volta.
-- **Anúncio é o último a ser ligado**, e só depois da conta de quanto pode custar cada venda, com o imposto. A skill `anuncios` diz com franqueza se a primeira compra cobre o anúncio.
+- **O caminho sem anúncio vem antes do anúncio.** Não custa dinheiro e mostra qual post ou vídeo já traz conversa; esse é o melhor candidato a virar anúncio. O Perfil no Google pode começar assim que houver ficha e número, sem esperar o Instagram.
+- **Anúncio é opcional e o último a ser ligado**, e só depois da conta de quanto pode custar cada venda, com o imposto. A skill `anuncios` diz com franqueza se a primeira compra cobre o anúncio.
 
 ## O que pode esperar
 
@@ -57,6 +59,8 @@ Exemplo de resumo, para um salão que só tem fotos de celular:
 > 2. Enquanto o número não chega, eu faço em paralelo um plano curto de preços e concorrência e a marca (nome e logo). Sem custo em dinheiro.
 >
 > **Depois que o número chegar:** WhatsApp Business, Página, Instagram e os primeiros posts. Você cria as contas com os textos que eu preparo. Sem custo.
+>
+> **Antes de pagar qualquer anúncio:** o caminho sem anúncio (Perfil no Google, Status e quem já comprou), com uma rotina que cabe na sua semana. Sem custo.
 >
 > **No fim, se você quiser:** anúncio (a verba mais o imposto que a Meta cobra por cima) e IA no atendimento (ferramenta paga depois de um teste grátis). Eu digo o custo de cada um antes.
 >
