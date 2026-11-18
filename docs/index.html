@@ -58,6 +58,23 @@ h1.title .w { display: inline-block; }
 .lede { font-size: 21px; max-width: 600px; margin-top: 16px; position: relative; z-index: 1; }
 .phone { margin-top: 22px; background: var(--ink); color: #fff; border-radius: 16px; padding: 14px 16px; display: flex; gap: 12px; align-items: center; flex-wrap: wrap; font-size: 16px; position: relative; z-index: 1; }
 .phone strong { color: var(--label); }
+/* The bar only matters on a phone: installing is done on the computer. */
+@media (min-width: 821px) { .phone { display: none; } }
+.phone-inline { margin: 18px 0 4px; }
+a.wa-self { display: inline-flex; align-items: center; font: 700 14px "Instrument", sans-serif; background: var(--label); color: var(--ink); border: 2px solid var(--label); border-radius: 10px; padding: 6px 12px; text-decoration: none; white-space: nowrap; }
+.dev-link { margin-top: 16px; display: inline-flex; align-items: center; gap: 9px; font-weight: 700; font-size: 15px; color: var(--ink); background: var(--paper); border: 2px solid var(--ink); border-radius: 999px; padding: 7px 15px 7px 11px; box-shadow: 3px 3px 0 var(--ink); text-decoration: none; position: relative; z-index: 1; transition: transform .15s, box-shadow .15s; }
+.dev-link:hover { transform: translate(-1px, -1px); box-shadow: 4px 4px 0 var(--ink); }
+.dev-link svg { width: 18px; height: 18px; fill: currentColor; flex: none; }
+.dev-link .k { color: var(--deep); }
+.skills-list { display: grid; gap: 10px; margin-top: 14px; }
+.sk { display: grid; grid-template-columns: minmax(150px, 190px) 1fr; gap: 12px; align-items: baseline; border: 2px solid var(--ink); border-radius: 14px; padding: 10px 14px; background: var(--paper); }
+.sk b { font-family: "Bricolage", sans-serif; font-stretch: 82%; font-weight: 700; font-size: 17px; overflow-wrap: anywhere; }
+.sk span { font-size: 15.5px; }
+@media (max-width: 640px) { .sk { grid-template-columns: 1fr; gap: 2px; } }
+.sk-note { margin-top: 12px; font-size: 15px; }
+.sk-note code { overflow-wrap: anywhere; }
+.skills-img { margin-top: 16px; border: 2px solid var(--ink); border-radius: 14px; overflow: hidden; }
+.skills-img img { width: 100%; height: auto; display: block; }
 .shapes { position: absolute; inset: 0; pointer-events: none; }
 .shape { position: absolute; }
 .shape.s1 { right: 4%; top: 46px; width: 92px; }
@@ -440,7 +457,8 @@ dialog.zoom-dlg[open] .frame { animation: pop .38s var(--spring); }
   <div class="brand">skills-primeira-venda</div>
   <h1 class="title"><span class="w" style="--i:0">Coloque</span> <span class="w" style="--i:1">as</span> <span class="w" style="--i:2">skills</span> <span class="w" style="--i:3">no</span> <span class="w" style="--i:4">seu</span> <span class="w" style="--i:5">Claude</span> <span class="w" style="--i:6">ou</span> <span class="w" style="--i:7">ChatGPT</span></h1>
   <p class="lede">Passo a passo para quem nunca mexeu com isso. Escolha onde você usa a IA e aparecem só os passos daquele jeito. Não precisa saber programar, mas precisa de um plano pago: Claude Pro ou ChatGPT Plus, ou superior.</p>
-  <div class="phone"><span>📱 Está no celular? Dá para ler aqui, mas <strong>instalar é mais fácil no computador</strong>. Mande este link para você mesmo.</span> <button class="copy" data-copy-url>Copiar link</button></div>
+  <a class="dev-link" href="https://github.com/omarcusdev/skills-primeira-venda" target="_blank" rel="noopener" data-github="topo"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg><span>Já usa Claude Code ou Codex? <span class="k">Pegue direto no GitHub →</span></span></a>
+  <div class="phone"><span>📱 Está no celular? Dá para ler aqui, mas <strong>instalar é mais fácil no computador</strong>. Mande este link para você mesmo.</span> <a class="wa-self press" href="https://wa.me/" data-wa-self target="_blank" rel="noopener">Mandar no meu WhatsApp</a> <button class="copy" data-copy-url>Copiar link</button></div>
 </header>
 </div>
 
@@ -467,6 +485,7 @@ dialog.zoom-dlg[open] .frame { animation: pop .38s var(--spring); }
     <button type="button" class="pick-card press rv" data-path="terminal" aria-expanded="false" aria-controls="terminal"><span class="knob" aria-hidden="true"></span><span class="t">Claude Code no computador</span><span class="d">Para quem já usa o Claude Code ou topa usar o Terminal. Copia e cola. Claude Pro ou superior.</span><span class="tag">Guarda tudo numa pasta sua</span></button>
     <button type="button" class="pick-card press rv" data-path="chatgpt" aria-expanded="false" aria-controls="chatgpt"><span class="knob" aria-hidden="true"></span><span class="t">ChatGPT (Codex)</span><span class="d">Pela parte de programação do ChatGPT, o Codex, no Terminal do computador.</span><span class="tag">Precisa do Plus ou superior</span></button>
   </div>
+  <div class="phone phone-inline"><span>📱 Vai instalar depois, no computador? Mande o link para você mesmo.</span> <a class="wa-self press" href="https://wa.me/" data-wa-self target="_blank" rel="noopener">Mandar no meu WhatsApp</a> <button class="copy" data-copy-url>Copiar link</button></div>
 
   <div class="helper rv" id="ajuda-escolha">
     <p class="q" id="q1">Não sabe qual é o seu? O que você tem hoje?</p>
@@ -599,6 +618,24 @@ dialog.zoom-dlg[open] .frame { animation: pop .38s var(--spring); }
     <div class="rv">"escreve as respostas do WhatsApp da minha barbearia"</div>
   </div>
   <p style="margin-top:14px">A IA vai fazer poucas perguntas por vez sobre o seu negócio e guardar as respostas numa ficha. No Claude Code e no Codex, a ficha fica numa pasta sua e a próxima conversa continua de onde parou. No Claude no navegador, ela fica na sessão: para continuar, volte na mesma sessão.</p>
+</section>
+
+<section class="card rv" id="as-skills" aria-labelledby="t-skills">
+  <h2 id="t-skills">Depois de instalar: as 9 skills</h2>
+  <p>Não precisa decorar nada: peça do seu jeito e a IA escolhe a skill certa. Se não souber por onde começar, peça “monta meu negócio” e ela organiza o resto, uma etapa por vez.</p>
+  <div class="skills-list">
+    <div class="sk rv"><b>montar-negocio</b><span>“monta meu negócio nas redes”, “por onde eu começo?”, “o que falta?”</span></div>
+    <div class="sk rv"><b>pesquisa-e-plano</b><span>“quanto cobrar?”, “quem são meus concorrentes?”, “vale a pena?”</span></div>
+    <div class="sk rv"><b>marca</b><span>“cria um nome”, “faz um logo”, “quero um rótulo pros potes”</span></div>
+    <div class="sk rv"><b>presenca-nas-redes</b><span>“arruma meu Instagram”, “configura o WhatsApp Business”, “cria a Página”</span></div>
+    <div class="sk rv"><b>conteudo</b><span>“faz um post com essas fotos”, “legenda pro reel”, “calendário do mês”</span></div>
+    <div class="sk rv"><b>atendente-ia</b><span>“escreve as respostas do WhatsApp”, “quero uma IA atendendo”</span></div>
+    <div class="sk rv"><b>vender-sem-anuncio</b><span>“quero vender sem pagar anúncio”, “como aparecer no Google?”</span></div>
+    <div class="sk rv"><b>anuncios</b><span>“quero anunciar”, “quanto posso pagar por cliente?”, “o anúncio deu certo?”</span></div>
+    <div class="sk rv"><b>acompanhar-vendas</b><span>“como foram as vendas da semana?”, “quem eu chamo de volta hoje?”</span></div>
+  </div>
+  <p class="sk-note">No Claude Code também dá para chamar pelo nome, como <code>/skills-primeira-venda:montar-negocio</code>.</p>
+  <figure class="skills-img"><img src="img/caminho.png" alt="As 9 skills, do zero ao primeiro cliente" width="1760" height="1764" loading="lazy"></figure>
 </section>
 
 <section class="card espera rv" id="lista-espera" aria-labelledby="t-espera" hidden>
@@ -877,10 +914,23 @@ dialog.zoom-dlg[open] .frame { animation: pop .38s var(--spring); }
       navigator.clipboard.writeText(text).then(function () { confirmCopy(button); }, function () { copyFallback(text); confirmCopy(button); });
     } else { copyFallback(text); confirmCopy(button); }
   }
+  // Phone visitors send the link to themselves; the UTM tells us when they come back on the computer.
+  var SELF_LINK = "https://omarcusdev.github.io/skills-primeira-venda/?utm_source=site&utm_medium=lembrete-celular";
+  $$("a[data-wa-self]").forEach(function (link) {
+    link.href = "https://wa.me/?text=" + encodeURIComponent("Skills pro meu negócio, para abrir no computador: " + SELF_LINK + "&utm_content=whatsapp");
+    link.addEventListener("click", function () { track("link_enviado_pra_si", { via: "whatsapp", caminho: currentPath }); });
+  });
+  $$("a[data-github]").forEach(function (link) {
+    link.addEventListener("click", function () { track("github_clicado", { origem: link.getAttribute("data-github") }); });
+  });
   $$("button.copy").forEach(function (button) {
     enhanceCopyButton(button);
     button.addEventListener("click", function () {
-      if (button.hasAttribute("data-copy-url")) { copyText(location.href.split("#")[0].split("?")[0], button); return; }
+      if (button.hasAttribute("data-copy-url")) {
+        copyText(SELF_LINK + "&utm_content=copiar", button);
+        track("link_enviado_pra_si", { via: "copiar", caminho: currentPath });
+        return;
+      }
       var code = button.parentElement.querySelector("code");
       var text = code.getAttribute("data-text") || code.textContent;
       copyText(text, button);
