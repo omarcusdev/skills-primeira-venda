@@ -6,7 +6,7 @@ O caderno é o que permite medir. Sem ele, só se sabe quanto o anúncio gastou,
 
 **Padrão:** o dono conta ou cola a venda para o Claude, no próprio ciclo. Pode ser em texto solto: "hoje 2 corte e 1 barba, 3 de conhecido e 1 do anúncio". O Claude lança, pergunta só o que falta (valor, origem) e mostra as linhas antes de gravar.
 
-**Venda dita por áudio:** o Claude não promete transcrever áudio. Peça o texto, ou a transcrição que o usuário já tenha (a do próprio celular, por exemplo). Sem isso, diga que a venda ficou fora do caderno até haver texto.
+**Venda dita por áudio:** o Claude não promete transcrever áudio. Não ofereça instalar programa de transcrição. O caminho é a transcrição do próprio WhatsApp: segurar o áudio, tocar em "Transcrever" e colar aqui. Sem isso, diga que a venda ficou fora do caderno até haver texto.
 
 **Opção avançada: grupo de WhatsApp.** O dono manda as vendas num grupo, e o oZap, com o número dentro do grupo, lê as mensagens (o `get_messages` do oZap devolve a transcrição dos áudios no campo `transcription`). Tem custos e limites:
 - só funciona se o número conectado ao oZap estiver no grupo; a conexão por QR lê grupo; a conexão pela API oficial, quando sair (hoje em aprovação na Meta), não lê grupo;

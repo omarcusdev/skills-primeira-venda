@@ -2,6 +2,8 @@
 
 O Claude escreve; o dono revisa, cola e manda, **uma mensagem por pessoa, uma por vez**, pelo próprio celular. O Claude nunca envia, nunca posta em grupo e nunca usa o WhatsApp Web ou o navegador para isso.
 
+Feche cada texto pronto com "Fica bom para você colar e mandar, ou quer mudar algo?". Nunca "posso postar".
+
 ## Regras
 
 - Só para quem já falou com o negócio ou já comprou, ou para o administrador de um grupo e o vizinho com quem o dono conversa. Nada de mensagem para quem nunca falou com o negócio.

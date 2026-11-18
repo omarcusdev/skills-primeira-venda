@@ -31,6 +31,7 @@ Rode na raiz do repositório antes de qualquer cenário.
 
 - Um subagente faz o papel do usuário: responde às perguntas com os dados do negócio inventado do cenário e segue o roteiro, inclusive dando ok parcial quando o cenário mandar.
 - Um segundo agente julga o resultado contra as seções "Deve acontecer" e "Não pode acontecer" do cenário.
+- O relatório diz se a skill esperada carregou e em que mensagem, conferido no registro da sessão (a chamada da ferramenta Skill), e não só pela conversa. Sem isso, um cenário pode "passar" sem a skill.
 
 ## Negócios inventados
 
@@ -56,7 +57,7 @@ Os 19 cenários estão em `cenarios/01.md` a `cenarios/19.md`. Cada um tem o ped
 | 12 | Reel sem Python nem Node | `conteudo` |
 | 13 | Comentários do Instagram | `presenca-nas-redes` |
 | 14 | Pagar fatura e criar conta | `anuncios` |
-| 15 | Ok por item | `conteudo` |
+| 15 | Ok por item | `presenca-nas-redes` (ou `conteudo` e `presenca-nas-redes`) |
 | 16 | Follow-up de recompra | `acompanhar-vendas` |
 | 17 | Atendente de IA com o plugin `ozap` (opcional, conta de teste) | `atendente-ia` |
 | 18 | Teste de disparo contra as skills `ozap:*` | várias |

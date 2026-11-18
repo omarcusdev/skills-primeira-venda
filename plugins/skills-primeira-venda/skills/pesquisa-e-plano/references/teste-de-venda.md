@@ -11,11 +11,11 @@ Início: <data> | Fim: <data> (3 a 4 semanas) | Quem anota: <o dono>
 ## O que está sendo testado
 Uma frase. Ex.: "Vender <produto ou serviço> pelos canais X e Y, ao preço da ficha."
 
-## Meta, piso e clientes novos
+## Meta, mínimo da semana e clientes novos
 | Medida | Produto (pedidos) | Serviço (horários) |
 |---|---|---|
 | Meta semanal | vendas em reais ou pedidos | horários marcados por semana |
-| Piso semanal | o mínimo que ainda paga os custos | o mínimo de horários que cobre o fixo |
+| Mínimo da semana | o mínimo que ainda paga os custos | o mínimo de horários que cobre o fixo |
 | Clientes novos de fora do círculo (no teste) | <número> | <número> |
 | Retorno (serviço) | — | quantos voltam em até N semanas |
 
@@ -25,20 +25,20 @@ Uma frase. Ex.: "Vender <produto ou serviço> pelos canais X e Y, ao preço da f
 conhecidos | status | Instagram | anúncio | indicação | passou na porta | outro | não anotada
 (marque quais contam como "novo")
 
-## Veredito (escrito antes)
-- **Passa:** meta batida em 2 semanas seguidas **e** clientes novos de fora do círculo >= o número acima.
-- **Ajusta:** entre o piso e a meta. Mexe uma coisa por vez (preço, canal, oferta) e roda de novo.
-- **Para ou repensa:** 3 semanas abaixo do piso.
+## Resultado do teste: seguir, ajustar ou parar (escrito antes)
+- **Seguir:** meta batida em 2 semanas seguidas **e** clientes novos de fora do círculo >= o número acima.
+- **Ajustar:** entre o mínimo da semana e a meta. Mexe uma coisa por vez (preço, canal, oferta) e roda de novo.
+- **Parar ou repensar:** 3 semanas abaixo do mínimo da semana.
 - **Alerta de perda (produto perecível):** se mais de 1 em 12 unidades se perde, o lote diminui.
 
 ## Regra de mudança
-A meta e o veredito só mudam por escrito em `negocio/decisoes.md`, com a razão e antes da semana em que valem. Nunca depois de ver o resultado.
+A meta e o critério do resultado só mudam por escrito em `negocio/decisoes.md`, com a razão e antes da semana em que valem. Nunca depois de ver o resultado.
 
 ## O que já foi decidido e o que foi adiado
 <lista de decisoes.md relevantes, inclusive burocracia adiada por escolha do dono>
 ```
 
-Os números do exemplo (2 semanas, 3 semanas, 1 em 12) são ponto de partida. Ajuste ao negócio e escreva a razão. Ao dono, "piso" é "o mínimo da semana" e "veredito" é "o resultado do teste: seguir, ajustar ou parar".
+Os números do exemplo (2 semanas, 3 semanas, 1 em 12) são ponto de partida. Ajuste ao negócio e escreva a razão. O arquivo do dono já usa as palavras dele: "mínimo da semana" (não "piso") e "resultado do teste" (não "veredito"). No chat, as mesmas.
 
 ## Como definir meta e piso
 
@@ -62,4 +62,4 @@ https://wa.me/{telefone}?text=Oi!%20Vim%20pelo%20Instagram%20(IG1)
 
 ## Entrega
 
-Ao gravar `teste.md`, crie também `vendas/caderno.csv` vazio, só com o cabeçalho de `acompanhar-vendas/references/caderno-de-vendas.md`, para o dono já anotar a origem durante o teste. Ao terminar, mostre ao usuário em uma lista curta: meta, piso, clientes novos, veredito, fim do teste. Peça o ok. Depois do ok, a medição semanal e o veredito ficam com `acompanhar-vendas`. Nenhum anúncio e nenhuma mensagem sai por causa deste arquivo.
+Ao gravar `teste.md`, crie também `vendas/caderno.csv` vazio, só com o cabeçalho de `acompanhar-vendas/references/caderno-de-vendas.md`, para o dono já anotar a origem durante o teste. Ao terminar, mostre ao usuário em uma lista curta: meta, mínimo da semana, clientes novos, quando seguir, ajustar ou parar, fim do teste. Peça o ok. Depois do ok, a medição semanal e o veredito ficam com `acompanhar-vendas`. Nenhum anúncio e nenhuma mensagem sai por causa deste arquivo.

@@ -48,11 +48,11 @@ Dia com R$ 0 de gasto e anúncio "ativo": olhe a cobrança (saldo devedor, cart�
 O critério foi escrito em `plano/teste.md` antes de começar: meta semanal, piso, número de clientes novos de fora do círculo de conhecidos, origem de cada venda. O veredito segue só esse critério.
 
 ```markdown
-## Veredito (AAAA-MM-DD)
-- Meta: X. Piso: Y. Resultado: Z (de N semanas).
+## Resultado do teste: seguir, ajustar ou parar (AAAA-MM-DD)
+- Meta: X. Mínimo da semana: Y. Vendas: Z (de N semanas).
 - Clientes novos de fora do círculo: n. Origem das vendas: ...
 - Amostra: <conversas por grupo>. Conclusivo? sim/não.
-- Veredito: PASSA / AJUSTA / PARA.
+- Resultado: SEGUIR / AJUSTAR / PARAR.
 - Por quê (em 3 linhas, com os números):
 - O que muda, se ajusta: <1 a 3 mudanças com métrica>.
 - Decisão do dono: <o que decidiu e quando>.

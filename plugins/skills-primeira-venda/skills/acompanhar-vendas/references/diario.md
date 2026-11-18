@@ -16,7 +16,7 @@ Dados de cliente minimizados: primeiro nome ou id da conversa, nunca telefone co
 | Pedidos ou horários marcados | | |
 | Vendas fechadas | | |
 | Custo por venda (com imposto) | | só se houver gasto no período |
-Meta da semana: X. Piso: Y. Estamos em: Z.
+Meta da semana: X. Mínimo da semana: Y. Estamos em: Z.
 Amostra: <n> conversas por grupo. Com menos de ~10, não é conclusivo.
 
 ## 2. Toques propostos (nada enviado sem ok)
@@ -63,5 +63,6 @@ Regras do registro:
 
 - uma linha por toque; o cliente que já recebeu um toque não recebe outro (veja `follow-up.md`);
 - antes de propor um toque novo, o gestor consulta este arquivo;
+- antes de escrever o motivo de um toque, procure o nome do cliente no caderno inteiro, não só no período do ciclo (uma compra antiga muda o motivo);
 - registre também "não enviado" e o motivo (cliente respondeu antes, dono atendeu, fora do horário).
 - Quando o toque tiver foto, marque na coluna Tipo ("1º toque com foto"), para medir depois se responde mais que o de texto. Com amostra pequena, diga que não dá para concluir.

@@ -6,7 +6,7 @@ Você abre o projeto no Claude Code e diz o ciclo:
 
 - "faz o ciclo de hoje" (leitura geral e follow-ups do dia);
 - "faz o ciclo da manhã", "da tarde" ou "do fechamento";
-- "faz o ciclo da semana" (funil da semana contra a meta e o piso).
+- "faz o ciclo da semana" (funil da semana contra a meta e o mínimo da semana).
 
 Funciona sempre, em qualquer máquina. A continuidade vem do `gestao/brief.md` e do último diário.
 
@@ -16,7 +16,7 @@ O fechamento é o único ciclo que precisa de números de anúncio: o dono traz 
 
 ## 2. Dentro de uma sessão aberta: `/loop`
 
-`/loop` repete um prompt em intervalos. Serve para ler e escrever o diário sem você pedir toda vez. Limites, ditos antes:
+`/loop` repete um prompt em intervalos. Serve para ler e escrever o diário sem você pedir toda vez. `/loop` só existe no Claude Code. Fora dele, diga ao dono "peça o ciclo quando abrir o computador", sem dizer qual app ele usa, e não diga "a skill" nem "as instruções do projeto". Limites, ditos antes:
 
 - só roda com a sessão aberta e a máquina ligada;
 - some quando a sessão fecha ou a máquina reinicia;

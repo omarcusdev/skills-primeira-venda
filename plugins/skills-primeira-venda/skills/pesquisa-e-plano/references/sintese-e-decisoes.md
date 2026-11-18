@@ -13,9 +13,11 @@ Não pesquise. Não invente.
 
 ## `plano/plano.md` (modelo)
 
+O título é sempre "Plano — <nome do negócio>", nunca "Plano leve". As palavras do arquivo são as do dono (`../../montar-negocio/references/falar-com-o-dono.md` §1), porque o dono lê este arquivo.
+
 ```
-# Plano: <nome do negócio>
-Gerado em: <data> | Tamanho: leve | completa
+# Plano — <nome do negócio>
+Gerado em: <data> | Tamanho: curto | completo
 
 ## Resumo
 5 a 8 linhas. O que o negócio faz, o que a pesquisa achou, o que recomendamos e o que falta saber.

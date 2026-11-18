@@ -11,7 +11,8 @@ Follow-up é uma mensagem a quem já escreveu ao negócio e parou no meio. É um
 | Quando | Só dentro do horário de atendimento da ficha. Fora dele, o toque espera. |
 | Tom | O da ficha. Curto, sem pressão, sem escassez falsa, no máximo 1 emoji. |
 | Promessa | Nada de estoque, prazo ou preço que não esteja na ficha ("ainda tem", "já separo o seu"). |
-| Saída | Todo toque de recompra tem uma saída: "se não quiser mais receber, é só me dizer". |
+| Saída | Todo toque de recompra tem uma saída, escrita na voz do negócio ("se não quiser mais receber, é só falar"), nunca na voz do Claude. |
+| O que comprou | Cada toque de recompra cita o que o cliente comprou, como está no caderno. |
 | Emissor | Um só. Se o dono responde à mão, o gestor para de propor para aquele cliente. |
 | Antes de enviar | Releia a conversa. Se o cliente respondeu, o dono atendeu ou outro toque já saiu, não envie e avise. |
 
@@ -40,7 +41,7 @@ Use o primeiro nome do cliente e só fatos da ficha.
 > Oi, {nome}! Passando pra avisar que agora a gente também {fato novo}. Se fizer sentido, me chama aqui.
 
 **Recompra, sete dias depois da compra:** curto, sem promoção inventada, com saída.
-> Oi, {nome}! Como foi o pedido da semana passada? Se quiser repetir, é só me falar. Se preferir não receber mais mensagens, me avise que eu paro.
+> Oi, {nome}! Como foi o {o que comprou} da semana passada? Se quiser repetir, é só falar. Se não quiser mais receber, é só falar também.
 
 **Pedido em aberto (o cliente adiou):** não mande toque se ele disse que chama. Se o dono quiser, proponha esperar e anote a data no diário.
 
@@ -54,7 +55,7 @@ Exemplos de outros negócios: no salão, "Oi, {nome}! Faz {x} semanas do seu úl
 
 ## 5. Como propor e como enviar
 
-1. Monte a tabela no diário: cliente (primeiro nome ou id), quando, texto exato, motivo, dado que sustenta.
+1. Antes de escrever o motivo de um toque, procure o nome do cliente no caderno inteiro, não só no período do ciclo. Monte a tabela no diário e em `gestao/toques.md`: cliente (primeiro nome ou id), quando, texto exato, motivo, dado que sustenta.
 2. Mostre como lista numerada. O dono responde "sim 1, 3". Texto alterado pelo dono vale como novo item: mostre de novo antes de enviar.
 3. **Com oZap:** um envio por vez, em sequência, nunca em paralelo, só o texto aprovado, sem mudar nada. Releia a conversa antes de cada um. Depois, confira no chat que a mensagem apareceu. Veja `com-ozap.md`.
 4. **Sem oZap:** o dono copia o texto e envia do próprio celular, no WhatsApp ou no WhatsApp Business. Ele avisa o gestor ("mandei 1 e 3") e o gestor registra em `gestao/toques.md`. O Claude nunca automatiza o WhatsApp Web.
