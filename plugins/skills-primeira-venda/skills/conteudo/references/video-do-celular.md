@@ -15,6 +15,13 @@ Entregue ao dono, em `conteudo/<semana>/`, um roteiro por peça: tomada, duraç�
 
 Peça ao dono para assistir o resultado no celular, sem pular, antes de aprovar.
 
+### Juntar os trechos no celular
+
+- Pergunte uma vez se o celular é iPhone ou Android e responda no mesmo turno, com o caminho daquele celular.
+- iPhone: o app Fotos corta cada trecho; para juntar, o iMovie (gratuito, da Apple) ou o editor de Reels do Instagram. Android: o editor da Galeria ou do Google Fotos corta e, em muitos aparelhos, junta; se não juntar, o editor de Reels do Instagram. Os nomes mudam; confira na tela.
+- Sem Instagram, monte e salve no próprio celular, e só depois suba, quando o perfil existir.
+- O ffmpeg (abaixo) é opcional e fica para quem prefere o computador.
+
 ## Opcional: ffmpeg no computador
 
 Instalar (mostre o comando e peça o ok antes):

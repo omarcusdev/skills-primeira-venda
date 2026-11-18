@@ -103,6 +103,13 @@ Nenhuma é obrigatória para começar. Cada skill diz o que usa. Se uma ferramen
 
 **Antes de instalar qualquer pacote**, mostre o comando e peça ok. Python vai num ambiente isolado (venv) dentro de `ferramentas/`. Cada reference que usa ferramenta traz as linhas para Windows, macOS e Linux.
 
+**Nada de terminal para o dono leigo.**
+
+- Não mande o dono digitar comando em terminal. Se a ferramenta não roda, siga pelo caminho sem ela.
+- Script fica em `ferramentas/`, dentro da pasta do negócio, nunca numa pasta temporária do computador.
+- Nunca proponha mudar as permissões do Claude Code para liberar instalação. A única mudança de permissão prevista é a do `/loop` (`acompanhar-vendas/references/ciclos-e-permissoes.md`), mostrada ao dono antes.
+- Programa pesado para baixar (transcrição de áudio, por exemplo) não é oferecido: use o que o celular já faz.
+
 **Chaves pagas.** São do usuário, com limite de gasto no provedor. Ficam em `.env` no projeto, nunca no chat e nunca impressas. O custo estimado vem antes do primeiro uso.
 
 **Só macOS.** Recorte de fundo pelo framework Vision (Swift), `sips` para HEIC e AirDrop. Há alternativas portáveis nas references. Para levar arquivos ao celular: Google Drive ou e-mail.

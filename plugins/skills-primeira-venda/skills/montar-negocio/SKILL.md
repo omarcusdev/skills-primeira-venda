@@ -1,6 +1,6 @@
 ---
 name: montar-negocio
-description: Ponto de partida para montar do zero, ou completar, a presença e as vendas de um negócio local (salão, barbearia, pet shop, lanchonete, doceria, oficina, loja de bairro), próprio ou de cliente. Faz a entrevista, grava a ficha do negócio, levanta o que já existe e monta a ordem de trabalho. Use quando o usuário pedir algo amplo, como montar o negócio nas redes do zero, ver o que falta, saber por onde começar ou organizar tudo. Pedidos de uma peça, de um anúncio, do perfil ou do atendente vão direto para a skill daquela etapa.
+description: Ponto de partida para montar do zero, ou completar, a presença e as vendas de um negócio local (salão, barbearia, pet shop, lanchonete, doceria, oficina, loja de bairro), próprio ou de cliente. Faz a entrevista, grava a ficha do negócio, levanta o que já existe e monta a ordem de trabalho. Use quando o usuário pedir algo amplo, como "monta meu negócio", montar o negócio nas redes do zero, ver o que falta, saber por onde começar ou organizar tudo. Pedidos de uma peça, de um anúncio, do perfil ou do atendente vão direto para a skill daquela etapa.
 ---
 
 # Montar um negócio local
@@ -19,6 +19,9 @@ Pedido de uma coisa só (um post, um logo, um anúncio, o perfil, o robô do Wha
 - No máximo 3 perguntas e 1 ou 2 decisões por mensagem. Lista longa vai para um arquivo; o chat traz o resumo e o passo de hoje.
 - Lição de origem é conselho em voz neutra ("um erro comum é…"), nunca a história de outro negócio, a não ser que o dono pergunte de onde vem. Não fale de git com quem não pediu.
 - Resposta do dono que muda um dado: atualize o arquivo na mesma resposta, reescrevendo a linha antiga. Detalhes em `references/falar-com-o-dono.md`.
+- Antes de dizer "gravei" ou "anotei", grave e confira o arquivo. Arquivo só cita arquivo que existe. "Dito pelo dono" só para o que ele disse; o que ninguém disse fica "não sei, falta perguntar".
+- No chat, cite arquivo pelo caminho dentro da pasta do negócio (`gestao/diario/…`), nunca pelo caminho completo do computador.
+- Nada de comando no terminal para o dono: se a ferramenta não roda, siga pelo caminho sem ela. Script fica em `ferramentas/`, dentro da pasta do negócio. Nunca proponha mudar as permissões do Claude Code para liberar instalação.
 
 ## Passos
 

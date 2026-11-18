@@ -16,7 +16,7 @@ Confirme cada ponto com o usuário e anote em `anuncios/conta.md`.
 ## Trabalhando para cliente (agência, freelancer)
 
 - O cliente cria o próprio portfólio de negócios e dá acesso de parceiro à agência. A agência nunca usa a senha do cliente.
-- A conta de anúncios nasce no portfólio do cliente, não no da agência.
+- A conta de anúncios nasce no portfólio do cliente, não no da agência. Se ela já nasceu no portfólio da agência, diga uma vez que ela não migra e que o certo é criar outra no portfólio do cliente. Não prepare o passo a passo de publicar enquanto não houver uma das duas: a conta nova no portfólio do cliente, ou a ciência do dono do negócio, por escrito, registrada em `negocio/decisoes.md`.
 - Antes de qualquer gasto ou publicação, o Claude confere na tela o nome da conta e do portfólio e escreve os dois no resumo que pede o ok. Abrir o Gerenciador pode cair na conta errada, de outro negócio.
 - Guarde em `negocio/decisoes.md` a autorização por escrito do dono para tratar os dados dos clientes dele.
 

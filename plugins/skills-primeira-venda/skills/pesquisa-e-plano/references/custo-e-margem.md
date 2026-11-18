@@ -1,6 +1,6 @@
 # Custo e margem
 
-Contas de apoio para o plano. Todos os números dos exemplos são inventados. Use os do dono, e marque o que não for dele como "(estimativa)".
+Contas de apoio para o plano. Todos os números dos exemplos são inventados. Use os do dono. Custo do próprio dono (insumo, embalagem, taxa da maquininha, tempo, rendimento) não se estima: pergunte. O que ele não souber fica "?" na tabela, e a conta que depende dele espera. "(estimativa)" só vale para número de mercado com fonte ou com a conta à mostra.
 
 ## 1. Hora de trabalho
 
@@ -73,4 +73,9 @@ Troque "pedido" por "atendimento" e "recompra" por "retorno em N semanas". O cus
 
 ## 6. Cenários
 
-Monte três: conservador, base e otimista, cada um com as premissas à vista (unidades por semana, preço, perda). Marque cada premissa como medido, fonte ou estimativa. O teste de venda mede a base; o piso vem do conservador.
+Monte três: conservador, base e otimista, cada um com as premissas à vista (unidades por semana, preço, perda). Marque cada premissa como medido, fonte ou estimativa. O teste de venda mede a base; o mínimo da semana vem do conservador.
+
+- Renda do mês só como cenário, com cada premissa à vista e de onde veio ("dito pelo dono", fonte ou "?"), a unidade de cada número (por atendimento, por hora, por mês) e a conta escrita. Ex.: "R$ 65 de sobra por atendimento x 4 atendimentos por dia (dito pelo dono) x 20 dias = R$ 5.200 antes do aluguel (?)".
+- Ocupação da agenda é premissa do dono ou "?", nunca um percentual escolhido pelo Claude.
+- Faltou um custo do dono: a renda do mês não sai. Diga o que falta e espere a resposta.
+- Ao dono: "isto é uma conta com o que supomos, não uma previsão".

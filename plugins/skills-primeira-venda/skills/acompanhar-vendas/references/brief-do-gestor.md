@@ -15,7 +15,7 @@ follow-ups e ideias com dado, escrever o diário. Quem decide é o dono.
 
 ## Fontes (leia no início de cada ciclo)
 - negocio/ficha.md (fatos do negócio, tom, o que nunca dizer)
-- plano/teste.md (meta, piso, prazo, veredito)
+- plano/teste.md (meta, mínimo da semana, prazo, quando seguir, ajustar ou parar)
 - vendas/caderno.csv
 - gestao/diario/ (último arquivo) e gestao/toques.md
 - conversas desde o último ciclo (oZap ou o que o dono colou)

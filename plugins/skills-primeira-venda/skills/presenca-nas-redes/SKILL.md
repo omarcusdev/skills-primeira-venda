@@ -1,6 +1,6 @@
 ---
 name: presenca-nas-redes
-description: Monta ou completa o WhatsApp Business, a Página do Facebook e o Instagram profissional de um negócio local. Cuida da escolha do número, do kit de textos e imagens para o dono colar no celular, da ligação entre as três contas e da publicação de posts e stories já prontos, com ok item por item. Use quando o usuário quiser criar ou arrumar perfil, bio, link na bio, catálogo, respostas rápidas, saudação, mensagem de ausência, ligar Instagram e WhatsApp à Página, publicar ou programar posts e stories que já existem, responder comentários e mensagens do Instagram (só com modelos para colar) ou escolher o número do negócio. Criar a peça em si (foto, arte, legenda) é da skill conteudo.
+description: Monta ou completa o WhatsApp Business, a Página do Facebook e o Instagram profissional de um negócio local. Cuida da escolha do número, do kit de textos e imagens para o dono colar no celular, da ligação entre as três contas e da publicação de posts e stories já prontos, com ok item por item. Use quando o usuário quiser criar ou arrumar perfil, bio, link na bio, catálogo, respostas rápidas, saudação, mensagem de ausência, ligar Instagram e WhatsApp à Página, publicar ou programar posts e stories que já existem (inclusive "pode publicar tudo", "posta essas peças" e "publica o que está na pasta conteudo"), responder comentários e mensagens do Instagram (só com modelos para colar) ou escolher o número do negócio. Criar a peça em si (foto, arte, legenda) é da skill conteudo.
 ---
 
 # Presença nas redes
@@ -14,6 +14,7 @@ Prepara o WhatsApp Business, a Página do Facebook e o Instagram profissional. O
 - **Nunca em perfil ou peça pública:** telefone pessoal, e-mail pessoal, endereço da casa, número antigo (nem foto que o mostre), nome ou rosto de cliente sem autorização.
 - **Trabalhando para cliente:** antes de salvar ou publicar, confira na tela qual Página e qual conta estão abertas e escreva as duas no resumo do ok. O cliente dá acesso à agência; a senha dele nunca passa para você.
 - **Telas mudam.** Os caminhos daqui podem ter mudado; confira o texto da tela antes de tocar.
+- **Peça é da `conteudo`.** Se o dono pede para criar, refazer ou corrigir uma imagem ou legenda, carregue a skill `conteudo` e siga por ela; esta skill só publica o que já passou pela revisão.
 
 ## Como falar com o dono (vale em todos os passos)
 
@@ -21,6 +22,10 @@ Prepara o WhatsApp Business, a Página do Facebook e o Instagram profissional. O
 - No máximo 3 perguntas e 1 ou 2 decisões por mensagem. Lista longa vai para um arquivo; o chat traz o resumo e o passo de hoje.
 - Lição de origem é conselho em voz neutra ("um erro comum é…"), nunca a história de outro negócio, a não ser que o dono pergunte de onde vem. Não fale de git com quem não pediu.
 - Resposta do dono que muda um dado: atualize o arquivo na mesma resposta, reescrevendo a linha antiga. Detalhes em `../montar-negocio/references/falar-com-o-dono.md`.
+- Antes de dizer "gravei" ou "anotei", grave e confira o arquivo. Arquivo só cita arquivo que existe. "Dito pelo dono" só para o que ele disse; o que ninguém disse fica "não sei, falta perguntar".
+- No chat, cite arquivo pelo caminho dentro da pasta do negócio (`gestao/diario/…`), nunca pelo caminho completo do computador.
+- Nada de comando no terminal para o dono: se a ferramenta não roda, siga pelo caminho sem ela. Script fica em `ferramentas/`, dentro da pasta do negócio. Nunca proponha mudar as permissões do Claude Code para liberar instalação.
+- Se não há `negocio/estado.md` (o negócio não passou pela `montar-negocio`), termine a primeira resposta que entrega algo (pesquisa, peça, lançamento, texto) com esta frase, uma vez na conversa: "Quando quiser montar o resto do negócio (número, perfis, plano), é só pedir: monta meu negócio."
 
 ## Passos
 
@@ -29,8 +34,8 @@ Prepara o WhatsApp Business, a Página do Facebook e o Instagram profissional. O
 3. **Número.** Um número só do negócio, com o DDD da região. Diga o custo antes: o valor do chip ou do eSIM (chip digital, sem cartão), na oferta da operadora. Compra, CPF e pagamento são do dono. Veja `references/numero-do-negocio.md`. Se o atendimento for com IA no mesmo número, veja a skill `atendente-ia` antes de registrar.
 4. **Kit antes das contas.** Monte `publicar/` em pastas numeradas com textos, imagens e legendas, com `[campos]` que só o dono preenche (chave Pix, ponto de referência). Veja `references/kit-publicar.md`. Nada com telefone sai antes de o número existir: a bio fica pronta no kit com `{telefone}` e o dono só cola quando o número chegar. Nunca mande colar uma chamada que leva a lugar nenhum ("Agende pelo WhatsApp 👇" sem link).
 5. **Contas são do humano.** Dê o passo a passo de `references/whatsapp-business.md`, `references/pagina-do-facebook.md` e `references/instagram.md`. Com Claude in Chrome e o usuário logado, o Claude pode preencher campos públicos de uma conta que já existe, um campo por vez, com ok, e depois relê o que foi salvo. O que só existe no app (saudação, ausência, horário, nome com acento, link na bio) vira passo a passo para o dono. A Meta e o WhatsApp restringem acesso automatizado: diga ao dono que há risco de revisão ou limite da conta, e no WhatsApp Web, do número do negócio, o padrão é ele colar os textos no app (veja `references/whatsapp-business.md`). Sem Chrome, tudo vira passo a passo numerado. Se a ferramenta não responde no primeiro uso, siga pelo manual sem insistir.
-6. **Publicar.** Conta nova (sem posts ou criada há poucas semanas): as primeiras publicações são do humano, pelo app, com o kit. Conta que já posta: o Claude pode publicar o item aprovado pelo navegador; se o envio de arquivo não funcionar, o humano arrasta o arquivo ou publica pelo app. Programar para o futuro segue a mesma regra. Antes de usar o navegador, avise que a Meta restringe acesso automatizado e que há risco de a conta ser revisada ou limitada. Veja `references/publicar-pelo-navegador.md`.
-7. **Comentários e mensagens.** Não responda pelo navegador. Escreva modelos para o dono colar, um por vez, e aponte as respostas automáticas da Caixa de Entrada. Veja `references/comentarios-e-mensagens.md`.
+6. **Publicar.** Conta nova (sem posts ou criada há poucas semanas): as primeiras publicações são do humano, pelo app, com o kit. Conta que já posta: o Claude pode publicar o item aprovado pelo navegador; se o envio de arquivo não funcionar, o humano arrasta o arquivo ou publica pelo app. Programar para o futuro segue a mesma regra. Peça sem `conteudo/<semana>/revisao.md` passa antes pela revisão da `conteudo` (`../conteudo/references/revisao-antes-de-publicar.md`), e o lote volta como lista numerada para o ok por item. Antes de usar o navegador, avise que a Meta restringe acesso automatizado e que há risco de a conta ser revisada ou limitada. Veja `references/publicar-pelo-navegador.md`.
+7. **Comentários e mensagens.** Não responda pelo navegador. Escreva a resposta de cada comentário, numerada, em `publicar/respostas-comentarios.md`. No chat, só as 2 ou 3 mais urgentes (reclamação primeiro). O dono cola e envia uma por vez. Conte os comentários do print antes de citar o número. No chat, o espaço do número é o mesmo do arquivo, `{telefone}`. Veja `references/comentarios-e-mensagens.md`.
 8. **Fechar.** Atualize `negocio/estado.md` (com a coluna "como sei") e registre em `negocio/decisoes.md` o que foi salvo e publicado. Termine com 5 linhas: o que ficou pronto, o que espera o dono, próximo passo.
 
 ## O que é com você (o dono)

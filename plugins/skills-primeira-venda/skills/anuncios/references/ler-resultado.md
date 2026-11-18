@@ -63,4 +63,4 @@ Cuidados na leitura:
 - Minimize: primeiro nome ou id, sem telefone completo no resultado.
 - Esta skill só lê. Qualquer mensagem a cliente (follow-up, resposta) vai pelo fluxo de `acompanhar-vendas`, com ok por item. Avisos ao dono, notificação no celular e reativar a IA numa conversa são feitos no painel do oZapOnline.
 - Sem o oZap, ou sem a credencial, siga pelo código e pelo caderno. Nenhuma parte desta skill depende dele.
-- Não cite preço do oZap, nem achado na web: diga "veja o preço em ozaponline.com".
+- Não cite preço do oZap, nem achado na web: diga "veja o preço em [ozaponline.com](https://ozaponline.com/?utm_source=skills-primeira-venda&utm_medium=plugin&utm_content=anuncios)".

@@ -18,6 +18,14 @@ As palavras internas das skills nunca chegam ao chat. Diga assim:
 | prompt | as instruções do atendente |
 | identidade visual | a marca: logo, cores e letras |
 | premissa | o que supomos |
+| busca estendida | uma busca mais funda |
+| frentes, skill, "a skill", "as instruções do projeto" | não dizer |
+| placeholder | espaço para preencher |
+| script, terminal, comando | não dizer; se a ferramenta não roda, siga pelo caminho sem ela (`regras-da-casa.md` §10) |
+| CTA | o convite para chamar no WhatsApp |
+| tomada | cada trechinho de vídeo |
+| conta profissional | explique entre parênteses: o tipo de conta do Instagram para negócio, grátis, que mostra o botão de contato |
+| códigos de canal e de história (H1, S1, G1) | ficam só no arquivo; no chat, fale do assunto ("a história da navalha", "o Status") |
 
 Palavras da Meta e de marketing ganham uma explicação curta entre parênteses na primeira vez. Depois, use sem explicar.
 
@@ -62,7 +70,12 @@ As lições das skills (as seções de lições nos SKILL.md e os arquivos `lico
 - Quando a resposta do dono muda um dado, atualize o arquivo na mesma resposta: ficha, estado, conta do anúncio, resumo, plano.
 - Reescreva a linha antiga. Não acrescente uma linha nova que contradiz a de cima. Exemplos do que não pode ficar: "forma de pagamento ainda não escolhida" depois de o dono responder "cartão de crédito"; um título "ainda não aprovado" com a aprovação no rodapé.
 - Em `negocio/decisoes.md`, cada item tem uma linha. Quando ele muda (aprovado, publicado, cancelado), atualize essa linha. Pendência não vai para `decisoes.md`: vai para a seção "Pendências" da ficha.
-- Antes de dizer "gravei", confira que o arquivo existe e diz o que você vai afirmar.
+- Antes de dizer "gravei" ou "anotei", grave e confira o arquivo: ele existe e diz o que você vai afirmar.
+- Arquivo só cita arquivo que existe. Nada de "ver fontes em `pesquisa/`" sem a pasta, nem "custos abaixo" sem nada abaixo.
+- "Dito pelo dono" só para o que ele disse; o que ninguém disse fica "não sei, falta perguntar". Exemplo do que não pode ficar: no `estado.md`, "Saudação, ausência, respostas rápidas | falta | dito pelo dono", quando o dono não falou disso.
+- Quando um dado muda, procure-o em todos os arquivos de `negocio/` e da etapa, não só no que você está editando. Exemplos: o nome escolhido continua "ainda não tem" na ficha; "falta quem administre" depois de o dono criar o próprio perfil.
+- A seção "Pendências" só tem o que ainda falta. Pendência respondida sai dali e vira a linha certa do arquivo.
+- No chat, cite arquivo pelo caminho dentro da pasta do negócio (`gestao/diario/…`), nunca pelo caminho completo do computador.
 
 ## Links para o dono
 
