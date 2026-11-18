@@ -98,7 +98,7 @@ Para usar o oZap por dentro do Claude Code, instale o plugin `ozap`, à parte:
 /plugin install ozap@ozaponline
 ```
 
-Depois crie a conta em [app.ozaponline.com/cadastro](https://app.ozaponline.com/cadastro), digite `/mcp`, escolha `plugin:ozap:ozap` e **Authenticate**. As skills deste plugin passam a vez para as do `ozap` (`conectar-whatsapp`, `configurar-cliente`, `testar-e-ir-ao-ar`, `triar-conversas`, `relatorio-semanal` e outras) nos pontos em que o atendimento com IA entra.
+Depois crie a conta em [app.ozaponline.com/cadastro](https://app.ozaponline.com/cadastro?utm_source=skills-primeira-venda&utm_medium=readme), digite `/mcp`, escolha `plugin:ozap:ozap` e **Authenticate**. As skills deste plugin passam a vez para as do `ozap` (`conectar-whatsapp`, `configurar-cliente`, `testar-e-ir-ao-ar`, `triar-conversas`, `relatorio-semanal` e outras) nos pontos em que o atendimento com IA entra.
 
 Hoje, avisos ao dono, notificação no celular e reativar a IA numa conversa são configurados no painel do oZapOnline. Não há ferramenta para isso no MCP, e a skill manda você fazer por lá.
 
