@@ -6,7 +6,7 @@ Skills grátis para o [Claude Code](https://code.claude.com/docs/pt/overview) mo
 
 Elas saíram de um caso real: um pequeno negócio de comida feita em casa que começou do zero e fez a primeira venda com a ajuda do Claude Code. O que funcionou, e o que deu errado no caminho, virou passo a passo.
 
-> **Nunca mexeu com isso?** Siga o [passo a passo para iniciantes](https://omarcusdev.github.io/skills-primeira-venda/): Claude (pago ou grátis), Claude Code, ChatGPT e Codex.
+> **Nunca mexeu com isso?** Siga o [passo a passo para iniciantes](https://omarcusdev.github.io/skills-primeira-venda/): Claude no navegador, Claude Code no computador ou ChatGPT (Codex).
 
 ## Instalar
 

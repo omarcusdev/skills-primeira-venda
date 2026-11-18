@@ -4,105 +4,427 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Como instalar as skills da primeira venda</title>
-<meta name="description" content="Passo a passo para colocar as skills grátis da primeira venda no Claude, no Claude Code, no ChatGPT e no Codex. Feito para quem nunca mexeu nisso.">
+<meta name="description" content="Passo a passo para colocar as skills grátis da primeira venda no Claude (pelo navegador ou pelo Claude Code no computador) ou no ChatGPT (pelo Codex). Feito para quem nunca mexeu nisso.">
 <meta property="og:title" content="Como instalar as skills da primeira venda">
-<meta property="og:description" content="Passo a passo para colocar as skills no Claude, no ChatGPT e no Codex, mesmo sem saber nada de tecnologia.">
+<meta property="og:description" content="Passo a passo para colocar as skills no Claude ou no ChatGPT, mesmo sem saber nada de tecnologia.">
 <meta property="og:image" content="https://omarcusdev.github.io/skills-primeira-venda/img/capa.png">
+<meta name="chat-api" content="https://4hu4huvnplgrks5yid42n3hmti0crfka.lambda-url.us-east-1.on.aws">
+<script>document.documentElement.classList.add("js");
+// If the main script dies before finishing, drop the "js" class so hidden reveals and paths show up.
+setTimeout(function () { var root = document.documentElement; if (!root.classList.contains("js-ok")) root.classList.remove("js"); }, 2500);</script>
 <style>
 @font-face { font-family: "Bricolage"; src: url("fonts/bricolage-grotesque-latin-wdth-wght-opsz.woff2") format("woff2"); font-weight: 200 800; font-stretch: 75% 100%; font-display: swap; }
 @font-face { font-family: "Instrument"; src: url("fonts/instrument-sans-latin-wght.woff2") format("woff2"); font-weight: 400 700; font-display: swap; }
 :root {
   --ground: #20b97d; --ink: #0b3324; --paper: #fbfdfc; --deep: #0f7a52; --label: #8fe3bb;
-  --soft: #e9f7f0; --warn: #fff4d6;
+  --soft: #e9f7f0; --warn: #fff4d6; --rust: #9a3b1b;
+  --line: 3px; --radius: 22px; --shadow: 6px;
+  --spring: cubic-bezier(.22, 1.5, .36, 1);
+  --out: cubic-bezier(.2, .8, .2, 1);
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
+[hidden] { display: none !important; }
+.js .path:not(.shown) { display: none; }
+html:not(.js) .helper, html:not(.js) .prog { display: none; }
 html { scroll-behavior: smooth; }
-body { background: var(--ground); color: var(--ink); font-family: "Instrument", -apple-system, "Segoe UI", sans-serif; font-size: 18px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+body { background: var(--ground); color: var(--ink); font-family: "Instrument", -apple-system, "Segoe UI", sans-serif; font-size: 18px; line-height: 1.55; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+body.has-chat { padding-bottom: 84px; }
 a { color: var(--ink); text-underline-offset: 3px; }
+button { font: inherit; color: inherit; }
+:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
 .wrap { max-width: 860px; margin: 0 auto; padding: 0 16px; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 h1, h2, h3, .head { font-family: "Bricolage", sans-serif; font-weight: 700; letter-spacing: -0.015em; line-height: 1.05; }
 h1 { font-size: clamp(40px, 8vw, 72px); }
 h2 { font-size: clamp(30px, 5.2vw, 44px); margin-bottom: 14px; }
+h2:focus { outline: none; }
 h3 { font-size: 23px; margin: 26px 0 10px; }
 p + p { margin-top: 10px; }
-.card { background: var(--paper); border: 3px solid var(--ink); border-radius: 22px; box-shadow: 6px 6px 0 var(--ink); padding: 26px 24px; }
-.card + .card { margin-top: 26px; }
-section { margin-top: 44px; }
+.card { background: var(--paper); border: var(--line) solid var(--ink); border-radius: var(--radius); box-shadow: var(--shadow) var(--shadow) 0 var(--ink); padding: 26px 24px; }
+section { margin-top: 44px; scroll-margin-top: 16px; }
 code, .mono { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
 p code, li code { background: var(--soft); border-radius: 6px; padding: 1px 6px; font-size: 0.88em; word-break: break-word; }
 
-header.top { padding: 34px 0 10px; }
+/* Pressable: the hard shadow is the "height" of the element; pressing sinks it into the page. */
+.press { transition: transform .16s var(--spring), box-shadow .16s var(--spring), background-color .2s; cursor: pointer; }
+.press:hover { transform: translate(-2px, -2px); box-shadow: calc(var(--sh, 5px) + 2px) calc(var(--sh, 5px) + 2px) 0 var(--ink); }
+.press:active { transform: translate(var(--sh, 5px), var(--sh, 5px)); box-shadow: 0 0 0 var(--ink); transition-duration: .05s; }
+
+/* ---------- Top ---------- */
+header.top { padding: 34px 0 6px; position: relative; }
 .brand { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 15px; font-weight: 600; opacity: 0.85; }
-.lede { font-size: 21px; max-width: 640px; margin-top: 16px; }
-.phone { margin-top: 22px; background: var(--ink); color: #fff; border-radius: 16px; padding: 14px 16px; display: flex; gap: 12px; align-items: center; flex-wrap: wrap; font-size: 16px; }
+h1.title { margin-top: 14px; max-width: 13ch; position: relative; z-index: 1; }
+h1.title .w { display: inline-block; }
+.lede { font-size: 21px; max-width: 600px; margin-top: 16px; position: relative; z-index: 1; }
+.phone { margin-top: 22px; background: var(--ink); color: #fff; border-radius: 16px; padding: 14px 16px; display: flex; gap: 12px; align-items: center; flex-wrap: wrap; font-size: 16px; position: relative; z-index: 1; }
 .phone strong { color: var(--label); }
+.shapes { position: absolute; inset: 0; pointer-events: none; }
+.shape { position: absolute; }
+.shape.s1 { right: 4%; top: 46px; width: 92px; }
+.shape.s2 { right: 22%; top: 150px; width: 46px; }
+.shape.s3 { right: 2%; top: 210px; width: 64px; }
 
-.pick { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin-top: 18px; }
-.pick a { display: block; text-decoration: none; background: var(--paper); border: 3px solid var(--ink); border-radius: 18px; box-shadow: 5px 5px 0 var(--ink); padding: 18px 18px 16px; transition: transform .08s, box-shadow .08s; }
-.pick a:hover { transform: translate(-2px, -2px); box-shadow: 7px 7px 0 var(--ink); }
-.pick a:active { transform: translate(3px, 3px); box-shadow: 2px 2px 0 var(--ink); }
-.pick .t { font-family: "Bricolage", sans-serif; font-weight: 700; font-size: 22px; line-height: 1.1; display: block; }
-.pick .d { display: block; font-size: 15.5px; margin-top: 6px; }
-.pick .tag { display: inline-block; margin-top: 10px; font-size: 13px; font-weight: 700; color: var(--deep); }
+.ticker { margin: 22px 0 0; padding: 14px 0 22px; overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 9%, #000 91%, transparent 100%); mask-image: linear-gradient(90deg, transparent 0, #000 9%, #000 91%, transparent 100%); }
+.ticker-band { }
+.ticker-track { display: flex; align-items: center; gap: 14px; width: max-content; padding: 8px 0; }
+.chip { display: inline-flex; align-items: baseline; gap: 8px; background: var(--paper); border: 2px solid var(--ink); border-radius: 999px; padding: 5px 15px; font-size: 15px; white-space: nowrap; box-shadow: 3px 3px 0 var(--ink); }
+.chip b { font-family: "Bricolage", sans-serif; font-stretch: 82%; font-weight: 700; font-size: 17px; }
+.chip.first { background: var(--label); }
 
-ol.steps { list-style: none; counter-reset: s; margin-top: 8px; }
-ol.steps > li { counter-increment: s; position: relative; padding: 0 0 18px 50px; }
+/* ---------- Picker ---------- */
+.choose h2 { font-size: clamp(36px, 6.4vw, 56px); margin-bottom: 6px; }
+.choose .sub { font-size: 18px; }
+.pick { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin-top: 20px; }
+.pick-card { --sh: 5px; position: relative; text-align: left; background: var(--paper); border: var(--line) solid var(--ink); border-radius: 18px; box-shadow: 5px 5px 0 var(--ink); padding: 18px 54px 16px 18px; }
+.pick-card .t { font-family: "Bricolage", sans-serif; font-weight: 700; font-size: 23px; line-height: 1.1; display: block; }
+.pick-card .d { display: block; font-size: 15.5px; margin-top: 6px; }
+.pick-card .tag { display: inline-block; margin-top: 10px; font-size: 13.5px; font-weight: 700; color: var(--deep); }
+.pick-card .knob { position: absolute; right: 16px; top: 18px; width: 26px; height: 26px; border: var(--line) solid var(--ink); border-radius: 50%; background: var(--paper); display: grid; place-items: center; }
+.pick-card .knob::after { content: ""; width: 10px; height: 10px; border-radius: 50%; background: var(--ink); transform: scale(0); transition: transform .3s var(--spring); }
+.pick-card:hover .knob::after { transform: scale(.5); }
+.pick-card[aria-expanded="true"] { background: var(--ink); color: #fff; transform: translate(5px, 5px); box-shadow: 0 0 0 var(--ink); }
+.pick-card[aria-expanded="true"] .tag { color: var(--label); }
+.pick-card[aria-expanded="true"] .knob { background: var(--label); border-color: var(--label); }
+.pick-card[aria-expanded="true"] .knob::after { transform: scale(1); }
+.pick-card.rec { grid-column: 1 / -1; background: var(--label); }
+.pick-card.rec .t { font-size: 27px; }
+.pick-card.rec .tag { color: var(--ink); background: var(--paper); border: 2px solid var(--ink); border-radius: 999px; padding: 1px 10px; }
+.pick-card.rec[aria-expanded="true"] { background: var(--ink); }
+.pick-card.rec[aria-expanded="true"] .tag { background: transparent; border-color: var(--label); }
+.choose.is-chosen h2 { font-size: clamp(22px, 3.4vw, 28px); }
+.choose.is-chosen .sub { font-size: 15.5px; }
+.pick.chosen { display: flex; flex-wrap: wrap; gap: 10px 12px; margin-top: 12px; }
+.pick.chosen .pick-card { --sh: 3px; display: inline-flex; align-items: center; gap: 9px; padding: 8px 15px 8px 10px; border-radius: 999px; box-shadow: 3px 3px 0 var(--ink); background: var(--paper); }
+.pick.chosen .pick-card .d, .pick.chosen .pick-card .tag { display: none; }
+.pick.chosen .pick-card .t, .pick.chosen .pick-card.rec .t { font-size: 17px; white-space: nowrap; }
+.pick.chosen .pick-card .knob { position: static; width: 20px; height: 20px; border-width: 2px; flex: none; }
+.pick.chosen .pick-card .knob::after { width: 8px; height: 8px; }
+.pick.chosen .pick-card[aria-expanded="true"] { background: var(--ink); color: #fff; transform: translate(3px, 3px); box-shadow: 0 0 0 var(--ink); }
+
+.helper { margin-top: 24px; background: var(--paper); border: var(--line) solid var(--ink); border-radius: var(--radius); padding: 18px 20px; box-shadow: var(--shadow) var(--shadow) 0 var(--ink); }
+.helper .q { font-weight: 700; font-size: 17px; }
+.helper .q + .opts { margin-top: 8px; }
+.opts { display: flex; flex-wrap: wrap; gap: 10px; }
+.opt { --sh: 3px; background: #fff; border: 2px solid var(--ink); border-radius: 12px; padding: 7px 14px; font-weight: 700; font-size: 15.5px; box-shadow: 3px 3px 0 var(--ink); }
+.opt[aria-pressed="true"] { background: var(--label); transform: translate(3px, 3px); box-shadow: 0 0 0 var(--ink); }
+.verdict { margin-top: 14px; background: var(--soft); border-radius: 14px; padding: 12px 14px; display: flex; flex-wrap: wrap; gap: 10px 14px; align-items: center; font-size: 16.5px; }
+.verdict .go { --sh: 3px; background: var(--ink); color: #fff; border: 2px solid var(--ink); border-radius: 12px; padding: 7px 14px; font-weight: 700; font-size: 15.5px; box-shadow: 3px 3px 0 var(--deep); }
+.verdict .go:hover { box-shadow: 5px 5px 0 var(--deep); }
+.helper details { margin-top: 14px; border-top: 2px solid var(--soft); padding-top: 12px; }
+
+/* ---------- Paths ---------- */
+.path-head { display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; gap: 8px 14px; }
+.path-head h2 { margin-bottom: 8px; }
+.swap { --sh: 3px; background: var(--paper); border: 2px solid var(--ink); border-radius: 12px; padding: 6px 12px; font-weight: 700; font-size: 14.5px; box-shadow: 3px 3px 0 var(--ink); white-space: nowrap; margin-top: 4px; }
+.need { display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: 15.5px; margin: 4px 0 12px; }
+.need b { color: var(--deep); }
+.prog { display: flex; align-items: center; gap: 12px; margin: 14px 0 6px; font-size: 15px; font-weight: 700; }
+.prog-bar { flex: 1; height: 14px; border: 2px solid var(--ink); border-radius: 999px; background: #fff; overflow: hidden; }
+.prog-bar span { display: block; height: 100%; width: 0; background: var(--ground); border-right: 2px solid var(--ink); transition: width .6s var(--spring); }
+.prog-bar span[style*="width: 0"] { border-right: 0; }
+.prog-txt { white-space: nowrap; }
+
+ol.steps { list-style: none; counter-reset: s; margin-top: 12px; }
+ol.steps > li { counter-increment: s; position: relative; padding: 0 0 22px 50px; }
 ol.steps > li::before { content: counter(s); position: absolute; left: 0; top: -2px; width: 34px; height: 34px; border-radius: 50%; background: var(--ink); color: #fff; font-family: "Bricolage", sans-serif; font-weight: 700; font-size: 18px; display: flex; align-items: center; justify-content: center; }
 ol.steps > li:last-child { padding-bottom: 0; }
+ol.steps > li.is-done::before { content: "✓"; background: var(--ground); color: var(--ink); box-shadow: inset 0 0 0 2px var(--ink); }
+ol.steps > li.is-done > .did { background: var(--label); }
+.did { --sh: 3px; display: flex; width: max-content; align-items: center; gap: 7px; margin-top: 12px; background: #fff; border: 2px solid var(--ink); border-radius: 10px; padding: 4px 11px 4px 8px; font-size: 14px; font-weight: 700; box-shadow: 3px 3px 0 var(--ink); }
+.did .box { width: 17px; height: 17px; border: 2px solid var(--ink); border-radius: 5px; background: #fff; display: grid; place-items: center; }
+.did .box svg { width: 12px; height: 12px; stroke: var(--ink); stroke-width: 3; fill: none; stroke-dasharray: 20; stroke-dashoffset: 20; transition: stroke-dashoffset .3s var(--out); }
+.did[aria-pressed="true"] .box svg { stroke-dashoffset: 0; }
 ul.dots { margin: 8px 0 0 22px; }
 ul.dots li + li { margin-top: 6px; }
 .btn-path { font-weight: 700; background: var(--soft); border: 2px solid var(--ink); border-radius: 8px; padding: 0 7px; white-space: nowrap; font-size: 0.92em; }
+.pt { font-size: 0.86em; opacity: .8; }
 
 .cmd { margin: 10px 0 4px; background: var(--ink); color: #e9fff5; border-radius: 14px; padding: 12px 12px 12px 16px; display: flex; gap: 10px; align-items: center; }
-.cmd code { order: 1; flex: 1; min-width: 0; font-size: 15px; overflow-x: auto; white-space: pre; padding: 2px 0; background: transparent; border-radius: 0; color: #e9fff5; }
+.cmd code { order: 1; flex: 1; min-width: 0; font-size: 15px; white-space: pre-wrap; word-break: break-all; padding: 2px 0; background: transparent; border-radius: 0; color: #e9fff5; position: relative; }
 .cmd .os { order: 0; font-family: "Instrument", sans-serif; font-size: 12px; font-weight: 700; color: var(--label); white-space: nowrap; }
 .cmd button.copy { order: 2; }
-button.copy { font: 700 14px "Instrument", sans-serif; background: var(--ground); color: var(--ink); border: 2px solid var(--label); border-radius: 10px; padding: 6px 12px; cursor: pointer; white-space: nowrap; }
+.cmd.flash { animation: flash .7s var(--out); }
+code .ghost { color: inherit; }
+code.typing .ghost { color: transparent; }
+code .typed { position: absolute; left: 0; top: 2px; right: 0; white-space: inherit; color: #e9fff5; pointer-events: none; }
+code .typed::after { content: ""; display: inline-block; width: .55em; height: 1.05em; margin-left: 1px; vertical-align: -.15em; background: var(--label); animation: caret .8s steps(1) infinite; }
+
+button.copy { --sh: 0px; display: inline-grid; font: 700 14px "Instrument", sans-serif; background: var(--ground); color: var(--ink); border: 2px solid var(--label); border-radius: 10px; padding: 6px 12px; cursor: pointer; white-space: nowrap; transition: transform .16s var(--spring), background-color .2s; }
+button.copy:hover { transform: translateY(-1px); }
+button.copy:active { transform: scale(.92); }
+button.copy > span { grid-area: 1 / 1; transition: opacity .18s, transform .3s var(--spring); }
+button.copy .lbl-ok { opacity: 0; transform: translateY(8px); display: inline-flex; align-items: center; gap: 5px; justify-content: center; }
+button.copy .lbl-ok svg { width: 13px; height: 13px; stroke: currentColor; stroke-width: 3.2; fill: none; stroke-dasharray: 20; stroke-dashoffset: 20; }
 button.copy.ok { background: var(--label); }
+button.copy.ok .lbl { opacity: 0; transform: translateY(-8px); }
+button.copy.ok .lbl-ok { opacity: 1; transform: none; }
+button.copy.ok .lbl-ok svg { animation: draw .35s .08s var(--out) forwards; }
 .phone button.copy { border-color: var(--ground); }
 
 .note { margin-top: 16px; background: var(--soft); border-left: 6px solid var(--deep); border-radius: 10px; padding: 12px 14px; font-size: 16px; }
 .note.warn { background: var(--warn); border-left-color: #b8860b; }
-.need { display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: 15.5px; margin: 4px 0 14px; }
-.need b { color: var(--deep); }
-.done { margin-top: 18px; padding: 14px 16px; border: 2px dashed var(--deep); border-radius: 14px; font-size: 16.5px; }
+.note.lang { margin: 2px 0 6px; }
+.done { margin-top: 20px; padding: 14px 16px; border: 2px dashed var(--deep); border-radius: 14px; font-size: 16.5px; transition: background-color .3s, border-color .3s; }
+.done.complete { background: var(--label); border: 2px solid var(--ink); }
+.done.celebrate { animation: stamp .6s var(--spring); }
 
-.skills { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 12px; }
-.skills a { display: flex; justify-content: space-between; gap: 10px; align-items: center; text-decoration: none; border: 2px solid var(--ink); border-radius: 12px; padding: 9px 12px; background: #fff; font-size: 15.5px; }
-.skills a span:last-child { font-size: 13px; font-weight: 700; color: var(--deep); white-space: nowrap; }
-.skills a.first { background: var(--soft); }
+figure.tela { margin: 14px 0 4px; }
+figure.tela button.zoom { --sh: 4px; display: block; width: 100%; padding: 0; background: var(--soft); border: var(--line) solid var(--ink); border-radius: 16px; overflow: hidden; box-shadow: 4px 4px 0 var(--ink); cursor: zoom-in; position: relative; }
+figure.tela img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: contain; background: var(--soft); }
+figure.tela img.loaded { aspect-ratio: auto; }
+figure.tela.tall button.zoom { max-width: 560px; }
+figure.tela .zoom-tip { display: block; font-weight: 700; color: var(--deep); }
+figure.tela figcaption { font-size: 14.5px; margin-top: 8px; opacity: .85; }
 
 table.cmp { width: 100%; border-collapse: collapse; margin-top: 12px; font-size: 15.5px; }
 table.cmp th, table.cmp td { text-align: left; padding: 9px 8px; border-bottom: 2px solid var(--soft); vertical-align: top; }
-table.cmp th { font-size: 13px; text-transform: uppercase; letter-spacing: .04em; color: var(--deep); }
+table.cmp th { font-size: 14px; color: var(--deep); }
 table.cmp td:first-child { font-weight: 700; }
 .y { color: var(--deep); font-weight: 700; }
-.n { color: #9a3b1b; font-weight: 700; }
+.n { color: var(--rust); font-weight: 700; }
 
 .ask { display: grid; gap: 10px; margin-top: 12px; }
-.ask div { background: #fff; border: 2px solid var(--ink); border-radius: 14px; padding: 10px 14px; font-size: 16.5px; }
+.ask div { background: #fff; border: 2px solid var(--ink); border-radius: 14px 14px 14px 4px; padding: 10px 14px; font-size: 16.5px; }
 
 details { border-top: 2px solid var(--soft); padding: 12px 0; }
-details:first-of-type { border-top: 0; }
-summary { cursor: pointer; font-weight: 700; font-size: 17.5px; list-style: none; }
+.card details:first-of-type { border-top: 0; }
+summary { cursor: pointer; font-weight: 700; font-size: 17.5px; list-style: none; display: flex; gap: 6px; }
 summary::-webkit-details-marker { display: none; }
-summary::before { content: "+"; display: inline-block; width: 22px; font-family: "Bricolage", sans-serif; }
-details[open] summary::before { content: "–"; }
+summary::before { content: "+"; flex: none; display: inline-grid; place-items: center; width: 22px; font-family: "Bricolage", sans-serif; transition: transform .3s var(--spring); }
+details[open] > summary::before { transform: rotate(45deg); }
 details p, details ul { margin-top: 8px; font-size: 16.5px; }
 
 footer { padding: 46px 0 50px; font-size: 15.5px; }
 footer a { font-weight: 700; }
+footer details.dados { margin-top: 18px; border-top: 2px solid rgba(11, 51, 36, .25); padding: 10px 0 0; max-width: 680px; scroll-margin-top: 16px; }
+footer details.dados summary { font-size: 15.5px; }
+footer details.dados p, footer details.dados ul { font-size: 14.5px; }
+footer details.dados ul.dots { margin-left: 20px; }
+
+/* ---------- Waitlist ---------- */
+.espera { position: relative; background: var(--label); }
+.espera h2 { max-width: 22ch; padding-right: 92px; }
+.espera .lead-in { font-size: 17px; max-width: 54ch; }
+.sticker { position: absolute; right: 18px; top: -22px; width: 104px; height: 104px; display: grid; place-items: center; pointer-events: none; }
+.sticker svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.sticker span { position: relative; font: 700 13px/1 "Bricolage", sans-serif; text-transform: uppercase; letter-spacing: .02em; transform: rotate(-12deg); text-align: center; }
+.espera-form { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px 16px; margin-top: 18px; }
+.espera-form .wide { grid-column: 1 / -1; }
+.espera-form .field input { border-width: var(--line); }
+.espera-form .field input[aria-invalid="true"] { border-color: var(--rust); box-shadow: 3px 3px 0 var(--rust); }
+.perfil { border: 0; min-width: 0; }
+.perfil legend { font-size: 14.5px; font-weight: 700; margin-bottom: 6px; }
+.perfil .opts { gap: 10px; }
+.pill { position: relative; cursor: pointer; }
+.pill input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.pill span { --sh: 3px; display: inline-flex; align-items: center; gap: 7px; background: #fff; border: 2px solid var(--ink); border-radius: 999px; padding: 7px 14px; font-weight: 700; font-size: 15.5px; box-shadow: 3px 3px 0 var(--ink); transition: transform .16s var(--spring), box-shadow .16s var(--spring), background-color .2s; }
+.pill span::before { content: ""; width: 12px; height: 12px; border-radius: 50%; border: 2px solid var(--ink); background: #fff; transition: background-color .2s, transform .3s var(--spring); }
+.pill:hover span { transform: translate(-2px, -2px); box-shadow: 5px 5px 0 var(--ink); }
+.pill input:checked + span { background: var(--ink); color: #fff; transform: translate(3px, 3px); box-shadow: 0 0 0 var(--ink); }
+.pill input:checked + span::before { background: var(--label); border-color: var(--label); transform: scale(1.15); }
+.pill input:focus-visible + span { outline: 3px solid var(--ink); outline-offset: 3px; }
+.perfil[aria-invalid="true"] .pill span { border-color: var(--rust); }
+.espera .check { font-size: 15.5px; font-weight: 600; }
+.espera .check input { accent-color: var(--ink); }
+.espera .err { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; background: var(--paper); border: 2px solid var(--rust); border-radius: 12px; padding: 8px 12px; animation: drop .3s var(--out); }
+.espera .err:empty { display: none; }
+.espera .err .retry { --sh: 2px; background: #fff; border: 2px solid var(--ink); border-radius: 10px; padding: 3px 10px; font-size: 14px; font-weight: 700; color: var(--ink); box-shadow: 2px 2px 0 var(--ink); }
+.espera-send { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; }
+.espera-send .go-btn:disabled { opacity: .6; cursor: default; transform: none; }
+.espera-ok { margin-top: 18px; display: grid; grid-template-columns: auto 1fr; gap: 6px 18px; align-items: center; background: var(--paper); border: var(--line) solid var(--ink); border-radius: 18px; padding: 18px; box-shadow: 4px 4px 0 var(--ink); }
+.espera-ok:focus { outline: none; }
+.espera-ok .stamp { grid-row: span 2; position: relative; width: 64px; height: 64px; border-radius: 50%; background: var(--ground); border: var(--line) solid var(--ink); display: grid; place-items: center; }
+.espera-ok .stamp svg { width: 32px; height: 32px; stroke: var(--ink); stroke-width: 3.4; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.espera-ok .stamp i { position: absolute; left: 50%; top: 50%; width: 10px; height: 10px; margin: -5px 0 0 -5px; border-radius: 3px; background: var(--ink); opacity: 0; transform: rotate(var(--a)); }
+.espera-ok .stamp i:nth-child(odd) { background: var(--deep); border-radius: 50%; }
+.espera-ok .ok-t { font: 700 26px/1.1 "Bricolage", sans-serif; }
+.espera-ok p { font-size: 16px; }
+.espera-ok .linkish { grid-column: 1 / -1; justify-self: start; font-size: 14.5px; margin-top: 4px; }
+.espera-ok.celebrate { animation: stamp .6s var(--spring); }
+.espera-ok.celebrate .stamp { animation: badge .6s var(--spring) backwards; }
+.espera-ok.celebrate .stamp svg path { stroke-dasharray: 30; stroke-dashoffset: 30; animation: draw .4s .25s var(--out) forwards; }
+.espera-ok.celebrate .stamp i { animation: burst .75s .2s var(--out) forwards; }
+.espera-atalho { margin-top: 14px; font-size: 15px; }
+.espera-atalho a { font-weight: 700; }
+
+/* ---------- Who made it ---------- */
+.quem { margin-top: 48px; }
+.quem-card { display: block; border-radius: var(--radius); transition: transform .2s var(--spring); }
+.quem-card img { display: block; width: 100%; height: auto; border-radius: var(--radius); }
+.quem-card:hover { transform: translateY(-3px) rotate(-.4deg); }
+.quem-card:active { transform: scale(.985); }
+.quem-go { display: inline-flex; align-items: center; gap: 10px; margin: 6px 0 0 6.5%; text-decoration: none; }
+.quem-go svg { width: 20px; height: 20px; stroke: currentColor; stroke-width: 2.2; fill: none; }
+
+/* ---------- Lightbox ---------- */
+dialog.zoom-dlg { border: 0; padding: 0; background: transparent; max-width: 96vw; max-height: 94vh; margin: auto; overflow: visible; }
+dialog.zoom-dlg::backdrop { background: rgba(11, 51, 36, .82); }
+dialog.zoom-dlg .frame { background: var(--paper); border: var(--line) solid var(--ink); border-radius: 18px; box-shadow: var(--shadow) var(--shadow) 0 var(--ink); padding: 10px; position: relative; }
+dialog.zoom-dlg .scroller { max-width: calc(96vw - 26px); max-height: calc(94vh - 90px); overflow: auto; border-radius: 10px; overscroll-behavior: contain; }
+dialog.zoom-dlg img { display: block; max-width: calc(96vw - 26px); max-height: calc(94vh - 90px); width: auto; height: auto; cursor: zoom-out; }
+dialog.zoom-dlg img.pan { max-width: none; max-height: none; }
+dialog.zoom-dlg p { font-size: 15px; padding: 8px 4px 2px; max-width: 70ch; }
+dialog.zoom-dlg .x { position: absolute; top: -16px; right: -12px; width: 40px; height: 40px; border-radius: 50%; border: var(--line) solid var(--ink); background: var(--label); font-weight: 700; font-size: 22px; line-height: 1; box-shadow: 3px 3px 0 var(--ink); --sh: 3px; }
+dialog.zoom-dlg[open] .frame { animation: pop .38s var(--spring); }
+
+/* ---------- Chat ---------- */
+.chat-fab { --sh: 5px; position: fixed; right: 20px; bottom: 20px; z-index: 40; display: inline-flex; align-items: center; gap: 10px; background: var(--paper); border: var(--line) solid var(--ink); border-radius: 999px; padding: 11px 18px 11px 14px; font-weight: 700; font-size: 16px; box-shadow: 5px 5px 0 var(--ink); }
+.chat-fab .dot { width: 12px; height: 12px; border-radius: 50%; background: var(--ground); box-shadow: 0 0 0 2px var(--ink); position: relative; }
+.chat-fab .dot::after { content: ""; position: absolute; inset: -2px; border-radius: 50%; border: 2px solid var(--ground); animation: ping 2.4s var(--out) infinite; }
+.chat-fab.nudge { animation: nudge .9s var(--spring); }
+.chat-fab[aria-expanded="true"] { transform: translate(5px, 5px); box-shadow: 0 0 0 var(--ink); background: var(--label); }
+.chat-panel { position: fixed; right: 20px; bottom: 88px; z-index: 41; width: 390px; height: min(620px, calc(100vh - 116px)); display: flex; flex-direction: column; background: var(--paper); border: var(--line) solid var(--ink); border-radius: var(--radius); box-shadow: var(--shadow) var(--shadow) 0 var(--ink); overflow: hidden; transform-origin: 92% 100%; }
+.chat-panel.opening { animation: panelIn .42s var(--spring); }
+.chat-panel.closing { animation: panelOut .18s var(--out) forwards; }
+.chat-head { background: var(--ink); color: #fff; padding: 12px 12px 12px 16px; display: flex; gap: 10px; align-items: center; justify-content: space-between; flex: none; }
+.chat-head strong { font-family: "Bricolage", sans-serif; font-size: 20px; display: block; line-height: 1.1; }
+.chat-head .sub { font-size: 13.5px; color: var(--label); }
+.chat-x { width: 36px; height: 36px; flex: none; border-radius: 50%; border: 2px solid var(--label); background: transparent; color: #fff; font-size: 22px; line-height: 1; cursor: pointer; transition: transform .2s var(--spring), background-color .2s; }
+.chat-x:hover { background: rgba(143, 227, 187, .18); transform: rotate(90deg); }
+.chat-lead { padding: 16px; overflow-y: auto; display: grid; gap: 12px; align-content: start; flex: 1; }
+.chat-lead .intro { font-size: 16px; }
+.field { display: grid; gap: 4px; font-size: 14.5px; font-weight: 700; }
+.field .opt-t { font-weight: 400; opacity: .75; }
+.field input { font: 16px "Instrument", sans-serif; color: var(--ink); background: #fff; border: 2px solid var(--ink); border-radius: 12px; padding: 9px 12px; width: 100%; transition: box-shadow .15s; }
+.field input:focus { outline: none; box-shadow: 3px 3px 0 var(--ground); }
+.check { display: flex; gap: 10px; align-items: flex-start; font-size: 15px; cursor: pointer; }
+.check input { width: 20px; height: 20px; margin-top: 2px; accent-color: var(--deep); flex: none; }
+.err { color: var(--rust); font-size: 14.5px; font-weight: 700; min-height: 0; }
+.err:empty { display: none; }
+.go-btn { --sh: 4px; background: var(--ink); color: #fff; border: var(--line) solid var(--ink); border-radius: 14px; padding: 11px 16px; font-weight: 700; font-size: 16.5px; box-shadow: 4px 4px 0 var(--deep); }
+.go-btn:hover { box-shadow: 6px 6px 0 var(--deep); }
+.small { font-size: 13.5px; opacity: .85; }
+.chat-talk { display: flex; flex-direction: column; flex: 1; min-height: 0; }
+.chat-log { flex: 1; overflow-y: auto; padding: 14px 14px 6px; display: flex; flex-direction: column; gap: 10px; overscroll-behavior: contain; }
+.msg { max-width: 88%; padding: 9px 13px; border: 2px solid var(--ink); font-size: 15.5px; line-height: 1.45; white-space: pre-wrap; overflow-wrap: anywhere; animation: msgIn .32s var(--spring); }
+.msg.user { align-self: flex-end; background: var(--label); border-radius: 16px 16px 4px 16px; }
+.msg.bot { align-self: flex-start; background: #fff; border-radius: 16px 16px 16px 4px; }
+.msg.bot.err-msg { background: var(--warn); }
+.msg.bot.err-msg a { font-weight: 700; }
+.msg .retry { margin-top: 8px; display: inline-block; --sh: 2px; background: #fff; border: 2px solid var(--ink); border-radius: 10px; padding: 3px 10px; font-size: 14px; font-weight: 700; box-shadow: 2px 2px 0 var(--ink); }
+.typing-dots { display: inline-flex; gap: 5px; padding: 4px 2px; }
+.typing-dots i { width: 8px; height: 8px; border-radius: 50%; background: var(--ink); animation: bounce 1s var(--out) infinite; }
+.typing-dots i:nth-child(2) { animation-delay: .15s; }
+.typing-dots i:nth-child(3) { animation-delay: .3s; }
+.invite-t { font-weight: 700; font-size: 15.5px; }
+.invite-sub, .invite-legal { font-size: 13px; opacity: .85; }
+.invite .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.invite .chips button { --sh: 2px; background: #fff; border: 2px solid var(--ink); border-radius: 999px; padding: 4px 11px; font-size: 14px; font-weight: 700; box-shadow: 2px 2px 0 var(--ink); }
+.invite.done-card { border-style: solid; background: #fff; }
+.chat-lead .perfil .opts { gap: 8px; }
+.chat-lead .pill span { font-size: 15px; padding: 6px 12px; }
+.invite { align-self: stretch; border: 2px dashed var(--deep); border-radius: 14px; padding: 10px 12px; background: var(--soft); font-size: 14.5px; display: grid; gap: 8px; animation: msgIn .32s var(--spring); }
+.invite .row { display: flex; flex-wrap: wrap; gap: 8px; }
+.invite input { flex: 1 1 140px; min-width: 0; font: 16px "Instrument", sans-serif; border: 2px solid var(--ink); border-radius: 10px; padding: 6px 10px; background: #fff; color: var(--ink); }
+.invite .row button, .invite .later { font-weight: 700; font-size: 14px; border: 2px solid var(--ink); border-radius: 10px; padding: 5px 10px; background: var(--ink); color: #fff; cursor: pointer; }
+.invite .later { background: transparent; color: var(--ink); border: 0; padding: 0; text-decoration: underline; justify-self: start; }
+.chat-sugs { display: flex; flex-wrap: wrap; gap: 8px; padding: 4px 14px 10px; }
+.sug { --sh: 2px; background: #fff; border: 2px solid var(--ink); border-radius: 999px; padding: 5px 12px; font-size: 14px; font-weight: 700; box-shadow: 2px 2px 0 var(--ink); text-align: left; }
+.chat-form { display: flex; gap: 8px; padding: 10px 12px; border-top: var(--line) solid var(--ink); background: var(--soft); flex: none; align-items: flex-end; }
+.chat-form textarea { flex: 1; min-width: 0; resize: none; font: 16px/1.4 "Instrument", sans-serif; color: var(--ink); border: 2px solid var(--ink); border-radius: 12px; padding: 8px 11px; background: #fff; max-height: 132px; }
+.chat-form textarea:focus { outline: none; box-shadow: 3px 3px 0 var(--ground); }
+.chat-form button { --sh: 3px; background: var(--ink); color: #fff; border: 2px solid var(--ink); border-radius: 12px; padding: 8px 14px; font-weight: 700; box-shadow: 3px 3px 0 var(--deep); }
+.chat-form button:disabled { opacity: .5; cursor: default; transform: none; }
+.chat-foot { font-size: 12.5px; padding: 0 12px 10px; background: var(--soft); display: flex; flex-wrap: wrap; gap: 4px 10px; justify-content: space-between; flex: none; }
+.linkish { background: none; border: 0; padding: 0; text-decoration: underline; cursor: pointer; font-size: inherit; }
+
+/* ---------- Motion ---------- */
+@keyframes wordIn { from { opacity: 0; transform: translateY(.55em) rotate(5deg); } }
+@keyframes ticker { to { transform: translateX(-50%); } }
+@keyframes bob { from { transform: translateY(-5px) rotate(-1.2deg); } to { transform: translateY(5px) rotate(1.2deg); } }
+@keyframes float { 0% { transform: translateY(0) rotate(0); } 100% { transform: translateY(-14px) rotate(12deg); } }
+@keyframes land { from { opacity: 0; transform: translateY(26px) rotate(-1.2deg); box-shadow: 0 0 0 var(--ink); } }
+@keyframes unfold { from { opacity: 0; transform: translateY(-14px) scaleY(.96); } }
+@keyframes badge { 0% { transform: scale(0) rotate(-90deg); } 70% { transform: scale(1.18) rotate(8deg); } 100% { transform: none; } }
+@keyframes flip { 0% { transform: rotateY(0); } 50% { transform: rotateY(90deg) scale(1.15); } 100% { transform: rotateY(0); } }
+@keyframes flash { 0% { box-shadow: 0 0 0 0 var(--label); } 100% { box-shadow: 0 0 0 10px rgba(143, 227, 187, 0); } }
+@keyframes draw { to { stroke-dashoffset: 0; } }
+@keyframes caret { 50% { opacity: 0; } }
+@keyframes stamp { 0% { transform: scale(1); } 35% { transform: scale(1.05) rotate(-1.2deg); } 100% { transform: none; } }
+@keyframes pop { from { opacity: 0; transform: scale(.86) translateY(14px); } }
+@keyframes panelIn { from { opacity: 0; transform: scale(.82) translate(14px, 18px); box-shadow: 0 0 0 var(--ink); } }
+@keyframes panelOut { to { opacity: 0; transform: scale(.9) translate(8px, 10px); } }
+@keyframes msgIn { from { opacity: 0; transform: translateY(10px) scale(.96); } }
+@keyframes bounce { 0%, 60%, 100% { transform: translateY(0); } 30% { transform: translateY(-6px); } }
+@keyframes ping { 0% { transform: scale(1); opacity: .9; } 70%, 100% { transform: scale(2.3); opacity: 0; } }
+@keyframes nudge { 0%, 100% { transform: none; } 25% { transform: rotate(-4deg) translateY(-4px); } 55% { transform: rotate(3deg); } }
+@keyframes drop { from { opacity: 0; transform: translateY(-6px); } }
+@keyframes burst { 0% { opacity: 1; transform: rotate(var(--a)) translateY(0) scale(1); } 100% { opacity: 0; transform: rotate(var(--a)) translateY(-58px) scale(.4); } }
+
+@media (prefers-reduced-motion: no-preference) {
+  h1.title .w { animation: wordIn .7s var(--spring) both; animation-delay: calc(var(--i) * 70ms + 80ms); }
+  .lede, .phone { animation: wordIn .7s var(--spring) both; animation-delay: .62s; }
+  .phone { animation-delay: .72s; }
+  .ticker-track { animation: ticker 60s linear infinite; }
+  .ticker .chip { transition: translate .25s cubic-bezier(.2,.9,.3,1.3), scale .25s cubic-bezier(.2,.9,.3,1.3), box-shadow .25s; }
+  .ticker .chip:hover { translate: 0 -7px; scale: 1.07; box-shadow: 5px 6px 0 var(--ink); }
+  .ticker .chip { animation: bob 3.2s ease-in-out infinite alternate; }
+  .ticker .chip:nth-child(3n+1) { animation-delay: -1.1s; animation-duration: 2.8s; }
+  .ticker .chip:nth-child(3n+2) { animation-delay: -2.3s; animation-duration: 3.6s; }
+  .shape { animation: float 6s ease-in-out infinite alternate; }
+  .shape.s2 { animation-duration: 4.6s; animation-delay: -2s; }
+  .shape.s3 { animation-duration: 7.4s; animation-delay: -4s; }
+  .js .rv:not(.in) { opacity: 0; }
+  .js .rv.in { animation: land .62s var(--spring) backwards; animation-delay: var(--d, 0ms); }
+  .js ol.steps > li.rv.in::before { animation: badge .55s var(--spring) backwards; animation-delay: calc(var(--d, 0ms) + 140ms); }
+  ol.steps > li.flip::before { animation: flip .45s var(--out) !important; }
+  .path.opening { animation: unfold .45s var(--spring); transform-origin: top center; }
+  details[open] > :not(summary) { animation: drop .32s var(--out); }
+  ::view-transition-group(*) { animation-duration: .42s; animation-timing-function: var(--out); }
+  .pick-card[data-path="claude-web"] { view-transition-name: card-web; }
+  .pick-card[data-path="chatgpt"] { view-transition-name: card-chatgpt; }
+  .pick-card[data-path="terminal"] { view-transition-name: card-terminal; }
+  .path { view-transition-name: path-panel; }
+  .helper { view-transition-name: helper; }
+  #primeiro-pedido { view-transition-name: sec-pedido; }
+  #duvidas { view-transition-name: sec-duvidas; }
+  #perguntas { view-transition-name: sec-perguntas; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .ticker { height: auto; padding: 14px 0; -webkit-mask-image: none; mask-image: none; }
+  .ticker-band { transform: none; width: auto; margin: 0; }
+  .ticker-track { flex-wrap: wrap; width: auto; justify-content: center; padding: 10px 12px; }
+  .chip.dup { display: none; }
+  .shapes { display: none; }
+  .espera-ok .stamp i { display: none; }
+}
 
 @media (max-width: 640px) {
   body { font-size: 17px; }
-  .pick, .skills { grid-template-columns: 1fr; }
-  .card { padding: 22px 18px; border-radius: 18px; box-shadow: 5px 5px 0 var(--ink); }
+  .pick { grid-template-columns: 1fr; }
+  .pick-card.rec .t { font-size: 25px; }
+  .pick.chosen { gap: 8px; }
+  .pick.chosen .pick-card { min-height: 44px; padding: 7px 13px 7px 9px; }
+  .pick.chosen .pick-card .t, .pick.chosen .pick-card.rec .t { font-size: 15.5px; }
+  .card { padding: 22px 18px; border-radius: 18px; --shadow: 5px; }
   ol.steps > li { padding-left: 44px; }
   .cmd { flex-wrap: wrap; }
   .cmd code { flex-basis: 100%; order: 3; font-size: 14px; white-space: pre-wrap; word-break: break-all; overflow-x: visible; }
-  .cmd .os { order: 1; flex: 1; }
-  .cmd button.copy { order: 2; margin-left: auto; }
+  .cmd button.copy { order: 0; margin-left: 0; min-height: 40px; }
+  .cmd .os { order: 1; flex: 1; text-align: right; }
+  .did { min-height: 44px; }
+  #chat-clear, .invite .later { padding: 12px 0; }
+  .invite .row button { min-height: 44px; }
   table.cmp { font-size: 14.5px; }
+  table.cmp th, table.cmp td { padding: 8px 5px; }
+  .shape.s1 { width: 64px; top: 30px; right: 0; }
+  .shape.s2 { display: none; }
+  .shape.s3 { width: 44px; top: 170px; right: 0; }
+  .chat-fab { right: 14px; bottom: 14px; }
+  .chat-panel { inset: 0; width: auto; height: 100%; height: 100dvh; border-radius: 0; border: 0; box-shadow: none; transform-origin: 90% 100%; }
+  .chat-panel:not([hidden]) ~ .chat-fab { display: none; }
+  .helper { padding: 16px; }
+  .espera h2 { padding-right: 64px; }
+  .sticker { width: 80px; height: 80px; right: 8px; top: -26px; }
+  .sticker span { font-size: 11px; }
+  .espera-form { grid-template-columns: 1fr; }
+  .pill span { min-height: 44px; }
+  .espera-ok { grid-template-columns: 1fr; justify-items: start; }
+  .espera-ok .stamp { grid-row: auto; }
+  .espera-ok .linkish { padding: 10px 0; }
+  .quem-go { margin-left: 0; }
 }
 </style>
 </head>
@@ -110,113 +432,104 @@ footer a { font-weight: 700; }
 <div class="wrap">
 
 <header class="top">
+  <div class="shapes" aria-hidden="true">
+    <svg class="shape s1" viewBox="0 0 100 100"><path d="M50 4 C55 38 62 45 96 50 C62 55 55 62 50 96 C45 62 38 55 4 50 C38 45 45 38 50 4Z" fill="#8fe3bb" stroke="#0b3324" stroke-width="5" stroke-linejoin="round"/></svg>
+    <svg class="shape s2" viewBox="0 0 100 100"><circle cx="50" cy="50" r="38" fill="none" stroke="#0b3324" stroke-width="9"/></svg>
+    <svg class="shape s3" viewBox="0 0 100 100"><rect x="14" y="14" width="72" height="72" rx="20" fill="#fbfdfc" stroke="#0b3324" stroke-width="7" transform="rotate(14 50 50)"/></svg>
+  </div>
   <div class="brand">skills-primeira-venda</div>
-  <h1 style="margin-top:14px">Coloque as skills no seu Claude ou ChatGPT</h1>
-  <p class="lede">Passo a passo para quem nunca mexeu com isso. Escolha onde você usa a IA e siga os passos daquela parte. Não precisa saber programar.</p>
+  <h1 class="title"><span class="w" style="--i:0">Coloque</span> <span class="w" style="--i:1">as</span> <span class="w" style="--i:2">skills</span> <span class="w" style="--i:3">no</span> <span class="w" style="--i:4">seu</span> <span class="w" style="--i:5">Claude</span> <span class="w" style="--i:6">ou</span> <span class="w" style="--i:7">ChatGPT</span></h1>
+  <p class="lede">Passo a passo para quem nunca mexeu com isso. Escolha onde você usa a IA e aparecem só os passos daquele jeito. Não precisa saber programar, mas precisa de um plano pago: Claude Pro ou ChatGPT Plus, ou superior.</p>
   <div class="phone"><span>📱 Está no celular? Dá para ler aqui, mas <strong>instalar é mais fácil no computador</strong>. Mande este link para você mesmo.</span> <button class="copy" data-copy-url>Copiar link</button></div>
 </header>
+</div>
 
-<section class="card">
+<div class="ticker" aria-hidden="true"><div class="ticker-band"><div class="ticker-track" id="ticker"></div></div></div>
+<p class="sr-only">São 9 skills: montar-negocio, pesquisa-e-plano, marca, presenca-nas-redes, conteudo, vender-sem-anuncio, atendente-ia, anuncios e acompanhar-vendas.</p>
+
+<div class="wrap">
+<main>
+
+<section class="card rv" id="o-que-sao">
   <h2>O que são essas skills</h2>
   <p>Skills são instruções prontas que ensinam a IA a fazer um trabalho do jeito certo. Estas ensinam a montar a presença e as vendas de um negócio de bairro, do zero até a primeira venda: pesquisa de preço, nome e logo, Instagram e WhatsApp, posts, atendimento, anúncio se você quiser, e o acompanhamento das vendas.</p>
   <ul class="dots">
-    <li><b>São grátis.</b> Você só precisa de uma conta no Claude ou no ChatGPT.</li>
+    <li><b>As skills são grátis; a IA tem plano pago.</b> Para usar, você precisa do Claude Pro (ou superior) ou do ChatGPT Plus (ou superior). No plano grátis desses dois, estes caminhos não funcionam.</li>
     <li><b>Nada sai sem o seu ok.</b> A IA prepara; publicar, pagar e mandar mensagem é sempre você, item por item.</li>
-    <li><b>Nunca digite senha, CPF ou número de cartão na conversa.</b> Essas partes você faz direto nos aplicativos.</li>
   </ul>
 </section>
 
-<section>
-  <h2>Onde você usa a IA?</h2>
-  <div class="pick">
-    <a href="#claude-pago"><span class="t">Claude com plano pago</span><span class="d">Pro, Max ou superior. No site claude.ai ou no app.</span><span class="tag">O jeito mais fácil →</span></a>
-    <a href="#claude-gratis"><span class="t">Claude grátis</span><span class="d">Conta sem assinatura. Funciona, com alguns passos a mais.</span><span class="tag">Uma skill por vez →</span></a>
-    <a href="#chatgpt"><span class="t">ChatGPT</span><span class="d">Pela parte de programação do ChatGPT, o Codex.</span><span class="tag">Precisa do Plus ou superior →</span></a>
-    <a href="#terminal"><span class="t">Já uso o Claude Code</span><span class="d">Ou topa usar o Terminal do computador. Copia e cola.</span><span class="tag">Dois comandos →</span></a>
+<section class="choose" id="escolha" aria-labelledby="t-escolha">
+  <h2 id="t-escolha" class="rv">Onde você usa a IA?</h2>
+  <p class="sub rv" id="escolha-sub">Toque no seu. Abrem só os passos daquele jeito.</p>
+  <div class="pick" id="pick">
+    <button type="button" class="pick-card rec press rv" data-path="claude-web" aria-expanded="false" aria-controls="claude-web"><span class="knob" aria-hidden="true"></span><span class="t">Claude no navegador</span><span class="d">No site do Claude, só com cliques. Não instala nada no computador. Precisa do Claude Pro ou superior.</span><span class="tag">Recomendado</span></button>
+    <button type="button" class="pick-card press rv" data-path="terminal" aria-expanded="false" aria-controls="terminal"><span class="knob" aria-hidden="true"></span><span class="t">Claude Code no computador</span><span class="d">Para quem já usa o Claude Code ou topa usar o Terminal. Copia e cola. Claude Pro ou superior.</span><span class="tag">Guarda tudo numa pasta sua</span></button>
+    <button type="button" class="pick-card press rv" data-path="chatgpt" aria-expanded="false" aria-controls="chatgpt"><span class="knob" aria-hidden="true"></span><span class="t">ChatGPT (Codex)</span><span class="d">Pela parte de programação do ChatGPT, o Codex, no Terminal do computador.</span><span class="tag">Precisa do Plus ou superior</span></button>
+  </div>
+
+  <div class="helper rv" id="ajuda-escolha">
+    <p class="q" id="q1">Não sabe qual é o seu? O que você tem hoje?</p>
+    <div class="opts" role="group" aria-labelledby="q1">
+      <button type="button" class="opt press" data-q1="claude" aria-pressed="false">Claude Pro ou superior</button>
+      <button type="button" class="opt press" data-q1="chatgpt" aria-pressed="false">ChatGPT Plus ou superior</button>
+      <button type="button" class="opt press" data-q1="terminal" aria-pressed="false">Já uso o Terminal ou o Claude Code</button>
+      <button type="button" class="opt press" data-q1="nenhum" aria-pressed="false">Não pago nenhum</button>
+    </div>
+    <div class="verdict" id="verdict" aria-live="polite" hidden><span id="verdict-txt"></span><button type="button" class="go press" id="verdict-go">Abrir este caminho</button></div>
+    <details id="qual">
+      <summary>Qual jeito funciona melhor?</summary>
+      <table class="cmp">
+        <thead><tr><th>Jeito</th><th>Instala algo no computador?</th><th>Onde ficam os arquivos do negócio</th></tr></thead>
+        <tbody>
+          <tr><td>Claude no navegador <span class="pt">(Claude Pro ou superior)</span></td><td class="y">Não, só cliques</td><td>Na sessão do Claude. Para continuar, volte na mesma sessão</td></tr>
+          <tr><td>Claude Code no computador <span class="pt">(Claude Pro ou superior)</span></td><td>Sim, pelo Terminal</td><td class="y">Numa pasta sua</td></tr>
+          <tr><td>ChatGPT, pelo Codex <span class="pt">(Plus ou superior)</span></td><td>Sim, pelo Terminal</td><td class="y">Numa pasta sua</td></tr>
+        </tbody>
+      </table>
+    </details>
   </div>
 </section>
 
-<section class="card" id="claude-pago">
-  <h2>Claude com plano pago</h2>
-  <div class="need"><span><b>Precisa:</b> plano Pro, Max ou superior</span><span><b>Onde:</b> claude.ai no navegador ou o app do Claude no computador</span></div>
-  <ol class="steps">
-    <li>Abra a página de plugins: <a href="https://claude.ai/customize/plugins" target="_blank" rel="noopener">claude.ai/customize/plugins</a>. No app, clique em <span class="btn-path">Customize</span> na barra da esquerda e depois em <span class="btn-path">Plugins</span>.</li>
-    <li>Clique em <span class="btn-path">Add</span> e escolha <span class="btn-path">Add marketplace</span>. Se aparecer mais uma opção, escolha <span class="btn-path">Add from a repository</span>.</li>
-    <li>Cole este endereço e confirme:
+<section class="card path" id="claude-web" aria-labelledby="t-claude-web">
+  <div class="path-head"><h2 id="t-claude-web" tabindex="-1">Claude no navegador</h2><button type="button" class="swap press" data-swap>Trocar de caminho</button></div>
+  <div class="need"><span><b>Precisa:</b> plano Claude Pro ou superior (o Claude Code na web não existe no plano grátis)</span><span><b>Onde:</b> claude.ai no navegador, sem instalar nada</span></div>
+  <p class="note lang">Os nomes abaixo são os do Claude em português, como nas imagens. Se o seu Claude estiver em inglês, os botões ficam no mesmo lugar das imagens.</p>
+  <div class="prog" data-prog><div class="prog-bar"><span></span></div><span class="prog-txt"></span></div>
+  <ol class="steps" data-progress>
+    <li>Abra <a href="https://claude.ai/plugins" target="_blank" rel="noopener">claude.ai/plugins</a>, clique em <span class="btn-path">Adicionar</span>, no canto superior direito, e escolha <span class="btn-path">Adicionar marketplace</span>.
+      <figure class="tela"><button type="button" class="zoom"><img src="img/telas/web-1-adicionar-marketplace.png" loading="lazy" alt="Página Plugins do Claude com o menu Adicionar aberto e a opção Adicionar marketplace destacada" onerror="this.closest('figure').remove()"></button><figcaption>O menu Adicionar aberto, com Adicionar marketplace destacado.</figcaption></figure>
+    </li>
+    <li>Na janela <b>Adicionar marketplace</b>, escolha <span class="btn-path">Adicionar de um repositório</span>.
+      <figure class="tela"><button type="button" class="zoom"><img src="img/telas/web-2-de-um-repositorio.png" loading="lazy" alt="Janela Adicionar marketplace com duas opções e Adicionar de um repositório destacada" onerror="this.closest('figure').remove()"></button><figcaption>A janela com as duas opções. Escolha Adicionar de um repositório.</figcaption></figure>
+    </li>
+    <li>No campo <span class="btn-path">URL</span>, digite este endereço e aperte Enter:
       <div class="cmd"><code>omarcusdev/skills-primeira-venda</code><button class="copy">Copiar</button></div>
+      Deixe <b>Sincronizar automaticamente</b> ligado e clique em <span class="btn-path">Sincronizar</span>.
+      <figure class="tela"><button type="button" class="zoom"><img src="img/telas/web-3-sincronizar.png" loading="lazy" alt="Janela Adicionar marketplace com omarcusdev/skills-primeira-venda no campo URL, Sincronizar automaticamente ligado e o botão Sincronizar destacado" onerror="this.closest('figure').remove()"></button><figcaption>O endereço no campo URL, Sincronizar automaticamente ligado e o botão Sincronizar.</figcaption></figure>
     </li>
-    <li>Na lista que aparece, abra <b>skills-primeira-venda</b> e clique em <span class="btn-path">Install</span> (em algumas telas o botão se chama <span class="btn-path">Add</span>).</li>
+    <li>Em <b>Descobrir</b> aparece <b>Skills da primeira venda</b>. Abra e clique em <span class="btn-path">Adicionar</span>: o botão vira <span class="btn-path">Adicionado</span>.
+      <figure class="tela"><button type="button" class="zoom"><img src="img/telas/web-4-adicionar-plugin.png" loading="lazy" alt="Página do plugin Skills da primeira venda com a lista das skills e o botão Adicionar destacado" onerror="this.closest('figure').remove()"></button><figcaption>A página do plugin, com o botão Adicionar no canto direito.</figcaption></figure>
+    </li>
+    <li>Abra <a href="https://claude.ai/code" target="_blank" rel="noopener">claude.ai/code</a>. No botão <span class="btn-path">Repositório</span>, na barra de baixo, escolha <span class="btn-path">Sem repositório</span>.
+      <figure class="tela"><button type="button" class="zoom"><img src="img/telas/web-5-sem-repositorio.png" loading="lazy" alt="Claude Code na web com o menu do botão Repositório aberto e a opção Sem repositório destacada" onerror="this.closest('figure').remove()"></button><figcaption>O menu do botão Repositório, com Sem repositório destacado.</figcaption></figure>
+      Escreva o pedido do seu jeito, por exemplo "quero montar a presença do meu negócio do zero", e envie.
+    </li>
+    <li>A skill começa sozinha: faz perguntas curtas e grava os arquivos do negócio (<b>ficha.md</b>, <b>estado.md</b>, <b>decisoes.md</b>), que aparecem no painel <span class="btn-path">Saídas</span> da sessão.
+      <figure class="tela"><button type="button" class="zoom"><img src="img/telas/web-6-saidas.png" loading="lazy" alt="Sessão do Claude Code na web com os arquivos ficha.md, estado.md e decisoes.md destacados no painel Saídas" onerror="this.closest('figure').remove()"></button><figcaption>Os arquivos do negócio no painel Saídas, à direita.</figcaption></figure>
+    </li>
   </ol>
-  <div class="done">✅ Pronto. As skills ficam na sua conta e valem no chat, no Cowork e no Claude Code, sem instalar de novo. Pule para <a href="#primeiro-pedido">o primeiro pedido</a>.</div>
-
-  <h3>Para o melhor resultado: use o Cowork</h3>
-  <p>No chat comum, o Claude entrega os arquivos do seu negócio (a ficha, o plano, os textos) para você baixar. No <b>Cowork</b>, que fica dentro do app do Claude no computador, ele guarda tudo numa pasta sua e consegue abrir sites para pesquisar.</p>
-  <ol class="steps">
-    <li>Baixe o app do Claude para Mac ou Windows em <a href="https://claude.ai/download" target="_blank" rel="noopener">claude.ai/download</a> e entre com a sua conta.</li>
-    <li>Crie uma pasta para o negócio, por exemplo <b>Meu Negócio</b> dentro de Documentos.</li>
-    <li>No campo de mensagem, escolha <span class="btn-path">Cowork</span>, conecte a pasta que você criou e faça o seu pedido.</li>
-  </ol>
-  <p class="note">Os nomes dos botões estão em inglês porque é assim que aparecem na maioria das contas. Se o seu Claude estiver em português, procure o botão equivalente no mesmo lugar.</p>
+  <div class="done">✅ Pronto. As skills ficam na sua conta. Mais ideias de pedido em <a href="#primeiro-pedido">o primeiro pedido</a>.</div>
+  <div class="note"><b>Para continuar outro dia</b>, volte nesta mesma sessão pela barra lateral do claude.ai/code: os arquivos do negócio ficam nela. Uma sessão nova começa sem eles.</div>
+  <p class="espera-atalho" hidden><a href="#lista-espera" data-espera-atalho>Quer ser avisado do próximo material? →</a></p>
 </section>
 
-<section class="card" id="claude-gratis">
-  <h2>Claude grátis</h2>
-  <div class="need"><span><b>Precisa:</b> conta grátis no claude.ai</span><span><b>Onde:</b> claude.ai no navegador ou o app no computador</span></div>
-  <p>No plano grátis não dá para instalar tudo de uma vez: você envia uma skill por vez. Leva alguns minutos.</p>
-  <ol class="steps">
-    <li>Ligue a opção de criar arquivos: abra <span class="btn-path">Settings</span>, depois <span class="btn-path">Capabilities</span>, e ligue <span class="btn-path">Code execution and file creation</span> (em algumas contas o nome é <span class="btn-path">Create and edit files</span>).</li>
-    <li>Baixe os arquivos das skills. Cada um é um <b>.zip</b>; <b>não abra</b>, envie do jeito que baixou. Comece por <b>montar-negocio</b>: ela organiza o caminho e diz qual skill usar depois.
-      <div class="skills" id="lista-zips"></div>
-    </li>
-    <li>Abra <a href="https://claude.ai/customize/skills" target="_blank" rel="noopener">claude.ai/customize/skills</a>, clique em <span class="btn-path">+</span>, depois <span class="btn-path">Create skill</span> e <span class="btn-path">Upload a skill</span>. Escolha o arquivo .zip.</li>
-    <li>Repita o passo 3 para cada arquivo que você baixou.</li>
-  </ol>
-  <div class="done">✅ Pronto. Pule para <a href="#primeiro-pedido">o primeiro pedido</a>.</div>
-  <div class="note warn"><b>O que muda no grátis:</b>
-    <ul class="dots">
-      <li>Os arquivos do negócio aparecem na conversa para baixar. Guarde a <b>ficha.md</b> e anexe na próxima conversa, para o Claude lembrar do seu negócio.</li>
-      <li>O chat pesquisa na internet, mas não abre sites para conferir perfis por você.</li>
-      <li>O plano grátis tem limite de uso. A pesquisa completa de preços gasta mais; a skill avisa antes.</li>
-      <li>Quando sair uma versão nova das skills, é preciso enviar os arquivos de novo.</li>
-    </ul>
-  </div>
-</section>
-
-<section class="card" id="chatgpt">
-  <h2>ChatGPT</h2>
-  <div class="need"><span><b>Precisa:</b> ChatGPT Plus ou superior</span><span><b>Onde:</b> computador (Mac ou Windows)</span></div>
-  <p>Na conversa comum do ChatGPT ainda não existe um jeito garantido de instalar skills nos planos pessoais. O caminho que funciona é o <b>Codex</b>, que já vem no seu plano do ChatGPT e trabalha numa pasta do seu computador. Ele usa o Terminal, mas é só copiar e colar.</p>
-  <ol class="steps">
-    <li>Abra o Terminal. <b>No Mac:</b> aperte <code>Cmd</code> + <code>Espaço</code>, digite <b>Terminal</b> e aperte Enter. <b>No Windows:</b> clique no Iniciar, digite <b>PowerShell</b> e aperte Enter.</li>
-    <li>Instale o Codex. Copie a linha do seu computador, cole no Terminal e aperte Enter:
-      <div class="cmd"><span class="os">MAC</span><button class="copy">Copiar</button><code>curl -fsSL https://chatgpt.com/codex/install.sh | sh</code></div>
-      <div class="cmd"><span class="os">WINDOWS</span><button class="copy">Copiar</button><code>powershell -ExecutionPolicy ByPass -c "irm https://chatgpt.com/codex/install.ps1 | iex"</code></div>
-      Quando terminar, feche o Terminal e abra de novo.
-    </li>
-    <li>Coloque as skills. Cole uma linha de cada vez e aperte Enter:
-      <div class="cmd"><button class="copy">Copiar</button><code>codex plugin marketplace add omarcusdev/skills-primeira-venda</code></div>
-      <div class="cmd"><button class="copy">Copiar</button><code>codex plugin add skills-primeira-venda@omarcusdev</code></div>
-    </li>
-    <li>Crie a pasta do negócio e entre nela:
-      <div class="cmd"><span class="os">MAC</span><button class="copy">Copiar</button><code>mkdir -p ~/Documents/meu-negocio && cd ~/Documents/meu-negocio</code></div>
-      <div class="cmd"><span class="os">WINDOWS</span><button class="copy">Copiar</button><code>mkdir $HOME\Documents\meu-negocio; cd $HOME\Documents\meu-negocio</code></div>
-    </li>
-    <li>Abra o Codex, escolha <span class="btn-path">Sign in with ChatGPT</span> e entre com a sua conta do ChatGPT:
-      <div class="cmd"><button class="copy">Copiar</button><code>codex</code></div>
-    </li>
-  </ol>
-  <div class="done">✅ Pronto. Escreva o seu pedido ali mesmo, como numa conversa. Veja <a href="#primeiro-pedido">o primeiro pedido</a>.</div>
-  <div class="note"><b>Da próxima vez</b>, abra o Terminal e cole a linha do seu computador:
-    <div class="cmd"><span class="os">MAC</span><button class="copy">Copiar</button><code>cd ~/Documents/meu-negocio && codex</code></div>
-    <div class="cmd"><span class="os">WINDOWS</span><button class="copy">Copiar</button><code>cd $HOME\Documents\meu-negocio; codex</code></div>
-  </div>
-</section>
-
-<section class="card" id="terminal">
-  <h2>Claude Code</h2>
+<section class="card path" id="terminal" aria-labelledby="t-terminal">
+  <div class="path-head"><h2 id="t-terminal" tabindex="-1">Claude Code no computador</h2><button type="button" class="swap press" data-swap>Trocar de caminho</button></div>
   <div class="need"><span><b>Precisa:</b> plano Pro, Max ou superior do Claude</span><span><b>Onde:</b> computador (Mac ou Windows)</span></div>
   <p>Se você já usa o Claude Code, pule para o passo 4.</p>
-  <ol class="steps">
+  <div class="prog" data-prog><div class="prog-bar"><span></span></div><span class="prog-txt"></span></div>
+  <ol class="steps" data-progress>
     <li>Abra o Terminal. <b>No Mac:</b> aperte <code>Cmd</code> + <code>Espaço</code>, digite <b>Terminal</b> e aperte Enter. <b>No Windows:</b> clique no Iniciar, digite <b>PowerShell</b> e aperte Enter.</li>
     <li>Instale o Claude Code. Copie a linha do seu computador, cole e aperte Enter:
       <div class="cmd"><span class="os">MAC</span><button class="copy">Copiar</button><code>curl -fsSL https://claude.ai/install.sh | bash</code></div>
@@ -231,6 +544,7 @@ footer a { font-weight: 700; }
       <div class="cmd"><button class="copy">Copiar</button><code>/plugin marketplace add omarcusdev/skills-primeira-venda</code></div>
       <div class="cmd"><button class="copy">Copiar</button><code>/plugin install skills-primeira-venda@omarcusdev</code></div>
       Se ele perguntar onde instalar, escolha <span class="btn-path">Install for you (user scope)</span>. Se pedir, rode <code>/reload-plugins</code>.
+      <figure class="tela"><button type="button" class="zoom"><img src="img/telas/claude-code-terminal.png" loading="lazy" alt="Terminal com o Claude Code aberto, mostrando os dois comandos /plugin e o resultado da instalação" onerror="this.closest('figure').remove()"></button><figcaption>Os dois comandos dentro do Claude Code e o resultado.</figcaption></figure>
     </li>
   </ol>
   <div class="done">✅ Pronto. Agora é só pedir. Veja <a href="#primeiro-pedido">o primeiro pedido</a>.</div>
@@ -238,61 +552,177 @@ footer a { font-weight: 700; }
     <div class="cmd"><span class="os">MAC</span><button class="copy">Copiar</button><code>cd ~/Documents/meu-negocio && claude</code></div>
     <div class="cmd"><span class="os">WINDOWS</span><button class="copy">Copiar</button><code>cd $HOME\Documents\meu-negocio; claude</code></div>
   </div>
-  <p class="note">Não quer usar o Terminal? Com o plano pago, o jeito mais simples é o <a href="#claude-pago">Cowork, no app do Claude</a>: instala com cliques e também guarda os arquivos numa pasta sua.</p>
+  <p class="note">Não quer usar o Terminal? Com o mesmo plano, o jeito mais simples é o <a href="#claude-web">Claude no navegador</a>: só cliques, sem instalar nada no computador.</p>
+  <p class="espera-atalho" hidden><a href="#lista-espera" data-espera-atalho>Quer ser avisado do próximo material? →</a></p>
 </section>
 
-<section class="card" id="qual">
-  <h2>Qual jeito funciona melhor?</h2>
-  <table class="cmp">
-    <thead><tr><th>Onde</th><th>Guarda os arquivos numa pasta sua</th><th>Instala tudo de uma vez</th></tr></thead>
-    <tbody>
-      <tr><td>Claude Cowork (pago)</td><td class="y">Sim</td><td class="y">Sim</td></tr>
-      <tr><td>Claude Code (pago)</td><td class="y">Sim</td><td class="y">Sim</td></tr>
-      <tr><td>Codex (ChatGPT Plus ou superior)</td><td class="y">Sim</td><td class="y">Sim</td></tr>
-      <tr><td>Claude no chat, pago</td><td class="n">Não, você baixa</td><td class="y">Sim</td></tr>
-      <tr><td>Claude no chat, grátis</td><td class="n">Não, você baixa</td><td class="n">Não, uma por vez</td></tr>
-    </tbody>
-  </table>
+<section class="card path" id="chatgpt" aria-labelledby="t-chatgpt">
+  <div class="path-head"><h2 id="t-chatgpt" tabindex="-1">ChatGPT (Codex)</h2><button type="button" class="swap press" data-swap>Trocar de caminho</button></div>
+  <div class="need"><span><b>Precisa:</b> ChatGPT Plus ou superior</span><span><b>Onde:</b> computador (Mac ou Windows)</span></div>
+  <p>Na conversa comum do ChatGPT ainda não existe um jeito garantido de instalar skills nos planos pessoais. O caminho que funciona é o <b>Codex</b>, que já vem no seu plano do ChatGPT e trabalha numa pasta do seu computador. Ele usa o Terminal, mas é só copiar e colar.</p>
+  <div class="prog" data-prog><div class="prog-bar"><span></span></div><span class="prog-txt"></span></div>
+  <ol class="steps" data-progress>
+    <li>Abra o Terminal. <b>No Mac:</b> aperte <code>Cmd</code> + <code>Espaço</code>, digite <b>Terminal</b> e aperte Enter. <b>No Windows:</b> clique no Iniciar, digite <b>PowerShell</b> e aperte Enter.</li>
+    <li>Instale o Codex. Copie a linha do seu computador, cole no Terminal e aperte Enter:
+      <div class="cmd"><span class="os">MAC</span><button class="copy">Copiar</button><code>curl -fsSL https://chatgpt.com/codex/install.sh | sh</code></div>
+      <div class="cmd"><span class="os">WINDOWS</span><button class="copy">Copiar</button><code>powershell -ExecutionPolicy ByPass -c "irm https://chatgpt.com/codex/install.ps1 | iex"</code></div>
+      Quando terminar, feche o Terminal e abra de novo.
+    </li>
+    <li>Coloque as skills. Cole uma linha de cada vez e aperte Enter:
+      <div class="cmd"><button class="copy">Copiar</button><code>codex plugin marketplace add omarcusdev/skills-primeira-venda</code></div>
+      <div class="cmd"><button class="copy">Copiar</button><code>codex plugin add skills-primeira-venda@omarcusdev</code></div>
+      <figure class="tela"><button type="button" class="zoom"><img src="img/telas/codex-terminal.png" loading="lazy" alt="Terminal com os dois comandos do Codex digitados e o resultado da instalação das skills" onerror="this.closest('figure').remove()"></button><figcaption>Os dois comandos no Terminal e o que aparece depois.</figcaption></figure>
+    </li>
+    <li>Crie a pasta do negócio e entre nela:
+      <div class="cmd"><span class="os">MAC</span><button class="copy">Copiar</button><code>mkdir -p ~/Documents/meu-negocio && cd ~/Documents/meu-negocio</code></div>
+      <div class="cmd"><span class="os">WINDOWS</span><button class="copy">Copiar</button><code>mkdir $HOME\Documents\meu-negocio; cd $HOME\Documents\meu-negocio</code></div>
+    </li>
+    <li>Abra o Codex, escolha <span class="btn-path">Sign in with ChatGPT</span> e entre com a sua conta do ChatGPT:
+      <div class="cmd"><button class="copy">Copiar</button><code>codex</code></div>
+    </li>
+  </ol>
+  <div class="done">✅ Pronto. Escreva o seu pedido ali mesmo, como numa conversa. Veja <a href="#primeiro-pedido">o primeiro pedido</a>.</div>
+  <div class="note"><b>Da próxima vez</b>, abra o Terminal e cole a linha do seu computador:
+    <div class="cmd"><span class="os">MAC</span><button class="copy">Copiar</button><code>cd ~/Documents/meu-negocio && codex</code></div>
+    <div class="cmd"><span class="os">WINDOWS</span><button class="copy">Copiar</button><code>cd $HOME\Documents\meu-negocio; codex</code></div>
+  </div>
+  <p class="espera-atalho" hidden><a href="#lista-espera" data-espera-atalho>Quer ser avisado do próximo material? →</a></p>
 </section>
 
-<section class="card" id="primeiro-pedido">
+<section class="card rv" id="primeiro-pedido">
   <h2>O primeiro pedido</h2>
   <p>Escreva do seu jeito, como mandaria para alguém no WhatsApp. Alguns exemplos:</p>
   <div class="ask">
-    <div>"quero montar a presença do meu salão do zero"</div>
-    <div>"vê o que já tem do meu pet shop e me diz o que falta"</div>
-    <div>"quero vender mais sem pagar anúncio"</div>
-    <div>"escreve as respostas do WhatsApp da minha barbearia"</div>
+    <div class="rv">"quero montar a presença do meu salão do zero"</div>
+    <div class="rv">"vê o que já tem do meu pet shop e me diz o que falta"</div>
+    <div class="rv">"quero vender mais sem pagar anúncio"</div>
+    <div class="rv">"escreve as respostas do WhatsApp da minha barbearia"</div>
   </div>
-  <p style="margin-top:14px">A IA vai fazer poucas perguntas por vez sobre o seu negócio e guardar as respostas numa ficha. Nos jeitos com pasta (Cowork, Claude Code e Codex), a ficha fica salva e a próxima conversa continua de onde parou. No chat, baixe a ficha e anexe na conversa seguinte.</p>
+  <p style="margin-top:14px">A IA vai fazer poucas perguntas por vez sobre o seu negócio e guardar as respostas numa ficha. No Claude Code e no Codex, a ficha fica numa pasta sua e a próxima conversa continua de onde parou. No Claude no navegador, ela fica na sessão: para continuar, volte na mesma sessão.</p>
 </section>
 
-<section class="card" id="duvidas">
+<section class="card espera rv" id="lista-espera" aria-labelledby="t-espera" hidden>
+  <div class="sticker" aria-hidden="true"><svg viewBox="0 0 100 100"><path d="M50 4 C55 38 62 45 96 50 C62 55 55 62 50 96 C45 62 38 55 4 50 C38 45 45 38 50 4Z" fill="#fbfdfc" stroke="#0b3324" stroke-width="4" stroke-linejoin="round"/></svg><span>Vem<br>aí</span></div>
+  <h2 id="t-espera">Quer ser avisado do próximo material?</h2>
+  <p class="lead-in">Deixe o seu WhatsApp e você fica sabendo quando sair. Leva 10 segundos.</p>
+  <form class="espera-form" id="espera-form" novalidate>
+    <label class="field">WhatsApp<input name="whatsapp" type="tel" inputmode="tel" maxlength="20" autocomplete="tel" placeholder="DDD + número" required aria-describedby="espera-err"></label>
+    <label class="field"><span>Seu nome <span class="opt-t">(opcional)</span></span><input name="nome" maxlength="40" autocomplete="given-name"></label>
+    <fieldset class="perfil wide" id="espera-perfil">
+      <legend>Você é:</legend>
+      <div class="opts">
+        <label class="pill"><input type="radio" name="perfil" value="dono"><span>Dono de negócio</span></label>
+        <label class="pill"><input type="radio" name="perfil" value="dev"><span>Dev ou freelancer</span></label>
+        <label class="pill"><input type="radio" name="perfil" value="outro"><span>Outro</span></label>
+      </div>
+    </fieldset>
+    <label class="check wide"><input type="checkbox" name="aceita" required> Quero receber no WhatsApp novidades das skills, do oZap e dos materiais do @omarcusdev (dá para sair quando quiser).</label>
+    <p class="err wide" id="espera-err" role="alert"></p>
+    <div class="espera-send wide">
+      <button type="submit" class="go-btn press" id="espera-go">Quero ser avisado</button>
+      <p class="small"><a href="#seus-dados">Seus dados</a>: o que guardamos e como pedir para apagar.</p>
+    </div>
+  </form>
+  <div class="espera-ok" id="espera-ok" tabindex="-1" hidden>
+    <span class="stamp" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M7 16.5l6 6 12-13"/></svg><i style="--a:0deg"></i><i style="--a:45deg"></i><i style="--a:90deg"></i><i style="--a:135deg"></i><i style="--a:180deg"></i><i style="--a:225deg"></i><i style="--a:270deg"></i><i style="--a:315deg"></i></span>
+    <strong class="ok-t" id="espera-ok-t">Pronto, você está na lista!</strong>
+    <p id="espera-ok-txt">Quando o próximo material sair, o aviso chega no seu WhatsApp.</p>
+    <button type="button" class="linkish" id="espera-outro">Enviar outro número</button>
+  </div>
+</section>
+
+<section class="card rv" id="duvidas">
   <h2>Deu algum problema?</h2>
-  <details><summary>Não acho o "Customize" ou o "Plugins"</summary><p>Os plugins só aparecem nos planos pagos. Se a sua conta é grátis, siga a parte <a href="#claude-gratis">Claude grátis</a>. Se é paga, atualize o app ou use o claude.ai no navegador.</p></details>
+  <details><summary>Não acho o "Adicionar marketplace"</summary><p>Abra <a href="https://claude.ai/plugins" target="_blank" rel="noopener">claude.ai/plugins</a> já entrando na sua conta. O botão Adicionar fica no canto superior direito; Adicionar marketplace é a última opção do menu que abre. Os plugins são dos planos pagos: no plano grátis do Claude essa página não serve.</p></details>
+  <details><summary>O plugin não aparece em claude.ai/code</summary><p>Recarregue a página. Depois confira em claude.ai/plugins que Skills da primeira venda está como Adicionado; se o botão ainda diz Adicionar, clique nele e recarregue o claude.ai/code.</p></details>
+  <details><summary>A skill não começou</summary><p>Peça de novo, com estas palavras: "quero montar o meu negócio". Se ainda assim não começar, peça pelo nome: "usa a skill montar-negocio".</p></details>
+  <details><summary>Perdi os arquivos do negócio</summary><p>No Claude no navegador, os arquivos ficam na sessão em que você começou. Volte nela pela barra lateral do claude.ai/code e veja o painel Saídas. Uma sessão nova começa sem eles. No Claude Code e no Codex, eles estão na pasta meu-negocio, em Documentos.</p></details>
   <details><summary>O Terminal diz "command not found" ou "não é reconhecido"</summary><p>Feche o Terminal e abra de novo depois de instalar. Se continuar, rode a linha de instalação mais uma vez e espere terminar: ela não mostra barra de progresso.</p></details>
-  <details><summary>O upload do .zip deu erro no Claude grátis</summary><p>Envie o arquivo do jeito que baixou, sem abrir nem renomear. E confira se a opção do passo 1 (criar arquivos) está ligada.</p></details>
-  <details><summary>A IA não usa as skills</summary><p>Comece uma conversa nova depois de instalar. Se mesmo assim não usar, peça pelo nome: "usa a skill montar-negocio".</p></details>
+  <details><summary>No Claude Code ou no Codex, a IA não usa as skills</summary><p>Comece uma conversa nova depois de instalar. Se mesmo assim não usar, peça pelo nome: "usa a skill montar-negocio".</p></details>
   <details><summary>A IA pediu senha, CPF ou cartão</summary><p>Não digite. As skills não pedem esses dados; essas partes você faz direto no Instagram, no WhatsApp ou no banco. Se a IA pedir, responda que você mesmo faz.</p></details>
 </section>
 
-<section class="card">
+<section class="card rv" id="perguntas">
   <h2>Perguntas comuns</h2>
-  <details><summary>Quanto custa?</summary><p>As skills são grátis. O que pode custar é o seu plano do Claude ou do ChatGPT, o chip do número do negócio e, só se você quiser, anúncio. A IA avisa antes de qualquer coisa que tenha custo.</p></details>
+  <details><summary>Quanto custa?</summary><p>As skills são grátis. Para usar, você precisa de um plano pago: Claude Pro ou superior, ou ChatGPT Plus ou superior. Fora isso, pode custar o chip do número do negócio e, só se você quiser, anúncio. A IA avisa antes de qualquer coisa que tenha custo.</p></details>
+  <details><summary>Não pago nenhum plano. Dá para usar?</summary><p>Com franqueza: não. Os três jeitos desta página precisam de um plano pago. O Claude no navegador e o Claude Code precisam do Claude Pro ou superior; o Codex precisa do ChatGPT Plus ou superior. Se for assinar um, o Claude Pro é o mais simples: tudo pelo navegador, sem instalar nada.</p></details>
   <details><summary>Preciso saber programar?</summary><p>Não. Os comandos desta página são para copiar e colar, e o resto é conversa.</p></details>
-  <details><summary>Meus dados vão para algum lugar?</summary><p>As skills são só instruções; elas não mandam nada para fora sozinhas. Os arquivos do seu negócio ficam na sua pasta ou na sua conversa. Nada é publicado ou enviado sem o seu ok.</p></details>
-  <details><summary>Dá para usar no celular?</summary><p>No Claude com plano pago, depois de instaladas no computador, as skills também aparecem no app do celular. Para instalar, use o computador.</p></details>
+  <details><summary>Meus dados vão para algum lugar?</summary><p>As skills são só instruções; elas não mandam nada para fora sozinhas. Os arquivos do seu negócio ficam na sua pasta ou na sua sessão do Claude. Nada é publicado ou enviado sem o seu ok. O chat de dúvidas desta página é outra coisa: veja <a href="#seus-dados">Seus dados</a>, no fim da página.</p></details>
+  <details><summary>Dá para usar no celular?</summary><p>Dá para ler esta página no celular, mas instale pelo computador: é bem mais fácil. Depois de adicionado, o plugin fica na sua conta do Claude.</p></details>
 </section>
+
+<section class="quem rv" id="quem-fez" aria-labelledby="t-quem">
+  <h2 id="t-quem" class="sr-only">Quem fez</h2>
+  <a class="quem-card" href="https://instagram.com/omarcusdev" target="_blank" rel="noopener" data-ig="imagem"><img src="img/seguir.jpg" width="1760" height="1540" loading="lazy" alt="Quem fez: @omarcusdev, Marcus Gonçalves, quase 23 mil seguidores no Instagram, onde mostra em vídeos curtos como usa o Claude Code num negócio de verdade. Três reels: Automatizei um negócio de bairro usando Claude Code (43 mil visualizações), Deixei a IA fazer meus anúncios (10 mil) e Anúncio 100% IA funciona? (6,2 mil). Abre o perfil no Instagram."></a>
+  <a class="go-btn press quem-go" href="https://instagram.com/omarcusdev" target="_blank" rel="noopener" data-ig="botao">Seguir @omarcusdev no Instagram<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></a>
+</section>
+
+</main>
 
 <footer>
   <p>Código aberto, licença MIT: <a href="https://github.com/omarcusdev/skills-primeira-venda">github.com/omarcusdev/skills-primeira-venda</a></p>
-  <p style="margin-top:6px">Feito por <a href="https://instagram.com/omarcusdev" target="_blank" rel="noopener">@omarcusdev</a>.</p>
+  <p style="margin-top:6px">Feito por <a href="https://instagram.com/omarcusdev" target="_blank" rel="noopener" data-ig="rodape">@omarcusdev</a>.</p>
+  <details class="dados" id="seus-dados">
+    <summary>Seus dados</summary>
+    <p>As skills não mandam nada para ninguém. Esta página e o chat de dúvidas guardam o seguinte:</p>
+    <ul class="dots">
+      <li><b>Cliques, sem nome:</b> que você abriu a página, de que site veio, se está no celular ou no computador, o caminho que escolheu, os comandos que copiou e as imagens que ampliou. Eles ficam ligados a um código aleatório guardado no seu navegador. O seu IP não é guardado: só uma versão embaralhada (hash), usada para barrar abuso.</li>
+      <li><b>Se você usar o chat:</b> o seu nome, o que você é (dono de negócio, dev ou freelancer, outro), o tipo de negócio e o WhatsApp se você contar, as perguntas que você faz e as respostas da IA. Se aparecer chave, CPF, cartão, e-mail ou telefone no meio do texto, ele é escondido antes de guardar. Tudo fica ligado ao mesmo código, ou seja, também aos cliques que você fez antes nesta página.</li>
+      <li><b>Se você entrar na lista de espera:</b> o seu WhatsApp, o que você é (dono de negócio, dev ou freelancer, outro) e o nome, se você der. Fica ligado ao mesmo código.</li>
+      <li><b>Para quê:</b> responder as suas dúvidas, avisar do próximo material e melhorar esta página. Mensagem no WhatsApp só se você pedir: marcando a caixa da lista de espera ou tocando em "Sim, quero receber" no chat (novidades das skills, do oZap e dos materiais do @omarcusdev). Para sair, é só responder pedindo.</li>
+      <li><b>Por quanto tempo:</b> 180 dias. Depois disso, apagamos.</li>
+      <li><b>Para apagar antes:</b> mande uma mensagem no Instagram <a href="https://instagram.com/omarcusdev" target="_blank" rel="noopener">@omarcusdev</a> pedindo para apagar. A conversa também fica salva no seu navegador; "Apagar conversa deste navegador", no chat, tira ela daí e troca o código, e os próximos cliques não se ligam mais aos anteriores.</li>
+    </ul>
+    <p>Esta página não usa cookies de terceiros nem anúncios.</p>
+  </details>
 </footer>
-
 </div>
+
+<dialog class="zoom-dlg" id="zoom-dlg" aria-label="Imagem ampliada">
+  <div class="frame">
+    <div class="scroller"><img id="zoom-img" alt=""></div>
+    <p id="zoom-cap"></p>
+    <button type="button" class="x press" id="zoom-x" aria-label="Fechar imagem">×</button>
+  </div>
+</dialog>
+
+<div class="chat-panel" id="chat-panel" role="dialog" aria-labelledby="chat-title" hidden>
+  <div class="chat-head">
+    <div><strong id="chat-title">Pergunte à IA</strong><span class="sub" id="chat-sub">Dúvidas sobre instalar e usar as skills</span></div>
+    <button type="button" class="chat-x" id="chat-x" aria-label="Fechar o chat">×</button>
+  </div>
+  <form class="chat-lead" id="chat-lead" novalidate>
+    <p class="intro">Antes de começar, conte rapidinho quem é você. Assim a resposta já vem pensada para você.</p>
+    <label class="field">Seu nome<input name="nome" required maxlength="40" autocomplete="given-name"></label>
+    <fieldset class="perfil" id="chat-perfil">
+      <legend>Você é:</legend>
+      <div class="opts">
+        <label class="pill"><input type="radio" name="perfil" value="dono"><span>Dono de negócio</span></label>
+        <label class="pill"><input type="radio" name="perfil" value="dev"><span>Dev ou freelancer</span></label>
+        <label class="pill"><input type="radio" name="perfil" value="outro"><span>Outro</span></label>
+      </div>
+    </fieldset>
+    <p class="err" id="lead-err" role="alert"></p>
+    <button type="submit" class="go-btn press">Começar conversa</button>
+    <p class="small"><a href="#seus-dados" data-close-chat>Seus dados</a>: o que o chat guarda e como pedir para apagar.</p>
+  </form>
+  <div class="chat-talk" id="chat-talk" hidden>
+    <div class="chat-log" id="chat-log" role="log" aria-live="polite"></div>
+    <p class="sr-only" id="chat-announce" aria-live="polite"></p>
+    <div class="chat-sugs" id="chat-sugs"></div>
+    <form class="chat-form" id="chat-form">
+      <label class="sr-only" for="chat-input">Sua dúvida</label>
+      <textarea id="chat-input" rows="1" maxlength="1500" placeholder="Escreva sua dúvida"></textarea>
+      <button type="submit" class="press" id="chat-send">Enviar</button>
+    </form>
+    <p class="chat-foot"><span>É uma IA e pode errar.</span><button type="button" class="linkish" id="chat-clear">Apagar conversa deste navegador</button></p>
+  </div>
+</div>
+<button type="button" class="chat-fab press" id="chat-fab" aria-expanded="false" aria-controls="chat-panel" hidden><span class="dot" aria-hidden="true"></span>Dúvida? Pergunte à IA</button>
+
 <script>
 (function () {
-  var REPO = "https://github.com/omarcusdev/skills-primeira-venda";
+  "use strict";
   var SKILLS = [
     ["montar-negocio", "Organiza tudo", true],
     ["pesquisa-e-plano", "Preço e concorrentes"],
@@ -304,40 +734,944 @@ footer a { font-weight: 700; }
     ["anuncios", "Anúncio, se quiser"],
     ["acompanhar-vendas", "Vendas da semana"]
   ];
-  var list = document.getElementById("lista-zips");
-  SKILLS.forEach(function (s) {
-    var a = document.createElement("a");
-    a.href = REPO + "/releases/latest/download/" + s[0] + ".zip";
-    if (s[2]) a.className = "first";
-    a.innerHTML = "<span><b>" + s[0] + "</b><br>" + s[1] + "</span><span>Baixar .zip</span>";
-    list.appendChild(a);
-  });
+  var PATHS = ["claude-web", "terminal", "chatgpt"];
+  var PATH_NAMES = { "claude-web": "Claude no navegador", "terminal": "Claude Code no computador", "chatgpt": "ChatGPT (Codex)" };
+  // Paths removed on 18/11/2026; links already shared (videos, posts) must still land somewhere useful.
+  var OLD_PATHS = { "claude-pago": "claude-web", "claude-gratis": "claude-web" };
+  function resolvePath(id) { return OLD_PATHS[id] || id; }
+  var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var params = new URLSearchParams(location.search);
+  var isMock = params.get("chat") === "mock";
+  var metaApi = document.querySelector('meta[name="chat-api"]');
+  var apiBase = ((metaApi && metaApi.getAttribute("content")) || "").trim().replace(/\/+$/, "");
+  var chatEnabled = isMock || apiBase !== "";
+  var currentPath = null;
 
-  function copyText(text, button) {
-    var done = function () {
-      var label = button.textContent;
-      button.textContent = "Copiado!";
-      button.classList.add("ok");
-      setTimeout(function () { button.textContent = label; button.classList.remove("ok"); }, 1600);
-    };
-    if (navigator.clipboard && window.isSecureContext) {
-      navigator.clipboard.writeText(text).then(done, function () { fallback(text); done(); });
-    } else { fallback(text); done(); }
+  var $ = function (sel, root) { return (root || document).querySelector(sel); };
+  var $$ = function (sel, root) { return Array.prototype.slice.call((root || document).querySelectorAll(sel)); };
+
+  function readStore(key, fallback) {
+    try { var raw = localStorage.getItem(key); return raw ? JSON.parse(raw) : fallback; } catch (e) { return fallback; }
   }
-  function fallback(text) {
+  function writeStore(key, value) {
+    try { localStorage.setItem(key, JSON.stringify(value)); } catch (e) {}
+  }
+  function removeStore(key) {
+    try { localStorage.removeItem(key); } catch (e) {}
+  }
+
+  function makeUuid() {
+    if (window.crypto && crypto.randomUUID) return crypto.randomUUID();
+    return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function (c) {
+      var r = Math.random() * 16 | 0;
+      return (c === "x" ? r : (r & 3 | 8)).toString(16);
+    });
+  }
+  function storeSessionId(id) {
+    try { localStorage.setItem("spv-sid", id); } catch (e) {}
+    return id;
+  }
+  var sessionId = (function () {
+    try {
+      var saved = localStorage.getItem("spv-sid");
+      if (saved) return saved;
+    } catch (e) {}
+    return storeSessionId(makeUuid());
+  })();
+
+  /* ---------- Events ---------- */
+  function track(tipo, dados) {
+    var body = JSON.stringify({ session_id: sessionId, tipo: tipo, dados: dados || {} });
+    if (isMock) { if (window.console) console.debug("[evento]", tipo, dados || {}); return; }
+    if (!apiBase) return;
+    var url = apiBase + "/evento";
+    var queued = false;
+    try { queued = navigator.sendBeacon && navigator.sendBeacon(url, new Blob([body], { type: "application/json" })); } catch (e) { queued = false; }
+    if (!queued) {
+      try { fetch(url, { method: "POST", headers: { "Content-Type": "application/json" }, body: body, keepalive: true }).catch(function () {}); } catch (e) {}
+    }
+  }
+
+  /* ---------- Ticker ---------- */
+  var ticker = $("#ticker");
+  [false, true].forEach(function (isCopy) {
+    SKILLS.forEach(function (s) {
+      var chip = document.createElement("span");
+      chip.className = "chip" + (s[2] ? " first" : "") + (isCopy ? " dup" : "");
+      var name = document.createElement("b");
+      name.textContent = s[0];
+      chip.appendChild(name);
+      chip.appendChild(document.createTextNode(s[1]));
+      ticker.appendChild(chip);
+    });
+  });
+  // Hover slows the ticker down instead of stopping it (Marcus, 18/11); rate is eased so the speed change doesn't jolt.
+  var tickerRateFrame = 0;
+  function easeTickerRate(targetRate) {
+    var animation = ticker.getAnimations ? ticker.getAnimations()[0] : null;
+    if (!animation) return;
+    var startRate = animation.playbackRate;
+    var startTime = performance.now();
+    cancelAnimationFrame(tickerRateFrame);
+    function step(now) {
+      var progress = Math.min(1, (now - startTime) / 450);
+      var eased = 1 - Math.pow(1 - progress, 3);
+      animation.playbackRate = startRate + (targetRate - startRate) * eased;
+      if (progress < 1) tickerRateFrame = requestAnimationFrame(step);
+    }
+    tickerRateFrame = requestAnimationFrame(step);
+  }
+  var tickerBox = ticker.closest(".ticker");
+  tickerBox.addEventListener("mouseenter", function () { easeTickerRate(0.3); });
+  tickerBox.addEventListener("mouseleave", function () { easeTickerRate(1); });
+
+  /* ---------- Reveal on scroll ---------- */
+  var revealObserver = null;
+  function revealNow(el) { el.classList.add("in"); }
+  if (!reduceMotion && "IntersectionObserver" in window) {
+    revealObserver = new IntersectionObserver(function (entries) {
+      var entering = entries.filter(function (e) { return e.isIntersecting; });
+      entering.forEach(function (entry, index) {
+        entry.target.style.setProperty("--d", (index * 80) + "ms");
+        revealNow(entry.target);
+        revealObserver.unobserve(entry.target);
+      });
+    }, { rootMargin: "0px 0px -6% 0px", threshold: 0.08 });
+  }
+  function watchReveal(el) {
+    el.classList.add("rv");
+    if (revealObserver) revealObserver.observe(el); else revealNow(el);
+  }
+  $$(".path ol.steps > li, .path .done, .path h3, .path .note.warn").forEach(function (el) { el.classList.add("rv"); });
+  $$(".rv").forEach(function (el) { if (!el.closest(".path")) watchReveal(el); });
+
+  /* ---------- Commands: copy and self-typing ---------- */
+  var checkSvg = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 8.5l3.5 3.5 7.5-8"/></svg>';
+  function enhanceCopyButton(button) {
+    var label = button.textContent;
+    button.innerHTML = "";
+    var idle = document.createElement("span");
+    idle.className = "lbl"; idle.textContent = label;
+    var ok = document.createElement("span");
+    ok.className = "lbl-ok"; ok.setAttribute("aria-hidden", "true"); ok.innerHTML = checkSvg + "Copiado!";
+    button.appendChild(idle); button.appendChild(ok);
+  }
+  function copyFallback(text) {
     var t = document.createElement("textarea");
     t.value = text; t.style.position = "fixed"; t.style.opacity = "0";
     document.body.appendChild(t); t.select();
     try { document.execCommand("copy"); } catch (e) {}
     document.body.removeChild(t);
   }
-  document.querySelectorAll("button.copy").forEach(function (b) {
-    b.addEventListener("click", function () {
-      if (b.hasAttribute("data-copy-url")) { copyText(location.href.split("#")[0], b); return; }
-      var code = b.parentElement.querySelector("code");
-      copyText(code.textContent, b);
+  function confirmCopy(button) {
+    var box = button.closest(".cmd");
+    button.classList.remove("ok"); void button.offsetWidth;
+    button.classList.add("ok");
+    button.setAttribute("aria-label", "Copiado");
+    if (box) { box.classList.remove("flash"); void box.offsetWidth; box.classList.add("flash"); }
+    clearTimeout(button._t);
+    button._t = setTimeout(function () { button.classList.remove("ok"); button.removeAttribute("aria-label"); }, 1700);
+  }
+  function copyText(text, button) {
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(text).then(function () { confirmCopy(button); }, function () { copyFallback(text); confirmCopy(button); });
+    } else { copyFallback(text); confirmCopy(button); }
+  }
+  $$("button.copy").forEach(function (button) {
+    enhanceCopyButton(button);
+    button.addEventListener("click", function () {
+      if (button.hasAttribute("data-copy-url")) { copyText(location.href.split("#")[0].split("?")[0], button); return; }
+      var code = button.parentElement.querySelector("code");
+      var text = code.getAttribute("data-text") || code.textContent;
+      copyText(text, button);
+      var path = button.closest(".path");
+      track("comando_copiado", { caminho: path ? path.id : null, comando: text.slice(0, 120) });
     });
   });
+
+  // The full command stays in the DOM (transparent "ghost") so copy, selection and screen readers never see a partial string.
+  $$(".cmd code").forEach(function (code) {
+    var text = code.textContent;
+    code.setAttribute("data-text", text);
+    code.textContent = "";
+    var ghost = document.createElement("span");
+    ghost.className = "ghost"; ghost.textContent = text;
+    code.appendChild(ghost);
+  });
+  function typeCommand(code) {
+    if (code.getAttribute("data-typed")) return;
+    code.setAttribute("data-typed", "1");
+    var text = code.getAttribute("data-text");
+    var overlay = document.createElement("span");
+    overlay.className = "typed"; overlay.setAttribute("aria-hidden", "true");
+    code.classList.add("typing");
+    code.appendChild(overlay);
+    var perChar = Math.max(12, Math.min(38, 950 / text.length));
+    var shown = 0;
+    var tick = function () {
+      shown += 1;
+      overlay.textContent = text.slice(0, shown);
+      if (shown < text.length) { setTimeout(tick, perChar); return; }
+      setTimeout(function () { code.classList.remove("typing"); overlay.remove(); }, 650);
+    };
+    setTimeout(tick, 260);
+  }
+  var typeObserver = (!reduceMotion && "IntersectionObserver" in window) ? new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (!entry.isIntersecting) return;
+      typeObserver.unobserve(entry.target);
+      var code = $("code", entry.target);
+      var li = entry.target.closest("li");
+      var delay = li ? parseInt(li.style.getPropertyValue("--d") || "0", 10) + 300 : 0;
+      setTimeout(function () { typeCommand(code); }, delay);
+    });
+  }, { threshold: 0.7 }) : null;
+  if (typeObserver) $$(".path .cmd").forEach(function (box) { typeObserver.observe(box); });
+
+  /* ---------- Step progress ---------- */
+  var doneSteps = readStore("spv-passos", {});
+  function stepItems(section) { return $$("ol.steps[data-progress] > li", section); }
+  function renderProgress(section, celebrate) {
+    var items = stepItems(section);
+    var done = items.filter(function (li) { return li.classList.contains("is-done"); }).length;
+    var bar = $(".prog-bar span", section);
+    var txt = $(".prog-txt", section);
+    var wrapper = $("[data-prog]", section);
+    bar.style.width = (done / items.length * 100) + "%";
+    txt.textContent = done + " de " + items.length + " passos feitos";
+    wrapper.setAttribute("role", "progressbar");
+    wrapper.setAttribute("aria-valuemin", "0");
+    wrapper.setAttribute("aria-valuemax", String(items.length));
+    wrapper.setAttribute("aria-valuenow", String(done));
+    wrapper.setAttribute("aria-valuetext", txt.textContent);
+    var doneBox = $(".done", section);
+    var complete = done === items.length;
+    doneBox.classList.toggle("complete", complete);
+    if (complete && celebrate) { doneBox.classList.remove("celebrate"); void doneBox.offsetWidth; doneBox.classList.add("celebrate"); }
+  }
+  $$(".path").forEach(function (section) {
+    var saved = doneSteps[section.id] || [];
+    stepItems(section).forEach(function (li, index) {
+      var button = document.createElement("button");
+      button.type = "button";
+      button.className = "did press";
+      button.innerHTML = '<span class="box" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M2.5 8.5l3.5 3.5 7.5-8"/></svg></span><span class="did-t">Fiz esse passo</span>';
+      var isDone = saved.indexOf(index) !== -1;
+      button.setAttribute("aria-pressed", String(isDone));
+      li.classList.toggle("is-done", isDone);
+      button.addEventListener("click", function () {
+        var nowDone = button.getAttribute("aria-pressed") !== "true";
+        button.setAttribute("aria-pressed", String(nowDone));
+        li.classList.toggle("is-done", nowDone);
+        li.classList.remove("flip"); void li.offsetWidth; li.classList.add("flip");
+        var list = (doneSteps[section.id] || []).filter(function (i) { return i !== index; });
+        if (nowDone) list.push(index);
+        doneSteps = Object.assign({}, doneSteps, { [section.id]: list });
+        writeStore("spv-passos", doneSteps);
+        renderProgress(section, nowDone);
+      });
+      li.appendChild(button);
+    });
+    renderProgress(section, false);
+  });
+
+  /* ---------- Path picker ---------- */
+  var pick = $("#pick");
+  var helper = $("#ajuda-escolha");
+  function withTransition(update) {
+    if (reduceMotion || !document.startViewTransition) { update(); return Promise.resolve(); }
+    var transition = document.startViewTransition(update);
+    return transition.finished.catch(function () {});
+  }
+  function applyPath(pathId) {
+    currentPath = pathId;
+    pick.classList.toggle("chosen", !!pathId);
+    $("#escolha").classList.toggle("is-chosen", !!pathId);
+    $("#escolha-sub").textContent = pathId ? "Para trocar, toque em outro:" : "Toque no seu. Abrem só os passos daquele jeito.";
+    helper.hidden = !!pathId;
+    $$(".pick-card").forEach(function (card) {
+      card.setAttribute("aria-expanded", String(card.getAttribute("data-path") === pathId));
+    });
+    PATHS.forEach(function (id) {
+      var section = document.getElementById(id);
+      var show = id === pathId;
+      section.classList.toggle("shown", show);
+      if (!show) return;
+      section.classList.remove("opening"); void section.offsetWidth; section.classList.add("opening");
+      $$(".rv", section).forEach(function (el) {
+        el.classList.remove("in");
+        el.style.removeProperty("--d");
+        watchReveal(el);
+      });
+    });
+  }
+  function scrollToPath(pathId, smooth) {
+    var section = document.getElementById(pathId);
+    var title = $("h2", section);
+    section.scrollIntoView({ behavior: smooth && !reduceMotion ? "smooth" : "auto", block: "start" });
+    title.focus({ preventScroll: true });
+  }
+  function openPath(pathId, origem, opts) {
+    var options = opts || {};
+    if (PATHS.indexOf(pathId) === -1) return;
+    if (currentPath === pathId) { scrollToPath(pathId, true); return; }
+    if (options.pushHash !== false && location.hash !== "#" + pathId) {
+      try { history.pushState({ caminho: pathId }, "", "#" + pathId); } catch (e) {}
+    }
+    var animate = options.animate !== false;
+    var run = animate ? withTransition : function (fn) { fn(); return Promise.resolve(); };
+    run(function () { applyPath(pathId); }).then(function () { scrollToPath(pathId, animate); });
+    track("caminho_escolhido", { caminho: pathId, origem: origem });
+  }
+  function closePath(opts) {
+    var options = opts || {};
+    var previous = currentPath;
+    if (!previous) return;
+    if (options.pushHash !== false) {
+      try { history.pushState({}, "", location.pathname + location.search); } catch (e) {}
+    }
+    withTransition(function () { applyPath(null); }).then(function () {
+      $("#escolha").scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
+      var card = $('.pick-card[data-path="' + previous + '"]');
+      if (card) card.focus({ preventScroll: true });
+    });
+  }
+  $$(".pick-card").forEach(function (card) {
+    card.addEventListener("click", function () { openPath(card.getAttribute("data-path"), "cartao"); });
+  });
+  $$("[data-swap]").forEach(function (button) { button.addEventListener("click", function () { closePath(); }); });
+
+  document.addEventListener("click", function (event) {
+    var link = event.target.closest && event.target.closest('a[href^="#"]');
+    if (!link) return;
+    var target = resolvePath(link.getAttribute("href").slice(1));
+    if (PATHS.indexOf(target) !== -1) { event.preventDefault(); openPath(target, "link"); return; }
+    if (target === "qual") { event.preventDefault(); showComparison(); return; }
+    if (target === "seus-dados") { event.preventDefault(); showDataNotice(); }
+    // Scrolling by hand keeps the hash, so the popstate handler does not close the open path.
+    if (target === "lista-espera") { event.preventDefault(); showWaitlist(); }
+  });
+  function showWaitlist() {
+    var section = $("#lista-espera");
+    if (section.hidden) return;
+    section.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
+    var firstField = $("#espera-form").hidden ? $("#espera-outro") : $("input[name=whatsapp]", section);
+    firstField.focus({ preventScroll: true });
+  }
+  function showDataNotice() {
+    var details = $("#seus-dados");
+    details.open = true;
+    details.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
+    $("summary", details).focus({ preventScroll: true });
+  }
+  function showComparison() {
+    if (currentPath) applyPath(null);
+    var details = $("#qual");
+    details.open = true;
+    details.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "center" });
+  }
+  window.addEventListener("popstate", function () {
+    var hash = resolvePath(location.hash.slice(1));
+    if (PATHS.indexOf(hash) !== -1) openPath(hash, "voltar", { pushHash: false });
+    else if (currentPath) closePath({ pushHash: false });
+  });
+
+  /* ---------- "Which one is mine?" ---------- */
+  var quizAnswer = null;
+  var verdict = $("#verdict"), verdictTxt = $("#verdict-txt"), verdictGo = $("#verdict-go");
+  var VERDICTS = {
+    claude: ["claude-web", "O seu é o Claude no navegador: só cliques, nada para instalar. Se você já usa o Terminal, o Claude Code no computador também serve."],
+    chatgpt: ["chatgpt", "O seu é o ChatGPT, pelo Codex. Usa o Terminal, mas é só copiar e colar."],
+    terminal: ["terminal", "O seu é o Claude Code no computador: os arquivos ficam numa pasta sua. Precisa do Claude Pro ou superior."],
+    nenhum: ["claude-web", "Com franqueza: as skills são grátis, mas os três jeitos precisam de um plano pago, Claude Pro ou ChatGPT Plus (ou superior). No plano grátis não funciona. Se for assinar um, o Claude Pro é o mais simples: tudo pelo navegador.", "Ver o Claude no navegador"]
+  };
+  function renderQuiz() {
+    $$("[data-q1]").forEach(function (b) { b.setAttribute("aria-pressed", String(b.getAttribute("data-q1") === quizAnswer)); });
+    var result = quizAnswer && VERDICTS[quizAnswer];
+    verdict.hidden = !result;
+    if (!result) return;
+    verdictTxt.textContent = result[1];
+    verdictGo.textContent = result[2] || "Abrir " + PATH_NAMES[result[0]];
+    verdictGo.setAttribute("data-path", result[0]);
+    verdict.classList.remove("rv", "in"); void verdict.offsetWidth; verdict.classList.add("rv", "in");
+  }
+  $$("[data-q1]").forEach(function (b) { b.addEventListener("click", function () { quizAnswer = b.getAttribute("data-q1"); renderQuiz(); }); });
+  verdictGo.addEventListener("click", function () { openPath(verdictGo.getAttribute("data-path"), "ajuda"); });
+
+  /* ---------- Lightbox ---------- */
+  var dialog = $("#zoom-dlg"), zoomImg = $("#zoom-img"), zoomCap = $("#zoom-cap");
+  $$("figure.tela img").forEach(function (img) {
+    var markLoaded = function () {
+      if (!img.naturalWidth) return;
+      img.classList.add("loaded");
+      if (img.naturalHeight / img.naturalWidth > 0.7) img.closest("figure").classList.add("tall");
+    };
+    if (img.complete) markLoaded(); else img.addEventListener("load", markLoaded);
+  });
+  $$("figure.tela button.zoom").forEach(function (button) {
+    var img = $("img", button);
+    var figcaption = button.parentElement.querySelector("figcaption");
+    if (figcaption) {
+      var tip = document.createElement("span");
+      tip.className = "zoom-tip"; tip.setAttribute("aria-hidden", "true"); tip.textContent = " Toque na imagem para ampliar.";
+      figcaption.appendChild(tip);
+    }
+    button.setAttribute("aria-label", "Ampliar imagem: " + img.alt);
+    button.addEventListener("click", function () {
+      var caption = button.parentElement.querySelector("figcaption");
+      var captionText = caption ? caption.firstChild.textContent : "";
+      track("imagem_ampliada", { imagem: img.getAttribute("src").split("/").pop() });
+      if (!dialog.showModal) { window.open(img.src, "_blank", "noopener"); return; }
+      zoomImg.src = img.src; zoomImg.alt = img.alt;
+      // On a phone a wide screenshot shrinks to unreadable size; show it larger and let the person drag sideways.
+      var pan = window.innerWidth < 640 && img.naturalWidth > window.innerWidth * 1.2;
+      zoomImg.classList.toggle("pan", pan);
+      zoomImg.style.width = pan ? Math.min(img.naturalWidth, Math.round(window.innerWidth * 1.9)) + "px" : "";
+      zoomCap.textContent = captionText + (pan ? " Arraste para o lado para ver a imagem toda." : "");
+      dialog.showModal();
+      $("#zoom-x").focus();
+    });
+  });
+  dialog.addEventListener("click", function () { dialog.close(); });
+
+  /* ---------- Chat ---------- */
+  var CHAT_KEY = "spv-chat";
+  var SUGGESTIONS = ["Como instalo pelo navegador?", "Preciso pagar alguma coisa?", "O que é o Claude Code?", "Qual caminho é o meu?"];
+  var MAX_MESSAGES = 20, MAX_CHARS = 1500;
+  var chat = Object.assign({ lead: null, mensagens: [], convite: null, cartaoNegocio: null }, readStore(CHAT_KEY, {}));
+  var BUSINESS_CHIPS = ["Salão/beleza", "Comida", "Pet", "Loja", "Serviço", "Outro"];
+  var fab = $("#chat-fab"), panel = $("#chat-panel"), leadForm = $("#chat-lead"), talk = $("#chat-talk");
+  var announce = $("#chat-announce");
+  var log = $("#chat-log"), sugs = $("#chat-sugs"), chatForm = $("#chat-form"), input = $("#chat-input"), sendBtn = $("#chat-send");
+  var busy = false;
+
+  function saveChat() { writeStore(CHAT_KEY, chat); }
+  function setChat(patch) { chat = Object.assign({}, chat, patch); saveChat(); }
+
+  function postJson(path, payload) {
+    if (isMock) { if (window.console) console.debug("[" + path + "]", payload); return Promise.resolve({ ok: true, status: 200, data: { ok: true } }); }
+    return fetch(apiBase + path, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) })
+      .then(function (res) {
+        return res.json().catch(function () { return null; }).then(function (data) { return { ok: res.ok, status: res.status, data: data }; });
+      }, function () { return { ok: false, status: 0, data: null }; });
+  }
+  function patchLead(patch) { setChat({ lead: Object.assign({}, chat.lead, patch) }); }
+  // The lead stays "pendente" until the server answers 200; a failed send is retried on the next open or message.
+  var leadInFlight = false;
+  function sendLead(origem) {
+    if (!chat.lead) return;
+    if (!chat.lead.pendente) patchLead({ pendente: true });
+    if (leadInFlight) return;
+    leadInFlight = true;
+    var sent = chat.lead;
+    var sentSession = sessionId;
+    // The server merges: null fields never erase what an earlier send stored.
+    postJson("/lead", { session_id: sessionId, nome: sent.nome, perfil: sent.perfil || null, negocio: sent.negocio || null, whatsapp: sent.whatsapp || null, aceita_whatsapp: !!sent.aceita, caminho: currentPath })
+      .then(function (result) {
+        leadInFlight = false;
+        if (!chat.lead || sentSession !== sessionId) return;
+        if (result.ok) {
+          var changed = chat.lead.whatsapp !== sent.whatsapp || chat.lead.aceita !== sent.aceita || chat.lead.negocio !== sent.negocio;
+          patchLead({ pendente: changed });
+          track("lead_enviado", { perfil: sent.perfil || null, tem_negocio: !!sent.negocio, tem_whatsapp: !!sent.whatsapp, aceita_whatsapp: !!sent.aceita, origem: origem });
+          if (changed) sendLead(origem);
+          return;
+        }
+        if (result.status === 400 && sent.whatsapp) {
+          patchLead({ whatsapp: null, aceita: false });
+          setChat({ convite: "aberto" });
+          showInvite("Esse número não foi aceito. Confira o DDD e o número e mande de novo.");
+          sendLead("sem_numero");
+        }
+      });
+  }
+  function retryPendingLead() { if (chat.lead && chat.lead.pendente) sendLead("reenvio"); }
+
+  function onlyDigits(value) { return (value || "").replace(/\D+/g, ""); }
+  // Same rule as the server: DDD + number (10 or 11 digits), or 12/13 digits starting with 55. A leading 0 (old long-distance prefix) is dropped.
+  function normalizePhone(value) {
+    var digits = onlyDigits(value).replace(/^0+/, "");
+    if (digits.length === 10 || digits.length === 11) return digits;
+    if ((digits.length === 12 || digits.length === 13) && digits.indexOf("55") === 0) return digits;
+    return null;
+  }
+
+  function scrollLog() { log.scrollTop = log.scrollHeight; }
+  function addBubble(role, text, extraClass) {
+    var bubble = document.createElement("div");
+    bubble.className = "msg " + (role === "user" ? "user" : "bot") + (extraClass ? " " + extraClass : "");
+    if (text) bubble.textContent = text;
+    log.appendChild(bubble);
+    scrollLog();
+    return bubble;
+  }
+  function greeting() {
+    var name = chat.lead && chat.lead.nome ? chat.lead.nome.split(" ")[0] : "";
+    return "Oi" + (name ? ", " + name : "") + "! Pode perguntar o que quiser sobre instalar e usar as skills. Se travar em algum passo, me diga em qual.";
+  }
+  function renderSuggestions() {
+    sugs.innerHTML = "";
+    var askedAnything = chat.mensagens.some(function (m) { return m.role === "user"; });
+    sugs.hidden = askedAnything;
+    if (askedAnything) return;
+    SUGGESTIONS.forEach(function (text) {
+      var b = document.createElement("button");
+      b.type = "button"; b.className = "sug press"; b.textContent = text;
+      b.addEventListener("click", function () { sendMessage(text, true); });
+      sugs.appendChild(b);
+    });
+  }
+  function renderTalk() {
+    log.innerHTML = "";
+    addBubble("assistant", greeting());
+    chat.mensagens.forEach(function (m) { addBubble(m.role, m.content); });
+    if (chat.cartaoNegocio === "aberto") showBusinessCard();
+    if (chat.convite === "aberto") showInvite();
+    renderSuggestions();
+  }
+  function showStage() {
+    var hasLead = !!(chat.lead && chat.lead.nome);
+    leadForm.hidden = hasLead;
+    talk.hidden = !hasLead;
+    if (hasLead) renderTalk();
+  }
+
+  var phoneLayout = window.matchMedia ? window.matchMedia("(max-width: 640px)") : { matches: false };
+  // On a phone the panel covers the whole screen, so the page behind it must leave the tab order and the screen reader.
+  function setBackgroundInert(isInert) {
+    $$("body > *").forEach(function (el) {
+      if (el === panel || el === fab || el.tagName === "SCRIPT" || el.tagName === "DIALOG") return;
+      if (isInert) el.setAttribute("inert", ""); else el.removeAttribute("inert");
+    });
+  }
+  function openChat() {
+    if (!panel.hidden) return;
+    panel.hidden = false;
+    panel.classList.remove("closing"); panel.classList.add("opening");
+    fab.setAttribute("aria-expanded", "true");
+    if (phoneLayout.matches) { panel.setAttribute("aria-modal", "true"); setBackgroundInert(true); }
+    showStage();
+    retryPendingLead();
+    setTimeout(function () {
+      var focusTarget = leadForm.hidden ? input : $("input[name=nome]", leadForm);
+      focusTarget.focus();
+    }, 60);
+    track("chat_aberto", { caminho: currentPath });
+  }
+  function closeChat(returnFocus) {
+    if (panel.hidden) return;
+    fab.setAttribute("aria-expanded", "false");
+    panel.removeAttribute("aria-modal");
+    setBackgroundInert(false);
+    var finish = function () {
+      panel.hidden = true;
+      panel.classList.remove("closing", "opening");
+      if (returnFocus !== false) fab.focus();
+    };
+    if (reduceMotion) finish(); else { panel.classList.add("closing"); setTimeout(finish, 180); }
+  }
+
+  // Entry asks only name and profile; business and WhatsApp come later, as cards after the first answers.
+  leadForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    var data = new FormData(leadForm);
+    var nome = String(data.get("nome") || "").trim().slice(0, 40);
+    var perfil = data.get("perfil");
+    var err = $("#lead-err");
+    if (nome.length < 2) { err.textContent = "Coloque o seu nome."; $("input[name=nome]", leadForm).focus(); return; }
+    if (!perfil) { err.textContent = "Escolha o que você é: dono de negócio, dev ou freelancer, ou outro."; $("#chat-perfil input").focus(); return; }
+    err.textContent = "";
+    setChat({ lead: { nome: nome, perfil: perfil, negocio: null, whatsapp: null, aceita: false }, convite: null, cartaoNegocio: null });
+    sendLead("formulario");
+    showStage();
+    input.focus();
+  });
+
+  leadForm.addEventListener("input", function () { $("#lead-err").textContent = ""; });
+
+  function showInvite(problem) {
+    var existing = $(".invite", log);
+    if (existing && $("input", existing)) {
+      if (problem) { $(".err", existing).textContent = problem; scrollLog(); }
+      return;
+    }
+    if (existing) existing.remove();
+    var box = document.createElement("form");
+    box.className = "invite";
+    // Tapping the button, with the consent text visible in the card, is the consent; nothing comes pre-checked.
+    box.innerHTML = '<strong class="invite-t">Quer receber no WhatsApp as próximas skills e materiais?</strong><span class="err" role="alert"></span><div class="row"><input type="tel" inputmode="tel" maxlength="20" autocomplete="tel" placeholder="DDD + número" aria-label="Seu WhatsApp"><button type="submit">Sim, quero receber</button></div><span class="invite-legal">Ao tocar em "Sim, quero receber", você aceita receber no WhatsApp novidades das skills, do oZap e dos materiais do @omarcusdev; dá para sair quando quiser.</span><button type="button" class="later">Agora não</button>';
+    if (problem) $(".err", box).textContent = problem;
+    var field = $("input", box);
+    box.addEventListener("submit", function (event) {
+      event.preventDefault();
+      var phone = normalizePhone(field.value);
+      if (!phone) { field.setCustomValidity("Use DDD + número"); field.reportValidity(); return; }
+      setChat({ lead: Object.assign({}, chat.lead, { whatsapp: phone, aceita: true }), convite: "enviado" });
+      sendLead("convite");
+      box.classList.add("done-card");
+      box.innerHTML = "<span>Anotado. As próximas skills e materiais vão para esse número.</span>";
+    });
+    field.addEventListener("input", function () { field.setCustomValidity(""); });
+    $(".later", box).addEventListener("click", function () { setChat({ convite: "fechado" }); box.remove(); });
+    log.appendChild(box);
+    scrollLog();
+  }
+  function saveBusiness(value, card) {
+    var negocio = String(value || "").trim().slice(0, 60);
+    if (negocio.length < 2) return false;
+    patchLead({ negocio: negocio });
+    setChat({ cartaoNegocio: "enviado" });
+    sendLead("cartao_negocio");
+    card.classList.add("done-card");
+    card.textContent = "";
+    var note = document.createElement("span");
+    note.textContent = "Anotado: " + negocio + ". As próximas respostas já levam isso em conta.";
+    card.appendChild(note);
+    input.focus();
+    return true;
+  }
+  function showBusinessCard() {
+    if ($(".invite.biz", log)) return;
+    var card = document.createElement("div");
+    card.className = "invite biz";
+    card.innerHTML = '<strong class="invite-t">Qual é o seu negócio?</strong><span class="invite-sub">Assim os exemplos ficam do seu jeito.</span><div class="chips"></div><form class="row"><input maxlength="60" placeholder="Ou escreva: ex.: oficina, escola" aria-label="O seu negócio, com as suas palavras"><button type="submit">OK</button></form><button type="button" class="later">Pular</button>';
+    var freeField = $("input", card);
+    BUSINESS_CHIPS.forEach(function (label) {
+      var chip = document.createElement("button");
+      chip.type = "button"; chip.className = "press"; chip.textContent = label;
+      chip.addEventListener("click", function () {
+        if (label === "Outro") { freeField.focus(); return; }
+        saveBusiness(label, card);
+      });
+      $(".chips", card).appendChild(chip);
+    });
+    $("form", card).addEventListener("submit", function (event) {
+      event.preventDefault();
+      if (!saveBusiness(freeField.value, card)) freeField.focus();
+    });
+    $(".later", card).addEventListener("click", function () { setChat({ cartaoNegocio: "fechado" }); card.remove(); input.focus(); });
+    log.appendChild(card);
+    scrollLog();
+  }
+  // Business card after the 1st answer (business owners only); WhatsApp card after the 2nd. One card at a time.
+  function maybeInvite() {
+    var answers = chat.mensagens.filter(function (m) { return m.role === "assistant"; }).length;
+    var lead = chat.lead || {};
+    if (answers >= 2 && chat.cartaoNegocio === "aberto") {
+      setChat({ cartaoNegocio: "ignorado" });
+      var staleCard = $(".invite.biz", log);
+      if (staleCard) staleCard.remove();
+    }
+    if (answers >= 1 && lead.perfil === "dono" && !lead.negocio && !chat.cartaoNegocio) { setChat({ cartaoNegocio: "aberto" }); showBusinessCard(); return; }
+    if (answers >= 2 && !lead.whatsapp && !chat.convite) { setChat({ convite: "aberto" }); showInvite(); }
+  }
+
+  function historyForApi() {
+    var trimmed = chat.mensagens.slice(-MAX_MESSAGES).map(function (m) { return { role: m.role, content: m.content.slice(0, MAX_CHARS) }; });
+    while (trimmed.length && trimmed[0].role !== "user") trimmed.shift();
+    return trimmed;
+  }
+
+  var MOCK_ANSWERS = [
+    [/navegador|claude\.ai|marketplace/i, "Pelo navegador, com o Claude Pro ou superior:\n\n1. Abra claude.ai/plugins, clique em Adicionar e escolha Adicionar marketplace.\n2. Escolha Adicionar de um repositório.\n3. No campo URL, digite omarcusdev/skills-primeira-venda, aperte Enter e clique em Sincronizar.\n4. Abra Skills da primeira venda e clique em Adicionar.\n\nDeu certo até aqui? Aí eu te mostro como começar no claude.ai/code."],
+    [/gr[aá]tis|n[aã]o pago|sem plano/i, "Com franqueza: as skills são grátis, mas para usar precisa de um plano pago, o Claude Pro ou o ChatGPT Plus (ou superior). No plano grátis desses dois, os caminhos da página não funcionam. Se for assinar um, o Claude Pro é o mais simples: tudo pelo navegador."],
+    [/pag|cust|pre[cç]o/i, "As skills são grátis. Para usar, você precisa de um plano pago: Claude Pro ou superior, ou ChatGPT Plus ou superior. Fora isso, pode custar o chip do número do negócio e, só se você quiser, anúncio. A IA sempre avisa antes de qualquer coisa que tenha custo."],
+    [/claude code|terminal/i, "O Claude Code é o Claude que trabalha numa pasta do seu computador, pelo Terminal, então guarda a ficha do negócio e continua de onde parou. Precisa do plano Pro ou superior. Para instalar, são dois comandos: escolha \"Claude Code no computador\" na página. Se não quer usar o Terminal, o Claude no navegador é só cliques."],
+    [/caminho|qual/i, "Depende do plano que você tem. Com o Claude Pro ou superior, o mais fácil é o Claude no navegador: só cliques. Com o ChatGPT Plus, é pelo Codex. Se você já usa o Terminal, o Claude Code no computador. Me conta qual plano você tem que eu te guio."]
+  ];
+  function mockAnswer(question) {
+    var found = MOCK_ANSWERS.filter(function (pair) { return pair[0].test(question); })[0];
+    return found ? found[1] : "Boa pergunta. Para começar, escolha na página onde você usa a IA: aparecem só os passos daquele jeito. Se travar em algum, me diga o número do passo.";
+  }
+  function mockStream(question, onChunk) {
+    if (/erro|limite/i.test(question)) {
+      return new Promise(function (resolve, reject) { setTimeout(function () { reject({ status: 429, mensagem: "Muita gente perguntando agora. Tente de novo em alguns minutos." }); }, 700); });
+    }
+    var full = mockAnswer(question);
+    return new Promise(function (resolve) {
+      var position = 0;
+      var step = function () {
+        var size = 3 + Math.floor(Math.random() * 6);
+        onChunk(full.slice(position, position + size));
+        position += size;
+        if (position < full.length) setTimeout(step, 28); else resolve(full);
+      };
+      setTimeout(step, 650);
+    });
+  }
+  function streamChat(payload, onChunk) {
+    if (isMock) return mockStream(payload.mensagens[payload.mensagens.length - 1].content, onChunk);
+    var controller = new AbortController();
+    var idle = null;
+    var armIdle = function () { clearTimeout(idle); idle = setTimeout(function () { controller.abort(); }, 45000); };
+    armIdle();
+    return fetch(apiBase + "/chat", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload), signal: controller.signal })
+      .then(function (res) {
+        if (!res.ok) {
+          return res.json().catch(function () { return {}; }).then(function (data) { throw { status: res.status, mensagem: data && data.mensagem }; });
+        }
+        if (!res.body || !res.body.getReader) return res.text().then(function (t) { onChunk(t); return t; });
+        var reader = res.body.getReader();
+        var decoder = new TextDecoder("utf-8");
+        var full = "";
+        var pump = function () {
+          return reader.read().then(function (result) {
+            if (result.done) {
+              var tail = decoder.decode();
+              if (tail) { full += tail; onChunk(tail); }
+              return full;
+            }
+            armIdle();
+            var piece = decoder.decode(result.value, { stream: true });
+            full += piece; onChunk(piece);
+            return pump();
+          });
+        };
+        return pump();
+      })
+      .then(function (full) { clearTimeout(idle); return full; }, function (error) { clearTimeout(idle); throw error; });
+  }
+
+  function friendlyError(error) {
+    var status = error && error.status;
+    if (status === 429) return (error.mensagem || "Muita gente perguntando agora. Tente de novo em alguns minutos.");
+    if (status === 503) return (error.mensagem || "O chat está fora do ar agora. Tente de novo mais tarde.");
+    if (status === 400) return "Não consegui ler essa mensagem. Tente escrever de novo, de um jeito mais curto.";
+    return "A conexão falhou antes da resposta chegar. Confira a internet e tente de novo.";
+  }
+  function showError(bubble, error, partial) {
+    bubble.classList.add("err-msg");
+    bubble.textContent = (partial ? partial + "\n\n(A resposta foi cortada.) " : "") + friendlyError(error) + " Enquanto isso, veja ";
+    var faq = document.createElement("a"); faq.href = "#perguntas"; faq.textContent = "as perguntas comuns"; faq.setAttribute("data-close-chat", "");
+    var probs = document.createElement("a"); probs.href = "#duvidas"; probs.textContent = "os problemas mais comuns"; probs.setAttribute("data-close-chat", "");
+    bubble.appendChild(faq); bubble.appendChild(document.createTextNode(" ou ")); bubble.appendChild(probs); bubble.appendChild(document.createTextNode("."));
+    var retry = document.createElement("button");
+    retry.type = "button"; retry.className = "retry press"; retry.textContent = "Tentar de novo";
+    retry.addEventListener("click", function () { bubble.remove(); askAssistant(); });
+    bubble.appendChild(document.createElement("br"));
+    bubble.appendChild(retry);
+  }
+
+  function askAssistant() {
+    busy = true; sendBtn.disabled = true;
+    var bubble = addBubble("assistant", "");
+    bubble.innerHTML = '<span class="typing-dots"><span class="sr-only">Digitando</span><i aria-hidden="true"></i><i aria-hidden="true"></i><i aria-hidden="true"></i></span>';
+    // Each streamed piece rewrites the bubble; with the log live a screen reader would repeat partial text.
+    log.setAttribute("aria-live", "off");
+    log.setAttribute("aria-busy", "true");
+    announce.textContent = "A IA está escrevendo a resposta.";
+    var received = "";
+    var payload = { session_id: sessionId, mensagens: historyForApi(), caminho: currentPath, nome: chat.lead.nome, perfil: chat.lead.perfil || null, negocio: chat.lead.negocio || null };
+    streamChat(payload, function (piece) {
+      if (!received) bubble.textContent = "";
+      received += piece;
+      bubble.textContent = received;
+      scrollLog();
+    }).then(function (full) {
+      var text = (full || received).trim();
+      if (!text) throw { status: 0 };
+      bubble.textContent = text;
+      setChat({ mensagens: chat.mensagens.concat([{ role: "assistant", content: text }]) });
+      maybeInvite();
+    }).catch(function (error) {
+      showError(bubble, error, received.trim());
+    }).then(function () {
+      busy = false; sendBtn.disabled = false;
+      log.setAttribute("aria-busy", "false");
+      announce.textContent = bubble.textContent;
+      log.setAttribute("aria-live", "polite");
+      scrollLog();
+    });
+  }
+  function sendMessage(raw, fromSuggestion) {
+    var text = String(raw || "").trim().slice(0, MAX_CHARS);
+    if (!text || busy) return;
+    retryPendingLead();
+    setChat({ mensagens: chat.mensagens.concat([{ role: "user", content: text }]) });
+    addBubble("user", text);
+    renderSuggestions();
+    track("mensagem_enviada", { n: chat.mensagens.filter(function (m) { return m.role === "user"; }).length, sugestao: !!fromSuggestion, caminho: currentPath });
+    askAssistant();
+  }
+
+  function autosize() { input.style.height = "auto"; input.style.height = Math.min(input.scrollHeight + 4, 132) + "px"; }
+  input.addEventListener("input", autosize);
+  input.addEventListener("keydown", function (event) {
+    if (event.key === "Enter" && !event.shiftKey && !event.isComposing) { event.preventDefault(); chatForm.requestSubmit ? chatForm.requestSubmit() : chatForm.dispatchEvent(new Event("submit")); }
+  });
+  chatForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    if (busy) return;
+    var value = input.value;
+    input.value = ""; autosize();
+    sendMessage(value, false);
+  });
+  $("#chat-clear").addEventListener("click", function () {
+    chat = { lead: null, mensagens: [], convite: null, cartaoNegocio: null };
+    removeStore(CHAT_KEY);
+    sessionId = storeSessionId(makeUuid());
+    leadForm.reset();
+    showStage();
+    $("input[name=nome]", leadForm).focus();
+  });
+  $("#chat-x").addEventListener("click", function () { closeChat(); });
+  fab.addEventListener("click", function () { if (panel.hidden) openChat(); else closeChat(); });
+  panel.addEventListener("keydown", function (event) { if (event.key === "Escape") closeChat(); });
+  panel.addEventListener("click", function (event) {
+    var link = event.target.closest && event.target.closest("[data-close-chat]");
+    if (link) closeChat(false);
+  });
+
+  if (chatEnabled) {
+    fab.hidden = false;
+    document.body.classList.add("has-chat");
+    if (isMock) $("#chat-sub").textContent = "Modo de teste: respostas simuladas";
+    if (isMock && params.get("demo") === "conversa") {
+      chat = { lead: { nome: "Ana", perfil: "dono", negocio: "salão", whatsapp: null, aceita: false }, convite: null, cartaoNegocio: "enviado", mensagens: [
+        { role: "user", content: "Preciso pagar alguma coisa?" },
+        { role: "assistant", content: mockAnswer("pagar") },
+        { role: "user", content: "Como instalo pelo navegador?" },
+        { role: "assistant", content: mockAnswer("navegador") }
+      ] };
+      maybeInvite();
+    }
+    if (params.get("abrir") === "chat") {
+      openChat();
+      window.addEventListener("load", function () { setTimeout(function () { if (!panel.hidden && !leadForm.hidden) $("input[name=nome]", leadForm).focus(); }, 0); });
+    }
+    else if (!reduceMotion) setTimeout(function () { if (panel.hidden) fab.classList.add("nudge"); }, 6000);
+  }
+
+  /* ---------- Waitlist ---------- */
+  var WAITLIST_KEY = "spv-espera";
+  var waitlistSection = $("#lista-espera"), waitlistForm = $("#espera-form"), waitlistDone = $("#espera-ok");
+  var waitlistError = $("#espera-err"), waitlistButton = $("#espera-go"), waitlistProfiles = $("#espera-perfil");
+  var waitlistSending = false;
+
+  function clearWaitlistError() {
+    waitlistError.textContent = "";
+    $$("[aria-invalid]", waitlistForm).forEach(function (el) { el.removeAttribute("aria-invalid"); });
+  }
+  function showWaitlistError(message, invalidElement, offerRetry) {
+    waitlistError.textContent = message;
+    if (invalidElement) {
+      invalidElement.setAttribute("aria-invalid", "true");
+      var focusTarget = invalidElement.matches("input") ? invalidElement : $("input", invalidElement);
+      focusTarget.focus();
+    }
+    if (!offerRetry) return;
+    var retryButton = document.createElement("button");
+    retryButton.type = "button"; retryButton.className = "retry press"; retryButton.textContent = "Tentar de novo";
+    retryButton.addEventListener("click", submitWaitlist);
+    waitlistError.appendChild(retryButton);
+  }
+  function showWaitlistDone(justSent) {
+    waitlistForm.hidden = true;
+    waitlistDone.hidden = false;
+    $("#espera-ok-t").textContent = justSent ? "Pronto, você está na lista!" : "Você já está na lista.";
+    waitlistDone.classList.remove("celebrate");
+    if (!justSent) return;
+    void waitlistDone.offsetWidth;
+    waitlistDone.classList.add("celebrate");
+    waitlistDone.focus({ preventScroll: true });
+  }
+  function readWaitlistForm() {
+    var data = new FormData(waitlistForm);
+    var typedPhone = onlyDigits(data.get("whatsapp"));
+    return {
+      typedPhone: typedPhone,
+      phone: typedPhone ? normalizePhone(typedPhone) : null,
+      perfil: data.get("perfil"),
+      nome: String(data.get("nome") || "").trim().slice(0, 40),
+      aceita: data.get("aceita") === "on"
+    };
+  }
+  function waitlistProblem(entry) {
+    var phoneField = $("input[name=whatsapp]", waitlistForm);
+    if (!entry.typedPhone) return ["Coloque o seu WhatsApp, com DDD.", phoneField];
+    if (!entry.phone) return ["Esse WhatsApp parece incompleto. Use DDD + número, por exemplo 11 98765-4321.", phoneField];
+    if (!entry.perfil) return ["Escolha o que você é: dono de negócio, dev ou freelancer, ou outro.", waitlistProfiles];
+    if (!entry.aceita) return ["Marque a caixa para a gente poder te avisar no WhatsApp.", $("input[name=aceita]", waitlistForm)];
+    return null;
+  }
+  function failureMessage(result) {
+    if (result.status === 400) return { text: "Esse número não foi aceito. Confira o DDD e o número e mande de novo.", field: $("input[name=whatsapp]", waitlistForm), retry: false };
+    if (result.status === 429) return { text: (result.data && result.data.mensagem) || "Recebemos muitos envios da sua conexão agora. Espere um pouco e tente de novo.", field: null, retry: true };
+    return { text: "Não deu para enviar: a conexão falhou. Confira a internet e tente de novo.", field: null, retry: true };
+  }
+  function submitWaitlist() {
+    if (waitlistSending) return;
+    clearWaitlistError();
+    var entry = readWaitlistForm();
+    var problem = waitlistProblem(entry);
+    if (problem) { showWaitlistError(problem[0], problem[1], false); return; }
+    waitlistSending = true;
+    waitlistButton.disabled = true;
+    waitlistButton.textContent = "Enviando…";
+    var payload = { session_id: sessionId, whatsapp: entry.phone, perfil: entry.perfil, nome: entry.nome || null, aceita_whatsapp: true, caminho: currentPath };
+    postJson("/espera", payload).then(function (result) {
+      waitlistSending = false;
+      waitlistButton.disabled = false;
+      waitlistButton.textContent = "Quero ser avisado";
+      if (!result.ok) {
+        var failure = failureMessage(result);
+        showWaitlistError(failure.text, failure.field, failure.retry);
+        return;
+      }
+      writeStore(WAITLIST_KEY, { enviado: true, perfil: entry.perfil });
+      track("lista_espera_enviada", { perfil: entry.perfil, tem_nome: !!entry.nome, caminho: currentPath });
+      showWaitlistDone(true);
+    });
+  }
+  waitlistForm.addEventListener("submit", function (event) { event.preventDefault(); submitWaitlist(); });
+  waitlistForm.addEventListener("input", function (event) {
+    var invalidHolder = event.target.closest("[aria-invalid]");
+    if (invalidHolder) { invalidHolder.removeAttribute("aria-invalid"); waitlistError.textContent = ""; }
+  });
+  $("#espera-outro").addEventListener("click", function () {
+    removeStore(WAITLIST_KEY);
+    waitlistForm.reset();
+    clearWaitlistError();
+    waitlistDone.hidden = true;
+    waitlistForm.hidden = false;
+    $("input[name=whatsapp]", waitlistForm).focus();
+  });
+  if (chatEnabled) {
+    waitlistSection.hidden = false;
+    $$(".espera-atalho").forEach(function (shortcut) { shortcut.hidden = false; });
+    if (readStore(WAITLIST_KEY, {}).enviado) showWaitlistDone(false);
+  }
+
+  /* ---------- Instagram ---------- */
+  document.addEventListener("click", function (event) {
+    var link = event.target.closest && event.target.closest("a[data-ig]");
+    if (link) track("instagram_clicado", { origem: link.getAttribute("data-ig") });
+  });
+
+  /* ---------- Start ---------- */
+  var startHash = location.hash.slice(1);
+  var startPath = resolvePath(startHash);
+  if (PATHS.indexOf(startPath) !== -1) {
+    if (startPath !== startHash) {
+      try { history.replaceState({ caminho: startPath }, "", location.pathname + location.search + "#" + startPath); } catch (e) {}
+    }
+    openPath(startPath, "link", { pushHash: false, animate: false });
+    // The browser's own fragment handling runs at load and resets focus, so focus the heading again after it.
+    window.addEventListener("load", function () {
+      setTimeout(function () { if (currentPath === startPath && window.scrollY < 40 + document.getElementById(startPath).offsetTop) scrollToPath(startPath, false); }, 0);
+    });
+  }
+  else if (startHash === "qual") showComparison();
+  else if (startHash === "seus-dados") showDataNotice();
+  else if (startHash === "lista-espera") window.addEventListener("load", function () { setTimeout(showWaitlist, 0); });
+
+  track("visita", {
+    hash: startHash || null,
+    ref: document.referrer ? (function () { try { return new URL(document.referrer).hostname; } catch (e) { return null; } })() : null,
+    utm_source: params.get("utm_source"), utm_medium: params.get("utm_medium"), utm_campaign: params.get("utm_campaign"),
+    tela: window.innerWidth < 700 ? "celular" : "computador"
+  });
+  document.documentElement.classList.add("js-ok");
 })();
 </script>
 </body>
